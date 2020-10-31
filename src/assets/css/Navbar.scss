@@ -1,5 +1,5 @@
 .navbar {
-  background: linear-gradient(90deg, rgb(29, 115, 91) 0%, rgb(40, 121, 19) 100%);
+  background: #ffb224;
   height: fit-content;
   display: flex;
   justify-content: center;
@@ -8,6 +8,7 @@
   position: sticky;
   top: 0;
   z-index: 999;
+  margin-right: -1em;
 }
 
 .my-2{
@@ -43,7 +44,7 @@
   font-size: 2rem;
   display: flex;
   align-items: center;
-  font-family: Lobster;
+  font-family: 'Bungee Inline', cursive;
   margin-top: -15px;
 }
 

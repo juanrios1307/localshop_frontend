@@ -1,0 +1,12 @@
+.carousel{
+    height: auto;
+}
+.carousel-inner{
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+.carousel-item{
+    height: fit-content;
+
+}

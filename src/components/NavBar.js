@@ -13,7 +13,7 @@ function NavBar() {
     const [profesion, setProfesion] = useState('');
     const [categoria, setCategoria] = useState('workers');
 
-    //const url = 'https://peaceful-ridge-86113.herokuapp.com/api/main'
+    //const url = 'https://radiant-castle-07024.herokuapp.com/api/main'
     const url='http://localhost:5000/api/main'
 
     const buscar = () => {

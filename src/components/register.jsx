@@ -13,7 +13,8 @@ export class Register extends React.Component {
             correo:'',
             pwd:'',
             telefono:'',
-            ciudad:''
+            ciudad:'',
+            cedula:''
         }
 
         this.signinUser = this.signinUser.bind(this);
@@ -23,7 +24,7 @@ export class Register extends React.Component {
     async signinUser(e) {
         e.preventDefault()
 
-        //const url = 'https://peaceful-ridge-86113.herokuapp.com/api/users'
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/users'
 
         const url='http://localhost:5000/api/users'
 
@@ -125,10 +126,10 @@ export class Register extends React.Component {
                                    onChange={(e) => this.setState({ciudad: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="password">Cédula</label>
+                            <label htmlFor="ident">Cédula</label>
                             <input type="number" name="ident" placeholder="Cédula" required
-                                   value={this.state.pwd}
-                                   onChange={(e) => this.setState({pwd: e.target.value})}/>
+                                   value={this.state.cedula}
+                                   onChange={(e) => this.setState({cedula: e.target.value})}/>
                         </div>
                         <div className="footer">
                             <button type="submit" className="btn">

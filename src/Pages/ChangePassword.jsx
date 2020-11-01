@@ -28,7 +28,7 @@ class ChangePassword extends Component {
 
             this.state.correo = localStorage.getItem("correo")
 
-            //const url = 'https://peaceful-ridge-86113.herokuapp.com/api/updatepwd'
+            //const url ='https://radiant-castle-07024.herokuapp.com/api/updatepwd'
             const url = 'http://localhost:5000/api/updatepwd/';
 
             var config = {

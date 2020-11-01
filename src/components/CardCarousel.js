@@ -22,9 +22,9 @@ class CardCarousel extends Component {
 
 
 
-        //const url = 'https://peaceful-ridge-86113.herokuapp.com/api/main/promworkers'
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/main/promproducts'
 
-        const url = 'http://localhost:5000/api/main/promworkers'
+        const url = 'http://localhost:5000/api/main/promproducts'
 
         const config = {
             method: 'get',
@@ -36,13 +36,13 @@ class CardCarousel extends Component {
         var data = response.data.data;
 
         this.setState({
-            Content: data.map((worker) => (
-                <div className="card" key={worker._id}>
-                    <div className="card-icon" ><img src={worker.imagen} alt="icon1"/></div>
+            Content: data.map((producto) => (
+                <div className="card" key={producto._id}>
+                    <div className="card-icon" ><img src={producto.imagen} alt="icon1"/></div>
                     <div className="card-body">
-                        <h5 className="card-title">{worker.user.nombre}</h5>
-                        <p className="card-text">{worker.profesion}</p>
-                        <p className="card-text">Correo: {worker.user.correo}</p>
+                        <h5 className="card-title">{producto.nombre}</h5>
+                        <p className="card-text">{producto.categoria}</p>
+                        <p className="card-text">Precio: ${producto.precio}</p>
                     </div>
                     <div className="card-footer">
                         <small className="text-muted">Last updated 20 mins ago</small>

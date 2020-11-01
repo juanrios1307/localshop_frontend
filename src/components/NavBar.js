@@ -84,11 +84,6 @@ function NavBar() {
                                        aria-label="Search"
                                        onChange={e => setProfesion(e.target.value)}/>
 
-                                <select onChange={e => setCategoria(e.target.value)} className="nav-link dropdown-toggle">
-                                    <option  value="workers" >Profesión</option>
-                                    <option  value="anunces" >Anuncio</option>
-                                </select>
-
                                 <button className="my-sm-0" type="submit">
                                     Buscar
                                 </button>

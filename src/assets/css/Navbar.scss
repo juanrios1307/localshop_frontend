@@ -29,7 +29,7 @@
 
 .navbar-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 80px;
   max-width: 1500px;
@@ -38,11 +38,11 @@
 .navbar-logo {
   color: #fff;
   justify-self: start;
-  margin-left: 20px;
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 2rem;
   display: flex;
+  padding-top: 0.5em;
   align-items: center;
   font-family: 'Bungee Inline', cursive;
   margin-top: -15px;
@@ -77,6 +77,7 @@
   background-color: whitesmoke;
   align-items: center;
   border-radius: 1em;
+  margin-left: 3em;
   text-decoration: none;
   font-family: "Franklin Gothic Book";
   padding: 0.5rem 1rem;
@@ -90,7 +91,7 @@
   color: #242424;
   border-radius: 1em;
   text-decoration: none !important;
-  color: rgb(29, 115, 91);
+  color: #ffb224;
 }
 
 .fa-bars {
@@ -144,7 +145,7 @@
     color: #242424;
     border-radius: 1em;
     text-decoration: none !important;
-    color: rgb(29, 115, 91);
+    color: #ffb224;
   }
 
   .navbar-logo {
@@ -152,7 +153,7 @@
     top: 0;
     left: 0;
     transform: translate(25%, 50%);
-    font-family: Lobster;
+    font-family: 'Bungee Inline', cursive;
   }
 
   .menu-icon {

@@ -66,3 +66,22 @@
     font-family: "Open Sans", sans-serif;
     border-radius: 5px;
 }
+h8{
+    font-family: "Open Sans", sans-serif;
+    font-size: x-large;
+    margin-left: 1em;
+    font-weight: bold;
+}
+hr{
+    background: #222222;
+    width: 100%;
+}
+input{
+    margin-left: 10px;
+    padding-left: 10px;
+    width: 20em;
+    transition: width;
+}
+.linklog{
+    color: #222222;
+}

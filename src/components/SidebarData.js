@@ -2,6 +2,7 @@ import React from 'react';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import * as BsIcons from 'react-icons/bs';
+import * as FaIcons from "react-icons/fa/index";
 
 export const SidebarData = [
     {
@@ -12,15 +13,15 @@ export const SidebarData = [
 
     },
     {
-        title: 'Guardadas',
+        title: 'Carrito de compras',
         path: '/saves',
-        icon: <BsIcons.BsFillBookmarkFill/> ,
+        icon: <FaIcons.FaShoppingCart/> ,
         cName: 'n-text'
     },
     {
-        title: 'Mis Anuncios',
-        path: '/misanuncios',
-        icon: <IoIcons.IoIosPaper />,
+        title: 'Mis productos',
+        path: '/misproductos',
+        icon: <AiIcons.AiFillShopping />,
         cName: 'n-text'
     },
 
@@ -32,7 +33,7 @@ export const SidebarData = [
     },
     {
         title: 'Buscar',
-        path: '/workers',
+        path: '/products',
         icon: <AiIcons.AiOutlineSearch />,
         cName: 'n-text'
     },

@@ -7,6 +7,7 @@ import ChangePassword from "./Pages/ChangePassword";
 import Dashboard from "./Pages/Dashboard";
 import ProductosBuscados from "./Pages/ProductosBuscados";
 import ProductoEspecifico from "./Pages/ProductoEspecifico";
+import SavingPub from "./Pages/SavingPub";
 
 function App() {
   return (
@@ -16,9 +17,13 @@ function App() {
           <Route exact path="/sing-up" component={LoginRegisterPage} />
           <Route exact path="/forgotpwd" component={ForgotPasword}/>
           <Route exact path="/updatepwd" component={ChangePassword}/>
+
           <Route exact path="/dashboard" component={Dashboard} />
+
           <Route exact path="/products" component={ProductosBuscados} />
           <Route exact path="/product" component={ProductoEspecifico} />
+
+          <Route exact path="/saves" component={SavingPub} />
       </Switch>
 
     </Router>

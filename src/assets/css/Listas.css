@@ -1,0 +1,62 @@
+.card-deck{
+    background: #ffb224;
+    padding: 2em;
+}
+.card-icon img{
+    position:absolute;
+    height:100%;
+    width:100%;
+    top:0px;
+    left:0px;
+}
+.card-icon{
+    height:0px;
+    width:100%;
+    padding-top:56.25%; /* Relación: 16/9 = 56.25% */
+    position:relative;
+    height: fit-content;
+}
+
+.imgList{
+    height: 200px;
+    width: 200px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 10px;
+}
+
+.btn-list{
+    margin: 15px;
+
+}
+.media{
+    border-radius: 10px;
+    background-color: whitesmoke;
+    padding: 1em;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    margin-right: 1em;
+    margin-left: 1em;
+}
+.sort{
+    border: 1px solid black;
+    margin: 1em;
+    border-radius: 10px;
+    padding: 0.2em 1em;
+    display: flex;
+    justify-content: space-between;
+}
+.sort-drop{
+    font-family: "Open Sans", sans-serif;
+    background: white;
+    border: white;
+}
+.sort button{
+    padding: 0.3em;
+    border-radius: 10px;
+    background: #ffb224;
+    color: whitesmoke;
+}
+.sort button:hover{
+    background: #060b26;
+}

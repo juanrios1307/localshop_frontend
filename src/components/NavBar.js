@@ -10,8 +10,7 @@ function NavBar() {
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
-    const [profesion, setProfesion] = useState('');
-    const [categoria, setCategoria] = useState('workers');
+    const [producto, setProducto] = useState('');
 
     //const url = 'https://radiant-castle-07024.herokuapp.com/api/main'
     const url='http://localhost:5000/api/main'
@@ -24,7 +23,7 @@ function NavBar() {
 
         Axios(config)
             .then(function (response) {
-                console.log(JSON.stringify(response.data));
+               // console.log(JSON.stringify(response.data));
             })
             .catch(function (error) {
                 console.log(error);
@@ -32,8 +31,7 @@ function NavBar() {
     }
 
     const buscarProfesion = () => {
-        localStorage.setItem("profesion", profesion.toLowerCase())
-        localStorage.setItem("categoria",categoria)
+        localStorage.setItem("producto", producto.toLowerCase())
     }
 
     const showButton = () => {
@@ -51,18 +49,10 @@ function NavBar() {
 
     window.addEventListener('resize', showButton);
 
-    if (localStorage.getItem("profesion")) {
-        if(localStorage.getItem("categoria") === "workers"){
-
-            return (
-                <Redirect to="/workers"/>
-            )
-        }else{
-
-            return (
-                <Redirect to="/anunces"/>
-            )
-        }
+    if (localStorage.getItem("producto")) {
+        return (
+            <Redirect to="/products"/>
+        )
     } else {
 
         return (
@@ -82,7 +72,7 @@ function NavBar() {
                             <form className="form-inline my-2 my-lg-0" onSubmit={buscarProfesion}>
                                 <input className="form-control mr-sm-2" type="search" placeholder="Buscar"
                                        aria-label="Search"
-                                       onChange={e => setProfesion(e.target.value)}/>
+                                       onChange={e => setProducto(e.target.value)}/>
 
                                 <button className="my-sm-0" type="submit">
                                     Buscar

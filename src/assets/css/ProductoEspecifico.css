@@ -1,0 +1,173 @@
+.DashNav{
+    position: absolute;
+    z-index: 1;
+}
+.boxcontainer{
+    box-sizing: border-box;
+    height: 26em;
+    width: 100%;
+    padding-bottom: 2em;
+}
+.imgbox{
+    width: 30%;
+    float: left;
+    height: 100%;
+    background: white;
+}
+.inforbox{
+    width: 68%;
+    float: left;
+    height: 100%;
+    padding: 1em;
+    margin-top: 1em;
+    border: 2px solid black;
+    background: white;
+    margin-bottom: 1em;
+}
+.imgbox img{
+    width: 23em;
+    height: 23em;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    border: 0.3em solid greenyellow;
+    border-radius: 20px;
+}
+.coments-container{
+    box-sizing: border-box;
+    height: 19em;
+    min-width: 100%;
+    background: #ffb224;
+}
+.comentbox{
+    float: left;
+    width: 60%;
+}
+.coments{
+    width: 40%;
+    float: left;
+    height: 19em;
+    padding: 1em 1.5em 1em 1.5em;
+    overflow-y: scroll;
+}
+.txtcoment{
+    padding-top: 0.8em;
+    padding-left: 2em;
+    padding-bottom: 0.5em;
+    font-family: "Open Sans", sans-serif;
+    font-size: larger;
+    font-weight: bold;
+    color: white;
+}
+.comenta{
+    padding: 0.5em 3em 0.5em 2em;
+    height: 100%;
+}
+.comenta input{
+    width: 100%;
+    height: 7em;
+}
+.coments ul{
+    list-style: none;
+}
+.coments li{
+    margin-bottom: 10px;
+}
+.rating{
+    margin-bottom: 1em;
+    margin-left: -1.5em;
+}
+.comenta button{
+    margin-top: 1em;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5em;
+    border-radius: 10px;
+    background: white;
+    color: black;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+.comenta button:hover{
+    background: black;
+    color: white;
+}
+.infoespec{
+    width: 100%;
+    margin-top: -0.3em;
+    background: white;
+    height: 75%;
+}
+.botnutl{
+    width: 100%;
+    background: white;
+    height: 15%;
+}
+.btnsaesp{
+    margin-left: 55%;
+    transform: translateX(-50%);
+}
+.infoespec p{
+    margin-top: 0.5em;
+    margin-left: 1.5em;
+}
+.comenta form{
+    width: 100%;
+    float: left;
+}
+.contactbox{
+    background: #ffb224;
+    padding-bottom: 2.5em;
+}
+.contactbox h10{
+    width: 100%;
+    justify-content: center;
+    color: #060b26;
+    font-size: x-large;
+}
+.contactbox-title{
+    padding: 0.5em;
+    background: whitesmoke;
+    border: 1px solid #060b26;
+    margin-bottom: 1em;
+    margin-right: -2em;
+}
+.contactbox label{
+    margin-left: 2em;
+    color: white;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+}
+.contactbox input{
+    margin-right: 2em;
+    width: 25em;
+}
+.contactbox p{
+    margin-left: 2em;
+    color: white;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+}
+.contactbox button{
+    padding: 8px 20px;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+}
+.contactbox button:hover{
+    background: black;
+    color: white;
+}
+hr{
+    margin-top: 0.3em;
+}
+.mensajetxt{
+    height: 3em;
+}
+

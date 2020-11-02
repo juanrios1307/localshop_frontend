@@ -1,0 +1,15 @@
+.comentario-p{
+    border: 1px solid #060b26;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    background: whitesmoke;
+    height: fit-content;
+}
+.rating-p{
+    margin-left: -3em;
+}
+.comentario-p hr{
+    margin-top: -0.5em;
+}

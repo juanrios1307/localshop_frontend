@@ -1,0 +1,16 @@
+.dashButtonDiv{
+    width: 100%;
+    align-items: center;
+    padding: 10em;
+}
+.buttonDash{
+    padding: 1em;
+    border-radius: 10px;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    background: #ffb224;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}

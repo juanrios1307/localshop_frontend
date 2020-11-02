@@ -1,0 +1,36 @@
+.f-group{
+    padding: 10px;
+    margin-left: 10px;
+}
+.f-group input{
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.f-group label{
+    font-family: "Open Sans", sans-serif;
+    color: whitesmoke;
+    display: inline-block;
+    width: 150px;
+}
+.ftr{
+    margin-left: 10px;
+    text-align: center;
+}
+.ftr button{
+    background: white;
+    color: #282c34;
+    margin-bottom: 1em;
+    margin-left: 3.5em;
+}
+.ftr button:hover{
+    background: black;
+    color: white;
+    margin-bottom: 1em;
+}
+.edit{
+    background: #ffb224;
+    margin-left: 50px;
+    border-radius: 1em;
+    padding: 10px;
+}

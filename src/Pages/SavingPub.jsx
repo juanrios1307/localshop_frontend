@@ -19,10 +19,15 @@ class SavingPub extends React.Component {
         this.deletePub = this.deletePub.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
         this.crearChat=this.crearChat.bind(this);
+        this.comprar=this.comprar.bind(this)
     }
 
     componentDidMount() {
         this.getData();
+    }
+
+    comprar(id,e){
+
     }
 
     async deletePub(id,e){
@@ -97,7 +102,7 @@ class SavingPub extends React.Component {
                                 <Rating name="read-only" value={producto.promedio} readOnly/>
                             </div>
 
-
+                            <button type="button" className="btn btn-outline btn-list" onClick={(e) => this.comprar(producto._id,e)}><AiIcons.AiFillDollarCircle/></button>
                             <button type="button" className="btn btn-outline btn-list" onClick={(e) => this.crearChat(producto._id,e)}><AiIcons.AiFillMessage/></button>
                             <button type="button" className="btn btn-outline btn-list" onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
                             <button type="button" className="btn btn-outline btn-list" onClick={(e) => this.deletePub(producto._id,e)}><AiIcons.AiFillDelete/></button>

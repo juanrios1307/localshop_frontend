@@ -14,7 +14,7 @@ export const SidebarData = [
     },
     {
         title: 'Carrito de compras',
-        path: '/saves',
+        path: '/shoppingCar',
         icon: <FaIcons.FaShoppingCart/> ,
         cName: 'n-text'
     },

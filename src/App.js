@@ -23,7 +23,7 @@ function App() {
           <Route exact path="/products" component={ProductosBuscados} />
           <Route exact path="/product" component={ProductoEspecifico} />
 
-          <Route exact path="/saves" component={SavingPub} />
+          <Route exact path="/shoppingCar" component={SavingPub} />
       </Switch>
 
     </Router>

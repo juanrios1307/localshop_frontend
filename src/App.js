@@ -8,6 +8,7 @@ import Dashboard from "./Pages/Dashboard";
 import ProductosBuscados from "./Pages/ProductosBuscados";
 import ProductoEspecifico from "./Pages/ProductoEspecifico";
 import SavingPub from "./Pages/SavingPub";
+import MisProductos from "./Pages/MisProductos";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
           <Route exact path="/product" component={ProductoEspecifico} />
 
           <Route exact path="/shoppingCar" component={SavingPub} />
+
+          <Route exact path="/misproductos" component={MisProductos} />
       </Switch>
 
     </Router>

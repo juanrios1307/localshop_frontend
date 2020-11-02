@@ -25,8 +25,8 @@ function TableMaterial(props) {
     const getData= async () => {
 
 
-        //const url = 'https://peaceful-ridge-86113.herokuapp.com/api/main/promworkers'
-        const url = 'http://localhost:5000/api/main/promworkers'
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/main/promproducts'
+        const url = 'http://localhost:5000/api/main/promproducts'
 
         const config = {
             method: 'get',
@@ -38,11 +38,11 @@ function TableMaterial(props) {
         var data = response.data.data;
 
 
-        setContent( data.map((elemento) => (
-            <TableRow key={elemento.id}>
-                <TableCell><img src={elemento.imagen} width="40px" height="40px" alt="Imagen"/>{"  "}</TableCell>
-                <TableCell align="center">{elemento.user.nombre}</TableCell>
-                <TableCell align="center">{elemento.profesion}</TableCell>
+        setContent( data.map((producto) => (
+            <TableRow key={producto.id}>
+                <TableCell><img src={producto.imagen} width="40px" height="40px" alt="Imagen"/>{"  "}</TableCell>
+                <TableCell align="center">{producto.nombre}</TableCell>
+                <TableCell align="center">${producto.precio}</TableCell>
             </TableRow>
         )))
     }
@@ -54,7 +54,7 @@ function TableMaterial(props) {
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Publicaciones Destacadas</StyledTableCell>
-                        <StyledTableCell>Vendedor</StyledTableCell>
+                        <StyledTableCell>Producto</StyledTableCell>
                         <StyledTableCell>Precio</StyledTableCell>
                     </TableRow>
                 </TableHead>

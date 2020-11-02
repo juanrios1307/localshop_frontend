@@ -22,7 +22,7 @@ function DashNav() {
         localStorage.removeItem("token");
     }
 
-    //const url1 = 'https://peaceful-ridge-86113.herokuapp.com/api/main'
+    //const url1 = 'https://radiant-castle-07024.herokuapp.com/api/main'
     const url1='http://localhost:5000/api/main'
 
     const buscar = () => {

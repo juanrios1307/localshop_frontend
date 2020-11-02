@@ -29,7 +29,7 @@ class EditProfile extends React.Component {
 
     async user(){
 
-        //const url='https://peaceful-ridge-86113.herokuapp.com/api/users'
+        //const url='https://radiant-castle-07024.herokuapp.com/api/users'
         const url='http://localhost:5000/api/users'
 
         const token = localStorage.getItem("token")

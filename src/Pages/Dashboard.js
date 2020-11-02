@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
 
     async getData() {
 
-        //const url = 'https://peaceful-ridge-86113.herokuapp.com/api/users'
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/users'
         const url='http://localhost:5000/api/users'
 
         const token = localStorage.getItem("token")
@@ -74,7 +74,7 @@ class Dashboard extends React.Component {
 
             this.setState({nombre:data.nombre});
             this.setState({ciudad:data.ciudad});
-            this.setState({anuncios:data.Anunces.length});
+            this.setState({anuncios:data.telefono});
         }
     }
 

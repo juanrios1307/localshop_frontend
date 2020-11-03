@@ -1,17 +1,20 @@
 .f-group{
     padding: 10px;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 .f-group input{
     margin-left: 10px;
     padding-left: 10px;
+    width: 40%;
 }
 
 .f-group label{
     font-family: "Open Sans", sans-serif;
-    color: whitesmoke;
+    color: white;
+    font-weight: bold;
+    font-size: large;
     display: inline-block;
-    width: 150px;
+    width: 190px;
 }
 .ftr{
     margin-left: 10px;
@@ -33,4 +36,10 @@
     margin-left: 50px;
     border-radius: 1em;
     padding: 10px;
+}
+.edit img{
+    width: 10em;
+    height: 10em;
+    margin-left: 74%;
+    margin-top: -9em;
 }

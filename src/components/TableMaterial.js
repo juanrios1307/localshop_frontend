@@ -6,7 +6,7 @@ import Axios from "axios";
 const StyledTableCell= withStyles(()=>({
     head:{
         color: 'white',
-        background: 'black',
+        background: '#060b26',
         textAlign: 'center'
     },
     body:{

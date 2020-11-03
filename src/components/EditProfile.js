@@ -3,6 +3,7 @@ import '../assets/css/EditProfile.css';
 import Axios from "axios";
 import {Link} from 'react-router-dom';
 import Swal from "sweetalert2";
+import Logo from "../assets/images/Logo/Logo Localshop negro.png";
 
 
 class EditProfile extends React.Component {
@@ -95,30 +96,32 @@ class EditProfile extends React.Component {
 
     render(){
         return (
-            <div className="edit">
-                <form className="form" onSubmit={this.actualizar}>
-                    <div className="f-group">
-                        <label htmlFor="username">Nombre Completo: </label>
-                        <input type="text" name="username" placeholder={this.state.nombreA}
-                               onChange={e => this.setState({nombre:e.target.value})}/>
-                    </div>
-                    <div className="f-group">
-                        <label htmlFor="phone">Teléfono: </label>
-                        <input type="phone" name="phone" placeholder={this.state.telefonoA}
-                               onChange={e => this.setState({telefono:e.target.value})}/>
-                    </div>
-                    <div className="f-group">
-                        <label htmlFor="city">Ciudad: </label>
-                        <input type="text" name="ciudad" placeholder={this.state.ciudadA}
-                               onChange={e => this.setState({ciudad:e.target.value})}/>
-                    </div>
-                    <div className="ftr">
-                        <button type="submit" className="btn">
-                            Editar
-                        </button>
-                    </div>
-                </form>
-            </div>
+                <div className="edit">
+                    <form className="form" onSubmit={this.actualizar}>
+                        <div className="f-group">
+                            <label htmlFor="username">Nombre Completo: </label>
+                            <input type="text" name="username" placeholder={this.state.nombreA}
+                                   onChange={e => this.setState({nombre:e.target.value})}/>
+                        </div>
+                        <div className="f-group">
+                            <label htmlFor="phone">Teléfono: </label>
+                            <input type="phone" name="phone" placeholder={this.state.telefonoA}
+                                   onChange={e => this.setState({telefono:e.target.value})}/>
+                        </div>
+                        <div className="f-group">
+                            <label htmlFor="city">Ciudad: </label>
+                            <input type="text" name="ciudad" placeholder={this.state.ciudadA}
+                                   onChange={e => this.setState({ciudad:e.target.value})}/>
+                        </div>
+                        <img src={Logo}/>
+                        <div className="ftr">
+                            <button type="submit" className="btn">
+                                Editar
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
         );
     }
 }

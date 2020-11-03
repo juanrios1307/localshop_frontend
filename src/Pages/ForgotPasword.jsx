@@ -37,7 +37,6 @@ class ForgotPasword extends Component {
         var data = response.data.data;
 
         Swal.fire({
-            icon: 'success',
             title: data
         })
 

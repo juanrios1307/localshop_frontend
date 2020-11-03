@@ -1,6 +1,6 @@
 .page-footer{
-    background-color: #ffb224;
-    color: white;
+    background-color: whitesmoke;
+    color: black;
     margin-right: -1em;
     margin-top: -3em;
     padding-top: 1em;
@@ -11,5 +11,5 @@
 }
 a{
     text-decoration: none;
-    color: white;
+    color: black;
 }

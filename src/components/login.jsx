@@ -44,9 +44,7 @@ export class Login extends React.Component {
 
         if(status===200){
             Swal.fire({
-                icon: 'success',
                 title: mensaje,
-
             })
 
             localStorage.setItem("token",response.data.token)
@@ -55,10 +53,9 @@ export class Login extends React.Component {
                 toRedirect:true
             })
         }else{
+            console.log("I: "+mensaje)
             Swal.fire({
-                icon: 'error',
                 title: mensaje,
-
             })
         }
 

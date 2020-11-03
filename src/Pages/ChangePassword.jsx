@@ -48,7 +48,6 @@ class ChangePassword extends Component {
             var data = response.data.data;
 
             Swal.fire({
-                icon: 'success',
                 title: data
             })
         }
@@ -61,7 +60,6 @@ class ChangePassword extends Component {
 
         if(str !== confirm){
             Swal.fire({
-                icon: 'error',
                 title: "Las contraseñas deben ser iguales"
             })
             return true
@@ -69,26 +67,22 @@ class ChangePassword extends Component {
 
         if (str.length < 6) {
             Swal.fire({
-                icon: 'error',
                 title: "La contraseña debe contener al menos 6 caracteres"
             })
             return true
         } if (str.length > 50) {
             Swal.fire({
-                icon: 'error',
                 title: "La contraseña debe contener menos de 50 caracteres"
             })
             return true
         } if (str.match(/\d/) == null) {
             Swal.fire({
-                icon: 'error',
                 title: "La contraseña debe contener al menos 1 numero"
             })
 
             return true
         } if (str.match(/[a-zA-Z]/) == null) {
             Swal.fire({
-                icon: 'error',
                 title: "La contraseña debe contener al menos 1 letra"
             })
             return true

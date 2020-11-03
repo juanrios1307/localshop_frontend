@@ -81,7 +81,7 @@ class ProductoEspecifico extends Component {
             this.setState({vendedor: data.user.nombre});
             this.setState({promedio: data.promedio});
 
-            this.setState({imagen: data.imagen});
+            this.setState({imagen: data.images});
             this.setState({ciudad: data.user.ciudad});
             this.setState({telefono: data.user.telefono});
             this.setState({correo: data.user.correo});
@@ -116,14 +116,12 @@ class ProductoEspecifico extends Component {
             const data = res.data.data;
 
             Swal.fire({
-                icon: 'success',
                 title: data
             })
 
 
         }else{
             Swal.fire({
-                icon: 'info',
                 title: "Por favor registrese antes de continuar"
             })
         }
@@ -155,13 +153,11 @@ class ProductoEspecifico extends Component {
             var response = await Axios(config);
 
             Swal.fire({
-                icon: 'success',
                 title: response.data.data
             })
 
         }else{
             Swal.fire({
-                icon: 'info',
                 title: "Por favor registrese antes de continuar"
             })
 
@@ -196,14 +192,12 @@ class ProductoEspecifico extends Component {
             const data = res.data.data;
 
             Swal.fire({
-                icon: 'success',
                 title: data
             })
 
 
         }else{
             Swal.fire({
-                icon: 'info',
                 title: "Por favor registrese antes de continuar"
             })
         }
@@ -248,9 +242,9 @@ class ProductoEspecifico extends Component {
                                         <p>Especificacion: {this.state.especificaciones}</p>
                                         <p>Vendedor: {this.state.vendedor}</p>
                                         <p>Ciudad: {this.state.ciudad}</p>
-                                        <div className="rating-p">
+                                        <p >
                                             <Rating name="read-only" value= {this.state.promedio} readOnly/>
-                                        </div>
+                                        </p>
                                     </div>
                                     <div className="botnutl">
                                         <div className="btnsaesp">
@@ -273,7 +267,7 @@ class ProductoEspecifico extends Component {
                                             <div className="rating">
                                                 <Rating name="simple-controlled"
                                                         onChange={e => this.setState({rating: e.target.value})}/></div>
-                                            <input type="text"
+                                            <input type="text" required
                                                    onChange={e => this.setState({comment: e.target.value})}/>
                                             <button type="submit">Guardar</button>
                                         </form>
@@ -293,9 +287,9 @@ class ProductoEspecifico extends Component {
                                 <p>Correo: {this.state.correo}</p>
                                 <form onSubmit={this.sendMessage}>
                                     <label>Asunto:</label>
-                                    <input type="text" onChange={e => this.setState({asunto: e.target.value})}/>
+                                    <input type="text" required onChange={e => this.setState({asunto: e.target.value})}/>
                                     <label>Mensaje:</label>
-                                    <input type="text" onChange={e => this.setState({mensaje: e.target.value})}/>
+                                    <input type="text" required onChange={e => this.setState({mensaje: e.target.value})}/>
                                     <button type="submit">Enviar</button>
                                 </form>
                             </div>
@@ -345,8 +339,8 @@ class ProductoEspecifico extends Component {
                                         <form onSubmit={this.comment}>
                                             <div className="rating">
                                                 <Rating name="simple-controlled"
-                                                        onChange={e => this.setState({rating: e.target.value})}/></div>
-                                            <input type="text"
+                                                       onChange={e => this.setState({rating: e.target.value})}/></div>
+                                            <input type="text" required
                                                    onChange={e => this.setState({comment: e.target.value})}/>
                                             <button type="submit">Guardar</button>
                                         </form>
@@ -365,15 +359,10 @@ class ProductoEspecifico extends Component {
                                 <p>Teléfono: {this.state.telefono}</p>
                                 <p>Correo: {this.state.correo}</p>
                                 <form onSubmit={this.sendMessage}>
-                                    <div>
-                                        <label>Asunto:</label>
-                                        <input type="text" onChange={e => this.setState({asunto: e.target.value})}/>
-                                    </div>
-                                    <div className="mensajelabel">
-                                        <label>Mensaje:</label>
-                                        <input type="text" className="mensajetxt"
-                                               onChange={e => this.setState({mensaje: e.target.value})}/>
-                                    </div>
+                                    <label>Asunto:</label>
+                                    <input type="text" required onChange={e => this.setState({asunto: e.target.value})}/>
+                                    <label>Mensaje:</label>
+                                    <input type="text" required onChange={e => this.setState({mensaje: e.target.value})}/>
                                     <button type="submit">Enviar</button>
                                 </form>
                             </div>

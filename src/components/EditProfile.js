@@ -2,6 +2,7 @@ import React from 'react';
 import '../assets/css/EditProfile.css';
 import Axios from "axios";
 import {Link} from 'react-router-dom';
+import Swal from "sweetalert2";
 
 
 class EditProfile extends React.Component {
@@ -9,9 +10,10 @@ class EditProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newNombre:'',
-            newTelefono:'',
-            newCiudad:'',
+
+            nombreA:'',
+            telefonoA:'',
+            ciudadA:'',
 
             nombre:'',
             telefono:'',
@@ -29,7 +31,7 @@ class EditProfile extends React.Component {
 
     async user(){
 
-        //const url='https://radiant-castle-07024.herokuapp.com/api/users'
+        //const url='https://peaceful-ridge-86113.herokuapp.com/api/users'
         const url='http://localhost:5000/api/users'
 
         const token = localStorage.getItem("token")
@@ -46,33 +48,29 @@ class EditProfile extends React.Component {
 
         const data = res.data.data;
 
-        this.state.nombre=(data.nombre);
-        this.state.ciudad=(data.ciudad);
-        this.state.telefono=(data.telefono)
+        this.setState({nombreA:data.nombre})
+        this.setState({telefonoA:data.telefono})
+        this.setState({ciudadA:data.ciudad})
 
     }
 
     async actualizar(e){
         e.preventDefault()
 
-        //const url='https://peaceful-ridge-86113.herokuapp.com/api/users'
+        //const url='https://radiant-castle-07024.herokuapp.com/api/users'
         const url='http://localhost:5000/api/users'
 
         const token = localStorage.getItem("token")
 
-        var data = '';
 
-        if (this.state.newNombre.length > 0) {
-            data = ({"nombre": this.state.newNombre});
-            this.setState({newNombre:''})
-        } else if (this.state.newTelefono.length > 0) {
-            console.log(JSON.stringify(this.state.newTelefono));
-            data = ({"telefono": this.state.newTelefono});
-            this.setState({newTelefono:''})
-        } else if (this.state.newCiudad.length > 0) {
-            console.log(JSON.stringify(this.state.newCiudad));
-            data = ({"ciudad": this.state.newCiudad});
-            this.setState({newCiudad:''})
+        if(this.state.nombre.length<=0){
+            this.state.nombre=this.state.nombreA
+        }
+        if(this.state.telefono.length<=0){
+            this.state.telefono=this.state.telefonoA
+        }
+        if(this.state.ciudad.length<=0){
+            this.state.ciudad=this.state.ciudadA
         }
 
         var config = {
@@ -81,13 +79,16 @@ class EditProfile extends React.Component {
             headers: {
                 'access-token': token
             },
-            data: data
+            data: this.state
         };
 
         const response=await Axios(config)
 
         const mensaje = response.data.data
 
+        Swal.fire({
+            title: mensaje,
+        })
 
         window.location.reload(false);
     }
@@ -98,18 +99,18 @@ class EditProfile extends React.Component {
                 <form className="form" onSubmit={this.actualizar}>
                     <div className="f-group">
                         <label htmlFor="username">Nombre Completo: </label>
-                        <input type="text" name="username" placeholder={this.state.nombre}
-                               onChange={e => this.setState({newNombre:e.target.value})}/>
+                        <input type="text" name="username" placeholder={this.state.nombreA}
+                               onChange={e => this.setState({nombre:e.target.value})}/>
                     </div>
                     <div className="f-group">
                         <label htmlFor="phone">Teléfono: </label>
-                        <input type="phone" name="phone" placeholder={this.state.telefono}
-                               onChange={e => this.setState({newTelefono:e.target.value})}/>
+                        <input type="phone" name="phone" placeholder={this.state.telefonoA}
+                               onChange={e => this.setState({telefono:e.target.value})}/>
                     </div>
                     <div className="f-group">
                         <label htmlFor="city">Ciudad: </label>
-                        <input type="text" name="ciudad" placeholder={this.state.ciudad}
-                               onChange={e => this.setState({newCiudad:e.target.value})}/>
+                        <input type="text" name="ciudad" placeholder={this.state.ciudadA}
+                               onChange={e => this.setState({ciudad:e.target.value})}/>
                     </div>
                     <div className="ftr">
                         <button type="submit" className="btn">

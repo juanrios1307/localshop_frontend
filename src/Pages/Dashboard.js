@@ -74,7 +74,7 @@ class Dashboard extends React.Component {
 
             this.setState({nombre:data.nombre});
             this.setState({ciudad:data.ciudad});
-            this.setState({anuncios:data.Producto==undefined?0:data.Producto.length});
+            this.setState({anuncios:data.Productos==undefined?0:data.Productos.length});
         }
     }
 
@@ -122,13 +122,7 @@ class Dashboard extends React.Component {
                         <TableMaterial/>
                     </Grid>
 
-                    <Grid item xs={12} className='dashButtonDiv'>
-                        <a href='/signupworker'>
-                            <button className='buttonDash'>
-                                Registrarse como trabajador
-                            </button>
-                        </a>
-                    </Grid>
+
                 </Grid>
             </div>
         );

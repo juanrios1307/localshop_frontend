@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import '../assets/css/CardCarousel.css';
 import Axios from "axios";
+import moment from "moment";
 
 
 
@@ -45,7 +46,7 @@ class CardCarousel extends Component {
                         <p className="card-text">Precio: ${producto.precio}</p>
                     </div>
                     <div className="card-footer">
-                        <small className="text-muted">Last updated 20 mins ago</small>
+                        <small className="text-muted">Subido {moment(producto.date).format('DD/MM/YYYY')} </small>
                     </div>
                 </div>
             ))

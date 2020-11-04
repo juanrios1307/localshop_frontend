@@ -1,0 +1,83 @@
+.chatbox{
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background: #ffb224;
+}
+.chattitle{
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    padding: 1em 0 1em 0;
+    background: #ffb224;
+}
+.namechat{
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    color: white;
+}
+.chatlistbox{
+    background: whitesmoke;
+    border: 2px solid black;
+    height: 75vh;
+    padding: 1em 2em 1em 2em;
+    overflow-y: scroll;
+}
+.chatlistbox ul{
+    list-style: none;
+}
+li.user {
+    border-radius: 10px;
+    background: #ffb224;
+    color: white;
+    padding: 8px;
+    width: fit-content;
+    margin-bottom: 8px;
+    font-family: "Open Sans", sans-serif;
+}
+
+li.worker {
+    border-radius: 10px;
+    background: darkgray;
+    color: black;
+    font-family: "Open Sans", sans-serif;
+    padding: 8px;
+    height: fit-content;
+    width: max-content;
+    max-width: 20em;
+    margin-bottom: 8px;
+    margin-left: 100%;
+    transform: translateX(-100%);
+}
+
+.chatinput{
+    background: #ffb224;
+    padding: 1em;
+    min-height: 7vh;
+}
+.chatinput input{
+    width: 90%;
+    border-radius: 10px;
+}
+.chatinput button{
+    width: 5%;
+    border-radius: 10px;
+    transform: translateX(50%);
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    min-width: fit-content;
+}
+.chatinput button:hover{
+    background: black;
+    color: white;
+}
+.date{
+    color: whitesmoke;
+    font-size: 10px;
+    margin-bottom: 0;
+    text-align: right;
+}
+.messages{
+    margin-bottom: 0.2em;
+}

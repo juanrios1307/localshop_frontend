@@ -75,7 +75,7 @@ class ChatEspecifico extends Component {
 
             }else{
 
-                this.setState({nombre:data[1].worker.nombre})
+                this.setState({nombre:data[1].seller.nombre})
 
                 this.setState({
                     Messages: data[1].Mensajes.map((messages) => (

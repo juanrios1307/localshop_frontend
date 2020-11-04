@@ -9,6 +9,8 @@ import ProductosBuscados from "./Pages/ProductosBuscados";
 import ProductoEspecifico from "./Pages/ProductoEspecifico";
 import SavingPub from "./Pages/SavingPub";
 import MisProductos from "./Pages/MisProductos";
+import MisChats from "./Pages/MisChats";
+import ChatEspecifico from "./Pages/ChatEspecifico";
 
 function App() {
   return (
@@ -27,6 +29,9 @@ function App() {
           <Route exact path="/shoppingCar" component={SavingPub} />
 
           <Route exact path="/misproductos" component={MisProductos} />
+
+          <Route exact path="/chats" component={MisChats} />
+          <Route exact path="/chat" component={ChatEspecifico} />
       </Switch>
 
     </Router>

@@ -12,6 +12,7 @@ export class Register extends React.Component {
             nombre :'',
             correo:'',
             pwd:'',
+            cpwd:'',
             telefono:'',
             ciudad:'',
             cedula:''
@@ -42,32 +43,45 @@ export class Register extends React.Component {
                 title: mensaje
             })
 
+            this.setState({nombre :'',
+                correo:'',
+                pwd:'',
+                cpwd:'',
+                telefono:'',
+                ciudad:'',
+                cedula:''})
+
         }
     }
 
     validarPwd(){
         var str=this.state.pwd
 
-
-        if (str.length < 6) {
+        if(this.state.pwd !== this.state.cpwd ){
             Swal.fire({
-                title: "La contraseña debe contener al menos 6 caracteres"
+                title: "Las contraseñas deben ser iguales. "
+            })
+            return true
+
+        } if (str.length < 6) {
+            Swal.fire({
+                title: "La contraseña debe contener al menos 6 caracteres."
             })
             return true
         } if (str.length > 50) {
             Swal.fire({
-                title: "La contraseña debe contener menos de 50 caracteres"
+                title: "La contraseña debe contener menos de 50 caracteres."
             })
             return true
         } if (str.match(/\d/) == null) {
             Swal.fire({
-                title: "La contraseña debe contener al menos 1 numero"
+                title: "La contraseña debe contener al menos 1 numero."
             })
 
             return true
         } if (str.match(/[a-zA-Z]/) == null) {
             Swal.fire({
-                title: "La contraseña debe contener al menos 1 letra"
+                title: "La contraseña debe contener al menos 1 letra."
             })
             return true
         }
@@ -88,7 +102,7 @@ export class Register extends React.Component {
                     <form className="form" onSubmit={this.signinUser}>
                         <div className="form-group">
                             <label htmlFor="username">Nombre Completo</label>
-                            <input type="text" name="username" placeholder="Nombre completo" required
+                            <input type="text" name="name" placeholder="Nombre completo" required
                                    value={this.state.nombre}
                                    onChange={(e) => this.setState({nombre: e.target.value})}/>
                         </div>
@@ -107,8 +121,8 @@ export class Register extends React.Component {
                         <div className="form-group">
                             <label htmlFor="password">Confirmar Contraseña</label>
                             <input type="password" name="password" placeholder="Contraseña" required
-                                   value={this.state.pwd}
-                                   onChange={(e) => this.setState({pwd: e.target.value})}/>
+                                   value={this.state.cpwd}
+                                   onChange={(e) => this.setState({cpwd: e.target.value})}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="phone">Teléfono</label>
@@ -118,7 +132,7 @@ export class Register extends React.Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="username">Ciudad</label>
-                            <input type="text" name="username" placeholder="Ciudad" required
+                            <input type="text" name="ciudad" placeholder="Ciudad" required
                                    value={this.state.ciudad}
                                    onChange={(e) => this.setState({ciudad: e.target.value})}/>
                         </div>

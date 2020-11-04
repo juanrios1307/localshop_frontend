@@ -52,6 +52,11 @@ class ChangePassword extends Component {
             })
 
             localStorage.removeItem("correo")
+
+            this.setState({
+                pwd: '',
+                confirmPwd:''
+            })
         }
 
     }

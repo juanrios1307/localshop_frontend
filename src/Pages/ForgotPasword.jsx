@@ -41,6 +41,8 @@ class ForgotPasword extends Component {
         })
 
         localStorage.setItem("correo",this.state.correo)
+
+        this.setState({correo:''})
     }
 
     render(){

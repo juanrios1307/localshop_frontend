@@ -50,6 +50,8 @@ class ChangePassword extends Component {
             Swal.fire({
                 title: data
             })
+
+            localStorage.removeItem("correo")
         }
 
     }

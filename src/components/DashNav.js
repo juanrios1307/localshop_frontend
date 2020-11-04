@@ -64,6 +64,7 @@ function DashNav() {
 
     const buscarProducto = () => {
         localStorage.setItem("producto", producto.toLowerCase())
+        localStorage.setItem("productoAux", producto.toLowerCase())
     }
 
     useEffect(() => {

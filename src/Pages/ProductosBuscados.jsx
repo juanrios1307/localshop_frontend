@@ -65,6 +65,7 @@ class ProductosBuscados extends React.Component {
 
     specificProduct(id){
         localStorage.setItem("productID",id)
+        localStorage.setItem("productIDAux",id)
 
         window.location.reload();
     }
@@ -78,7 +79,7 @@ class ProductosBuscados extends React.Component {
 
     async getData() {
 
-        const producto = localStorage.getItem("producto")
+        const producto = localStorage.getItem("productoAux")
         localStorage.removeItem("producto")
 
         //const url = 'https://radiant-castle-07024.herokuapp.com/api/main/'

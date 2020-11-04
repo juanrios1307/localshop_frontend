@@ -61,6 +61,7 @@ class MisProductos extends React.Component {
 
     specificProduct(id){
         localStorage.setItem("productID",id)
+        localStorage.setItem("productIDAux",id)
 
         window.location.reload();
     }

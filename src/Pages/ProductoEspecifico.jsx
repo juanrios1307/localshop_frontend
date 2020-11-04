@@ -50,7 +50,7 @@ class ProductoEspecifico extends Component {
     }
 
     async getData(){
-        this.state.id=localStorage.getItem("productID")
+        this.state.id=localStorage.getItem("productIDAux")
 
         localStorage.removeItem("productID")
 
@@ -275,7 +275,7 @@ class ProductoEspecifico extends Component {
                                 </div>
                                 <div className="coments">
                                     <ul>
-                                        <Comentario id={localStorage.getItem("productID")}/>
+                                        <Comentario id={localStorage.getItem("productIDAux")}/>
                                     </ul>
                                 </div>
                             </div>
@@ -348,7 +348,7 @@ class ProductoEspecifico extends Component {
                                 </div>
                                 <div className="coments">
                                     <ul>
-                                        <Comentario id={localStorage.getItem("productID")}/>
+                                        <Comentario id={localStorage.getItem("productIDAux")}/>
                                     </ul>
                                 </div>
                             </div>

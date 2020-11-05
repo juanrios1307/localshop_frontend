@@ -16,7 +16,7 @@ class Footer extends Component{
 
                             <h6 className="text-uppercase font-weight-bold">LocalShop</h6>
                             <hr/>
-                            <p>Contrata a verdaderos profesionales calificados a un precio realmente justo.</p>
+                            <p>Apoya a los microempresarios y emprendedores colombianos.</p>
 
                         </div>
 

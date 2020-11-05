@@ -36,21 +36,28 @@ class CardCarousel extends Component {
 
         var data = response.data.data;
 
-        this.setState({
-            Content: data.map((producto) => (
-                <div className="card" key={producto._id}>
-                    <div className="card-icon" ><img src={producto.images} alt="icon1"/></div>
-                    <div className="card-body">
-                        <h5 className="card-title">{producto.nombre}</h5>
-                        <p className="card-text">{producto.categoria}</p>
-                        <p className="card-text">Precio: ${producto.precio}</p>
+        if(data[0].promedio != 0) {
+            this.setState({
+                Content: data.map((producto) => (
+                    <div className="card" key={producto._id}>
+                        <div className="card-icon"><img src={producto.images} alt="icon1"/></div>
+                        <div className="card-body">
+                            <h5 className="card-title">{producto.nombre}</h5>
+                            <p className="card-text">{producto.categoria}</p>
+                            <p className="card-text">Precio: ${producto.precio}</p>
+                        </div>
+                        <div className="card-footer">
+                            <small className="text-muted">Subido {moment(producto.date).format('DD/MM/YYYY')} </small>
+                        </div>
                     </div>
-                    <div className="card-footer">
-                        <small className="text-muted">Subido {moment(producto.date).format('DD/MM/YYYY')} </small>
-                    </div>
-                </div>
-            ))
-        })
+                ))
+            })
+        }else{
+            this.setState({Content:
+                    <div className="div0">
+                    <h5 className="card0">No tenemos sugerencias para ti !</h5>
+                </div>})
+        }
 
     }
 

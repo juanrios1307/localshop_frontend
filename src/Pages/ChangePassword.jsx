@@ -3,6 +3,7 @@ import '../assets/css/ForgotPasword.css';
 import Logo from "../assets/images/Logo/BLACK PNG.png";
 import Axios from "axios";
 import Swal from "sweetalert2";
+import {Redirect} from "react-router-dom";
 
 class ChangePassword extends Component {
 
@@ -11,7 +12,8 @@ class ChangePassword extends Component {
         this.state = {
             correo:'',
             pwd: '',
-            confirmPwd:''
+            confirmPwd:'',
+            bool:false
         };
         this.enviarForm = this.enviarForm.bind(this);
         this.validarPwd = this.validarPwd.bind(this);
@@ -56,6 +58,8 @@ class ChangePassword extends Component {
                 pwd: '',
                 confirmPwd:''
             })
+
+            this.setState({bool:true})
         }
 
     }
@@ -98,26 +102,30 @@ class ChangePassword extends Component {
         return false
     }
 
-    render(){
-        return (
-            <div className="pagforgot">
-                <div className="forgotbox">
-                    <img src={Logo} alt="logo"/>
-                    <div  className="forgottitle">
-                        <h8>Cambia tu contraseña</h8>
+    render() {
+        if (this.state.bool) {
+            return <Redirect to="/sing-up"/>
+        } else {
+            return (
+                <div className="pagforgot">
+                    <div className="forgotbox">
+                        <img src={Logo} alt="logo"/>
+                        <div className="forgottitle">
+                            <h8>Cambia tu contraseña</h8>
+                        </div>
+                        <form onSubmit={this.enviarForm}>
+                            <label>Nueva Contraseña</label>
+                            <input type="password" name="pwd" placeholder="Contraseña" required
+                                   onChange={e => this.setState({pwd: e.target.value})}/>
+                            <label>Confirmar Contraseña</label>
+                            <input type="password" name="pwd" placeholder="Confirmar Contraseña" required
+                                   onChange={e => this.setState({confirmPwd: e.target.value})}/>
+                            <button type="submit">Guardar</button>
+                        </form>
                     </div>
-                    <form onSubmit={this.enviarForm} >
-                        <label>Nueva Contraseña</label>
-                        <input type="password" name="pwd" placeholder="Contraseña" required
-                               onChange={e => this.setState({pwd: e.target.value})}/>
-                        <label>Confirmar Contraseña</label>
-                        <input type="password" name="pwd" placeholder="Confirmar Contraseña" required
-                               onChange={e => this.setState({confirmPwd: e.target.value})}/>
-                        <button type="submit">Guardar</button>
-                    </form>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 export default ChangePassword;

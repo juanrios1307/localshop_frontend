@@ -74,7 +74,7 @@ export class Login extends React.Component {
                     <div className="header">Iniciar Sesión</div>
                     <div className="content">
                         <div className="image">
-                            <img src={Logo} alt="LogIn-image"/>
+                            <img src={Logo} alt="Login"/>
                         </div>
                         <form className="form" onSubmit={this.login} >
                             <div className="form-group">

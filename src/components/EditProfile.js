@@ -1,7 +1,6 @@
 import React from 'react';
 import '../assets/css/EditProfile.css';
 import Axios from "axios";
-import {Link} from 'react-router-dom';
 import Swal from "sweetalert2";
 import Logo from "../assets/images/Logo/Logo Localshop negro.png";
 

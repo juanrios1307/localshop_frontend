@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import '../assets/css/ForgotPasword.css';
 import Logo from "../assets/images/Logo/BLACK PNG.png";
-import {Link} from "react-router-dom";
 import Axios from "axios";
 import Swal from "sweetalert2";
 

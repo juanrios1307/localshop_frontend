@@ -4,7 +4,6 @@ import '../assets/css/Listas.css';
 import {Grid} from "@material-ui/core";
 import DashNav from "../components/DashNav";
 import * as AiIcons from 'react-icons/ai';
-import Swal from "sweetalert2";
 import {Redirect} from "react-router-dom";
 import moment from "moment";
 

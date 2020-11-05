@@ -11,6 +11,7 @@ import SavingPub from "./Pages/SavingPub";
 import MisProductos from "./Pages/MisProductos";
 import MisChats from "./Pages/MisChats";
 import ChatEspecifico from "./Pages/ChatEspecifico";
+import CreateAdvertisements from "./Pages/CreateAdvertisements";
 
 function App() {
   return (
@@ -20,9 +21,8 @@ function App() {
           <Route exact path="/sing-up" component={LoginRegisterPage} />
           <Route exact path="/forgotpwd" component={ForgotPasword}/>
           <Route exact path="/updatepwd" component={ChangePassword}/>
-
           <Route exact path="/dashboard" component={Dashboard} />
-
+          <Route exact path="/createProduct" component={CreateAdvertisements}/>
           <Route exact path="/products" component={ProductosBuscados} />
           <Route exact path="/product" component={ProductoEspecifico} />
 

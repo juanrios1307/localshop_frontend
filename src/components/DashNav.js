@@ -111,6 +111,7 @@ function DashNav() {
                                 {nombre[0].toUpperCase()}
                             </button>
                             <div className="dropdown-menu">
+                                <a className="dropdown-item" href="/dashboard">Carrito de Compras</a>
                                 <a className="dropdown-item" href="/dashboard">Ver Perfil</a>
                                 <a className="dropdown-item" onClick={cerrarSesion} href="/">
                                     Cerrar Sesión

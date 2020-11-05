@@ -1,0 +1,79 @@
+h8{
+    font-family: "Open Sans", sans-serif;
+    font-size: x-large;
+    margin-left: 1em;
+    font-weight: bold;
+}
+.TittleAN{
+    padding-top: 1em;
+    background: #060b26;
+    color: white;
+}
+.formato{
+    margin-top: 1em;
+}
+.TittleIN{
+    margin-left: 1em;
+    font-size: large;
+    font-family: "Open Sans", sans-serif;
+}
+hr{
+    background: #222222;
+    width: 100%;
+}
+h10{
+    margin-left: 1em;
+    font-size: large;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+}
+input{
+    margin-left: 10px;
+    padding-left: 10px;
+    width: 20em;
+    transition: width;
+}
+.f-g{
+    padding: 10px;
+    margin-left: 10px;
+}
+.f-g input{
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.f-g label{
+    font-family: "Open Sans", sans-serif;
+    display: inline-block;
+    width: 200px;
+    margin-left: 2em;
+}
+.f-g select{
+    margin-left: 10px;
+    padding-left: 10px;
+}
+.ft{
+    margin-left: 10px;
+    text-align: center;
+}
+.ft button{
+    background: black;
+    color: whitesmoke;
+    margin-bottom: 1em;
+}
+.ft button:hover{
+    background: darkslategray;
+    color: whitesmoke;
+    margin-bottom: 1em;
+}
+.imginserted{
+    width: 100%;
+    margin-top: 1em;
+}
+.imginserted img{
+    height: 10em;
+    width: 10em;
+    border: black solid 3px;
+    margin-left: 3em;
+    margin-bottom: 2em;
+}

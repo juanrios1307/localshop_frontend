@@ -98,43 +98,43 @@ export class Register extends React.Component {
                 <div className="content">
                     <form className="form" onSubmit={this.signinUser}>
                         <div className="form-group">
-                            <label htmlFor="username">Nombre Completo</label>
+                            <label htmlFor="username">Nombre Completo *</label>
                             <input type="text" name="name" placeholder="Nombre completo" required
                                    value={this.state.nombre}
                                    onChange={(e) => this.setState({nombre: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="email">Correo Electrónico</label>
+                            <label htmlFor="email">Correo Electrónico *</label>
                             <input type="email" name="email" placeholder="Correo Electrónico" required
                                    value={this.state.correo}
                                    onChange={(e) => this.setState({correo: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="password">Contraseña</label>
+                            <label htmlFor="password">Contraseña *</label>
                             <input type="password" name="password" placeholder="Contraseña" required
                                    value={this.state.pwd}
                                    onChange={(e) => this.setState({pwd: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="password">Confirmar Contraseña</label>
+                            <label htmlFor="password">Confirmar Contraseña *</label>
                             <input type="password" name="password" placeholder="Contraseña" required
                                    value={this.state.cpwd}
                                    onChange={(e) => this.setState({cpwd: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="phone">Teléfono</label>
+                            <label htmlFor="phone">Teléfono *</label>
                             <input type="tel" name="phone" placeholder="Teléfono" required
                                    value={this.state.telefono}
                                    onChange={(e) => this.setState({telefono: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="username">Ciudad</label>
+                            <label htmlFor="username">Ciudad *</label>
                             <input type="text" name="ciudad" placeholder="Ciudad" required
                                    value={this.state.ciudad}
                                    onChange={(e) => this.setState({ciudad: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="ident">Cédula</label>
+                            <label htmlFor="ident">Cédula *</label>
                             <input type="number" name="ident" placeholder="Cédula" required
                                    value={this.state.cedula}
                                    onChange={(e) => this.setState({cedula: e.target.value})}/>

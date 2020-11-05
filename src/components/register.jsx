@@ -96,9 +96,6 @@ export class Register extends React.Component {
             <div className="base-container" ref={this.props.containerRef}>
                 <div className="header">Registro</div>
                 <div className="content">
-                    <div className="image">
-                        <img src={Logo} alt="LogIn-image"/>
-                    </div>
                     <form className="form" onSubmit={this.signinUser}>
                         <div className="form-group">
                             <label htmlFor="username">Nombre Completo</label>

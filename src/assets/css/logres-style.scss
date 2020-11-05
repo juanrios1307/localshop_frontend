@@ -5,7 +5,7 @@
   align-items: center;
 
   .header {
-    font-size: 24px;
+    font-size: xx-large;
     font-family: "Open Sans", sans-serif;
   }
 
@@ -22,7 +22,7 @@
     }
 
     .form {
-      margin-top: 2em;
+      margin-top: 1em;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -33,7 +33,8 @@
         align-items: flex-start;
         width: fit-content;
         label {
-          font-size: 20px;
+          font-size: 16px;
+          font-weight: bold;
         }
         input {
           margin-top: 3px;
@@ -45,7 +46,7 @@
           background-color: #f3f3f3;
           border: 0;
           border-radius: 4px;
-          margin-bottom: 15px;
+          margin-bottom: 0px;
           transition: all 250ms ease-in-out;
           &:hover {
             background-color: #ffffff;

@@ -55,6 +55,7 @@ input{
 .ft{
     margin-left: 10px;
     text-align: center;
+    margin-top: 27em;
 }
 .ft button{
     background: black;
@@ -76,4 +77,20 @@ input{
     border: black solid 3px;
     margin-left: 3em;
     margin-bottom: 2em;
+}
+.imginput{
+    position: relative;
+}
+.imgs{
+ position: absolute;
+    z-index: 1;
+}
+.inpt input{
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    margin-left: 3em;
+    margin-top: 1em;
+    width: 62em;
+    height: 23em;
 }

@@ -133,30 +133,36 @@ class CreateAdvertisements extends Component {
                             <hr/>
                             <div className="f-g">
                                 <label htmlFor="username">Imagenes del producto:</label>
-                                <input type="file" name="imagen" placeholder="imagen" required
-                                       onChange={(e) => this.setState({imagenFile: e.target.files[0]})}/>
                             </div>
-
-                            <div className="imginserted">
-                                <img src={UPLD}/>
-                                <img src={UPLD}/>
-                                <img src={UPLD}/>
-                                <img src={UPLD}/>
-                                <img src={UPLD}/>
-                            </div>
-                            <div className="imginserted">
-                                <img src={UPLD}/>
-                                <img src={UPLD}/>
-                                <img src={UPLD}/>
-                                <img src={UPLD}/>
-                                <img src={UPLD}/>
-                            </div>
-
-                            <div className="ft">
+                            <fieldset>
+                                <div className="imginput">
+                                    <div className="imgs">
+                                        <div className="imginserted">
+                                            <img src={UPLD}/>
+                                            <img src={UPLD}/>
+                                            <img src={UPLD}/>
+                                            <img src={UPLD}/>
+                                            <img src={UPLD}/>
+                                        </div>
+                                        <div className="imginserted">
+                                            <img src={UPLD}/>
+                                            <img src={UPLD}/>
+                                            <img src={UPLD}/>
+                                            <img src={UPLD}/>
+                                            <img src={UPLD}/>
+                                        </div>
+                                    </div>
+                                    <div className="inpt">
+                                        <input type="file" name="imagen" placeholder="imagen" required multiple
+                                               onChange={(e) => this.setState({imagenFile: e.target.files[0]})}/>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset className="ft">
                                 <button type="submit" className="btn">
                                     Publicar
                                 </button>
-                            </div>
+                            </fieldset>
                         </form>
                     </div>
                     <hr/>

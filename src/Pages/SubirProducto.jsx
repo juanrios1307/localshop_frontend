@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import {Redirect} from "react-router-dom";
 import UPLD from '../assets/images/upldimg.png'
 
-class CreateAdvertisements extends Component {
+class SubirProducto extends Component {
 
     constructor(props) {
         super(props);
@@ -172,4 +172,4 @@ class CreateAdvertisements extends Component {
         }
     }
 }
-export default CreateAdvertisements;
+export default SubirProducto;

@@ -14,9 +14,23 @@ class ProductosBuscados extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Content: ''
+            Content: '',
+            Ciudades: '',
+            Categorias: '',
+            producto:''
         };
         this.getData = this.getData.bind(this);
+        this.getCategorias = this.getCategorias.bind(this);
+        this.getCiudades = this.getCiudades.bind(this);
+        this.getContent=this.getContent.bind(this)
+
+
+        this.getFiltroPrecio = this.getFiltroPrecio.bind(this);
+        this.getFiltroFecha = this.getFiltroFecha.bind(this);
+        this.getFiltroCiudad = this.getFiltroCiudad.bind(this);
+        this.getFiltroCategoria = this.getFiltroCategoria.bind(this);
+        this.getFiltroPromedio = this.getFiltroPromedio.bind(this);
+
         this.savePub=this.savePub.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
         this.crearChat=this.crearChat.bind(this);
@@ -24,6 +38,8 @@ class ProductosBuscados extends React.Component {
 
     componentDidMount() {
         this.getData();
+        this.getCiudades();
+        this.getCategorias();
     }
 
     async savePub(Save,e){
@@ -79,7 +95,9 @@ class ProductosBuscados extends React.Component {
 
     async getData() {
 
-        const producto = localStorage.getItem("productoAux")
+        this.state.producto = localStorage.getItem("productoAux")
+        this.setState({producto:localStorage.getItem("productoAux")})
+
         localStorage.removeItem("producto")
 
         //const url = 'https://radiant-castle-07024.herokuapp.com/api/main/'
@@ -89,7 +107,7 @@ class ProductosBuscados extends React.Component {
             method: 'get',
             url: url,
             headers: {
-                'producto': producto
+                'producto': this.state.producto
             }
         };
 
@@ -99,29 +117,188 @@ class ProductosBuscados extends React.Component {
 
        var data = response.data.data;
 
+       this.getContent(data)
+
+    }
+
+    getContent(data){
         this.setState({
             Content: data.map((producto) => (
-                    <div className="media" key={producto._id}>
-                        <img className="mr-3 imgList" src={producto.images} alt='imagen' />
-                        <div className="media-body">
-                            <h6 className="mt-0"> {producto.nombre}</h6>
-                            <p className="card-text">{producto.categoria}</p>
-                            <p className="card-text">Precio: ${producto.precio}</p>
-                            <p className="card-text">Vendedor: {producto.user.nombre}</p>
-                            <div className="rating-p">
-                                <Rating name="read-only" value={producto.promedio} readOnly/>
-                            </div>
-
-                            <button type="button" className="btn btn-outline btn-list"  onClick={(e) => this.crearChat(producto._id,e)}><AiIcons.AiFillMessage/></button>
-                            <button type="button" className="btn btn-outline btn-list"  onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
-                            <button type="button" className="btn btn-outline btn-list"  onClick={(e) => this.savePub(producto._id,e)}><FaIcons.FaShoppingCart/></button>
+                <div className="media" key={producto._id}>
+                    <img className="mr-3 imgList" src={producto.images} alt='imagen' />
+                    <div className="media-body">
+                        <h6 className="mt-0"> {producto.nombre}</h6>
+                        <p className="card-text">{producto.categoria}</p>
+                        <p className="card-text">Precio: ${producto.precio}</p>
+                        <p className="card-text">Vendedor: {producto.user.nombre}</p>
+                        <div className="rating-p">
+                            <Rating name="read-only" value={producto.promedio} readOnly/>
                         </div>
 
+                        <button type="button" className="btn btn-outline btn-list"  onClick={(e) => this.crearChat(producto._id,e)}><AiIcons.AiFillMessage/></button>
+                        <button type="button" className="btn btn-outline btn-list"  onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
+                        <button type="button" className="btn btn-outline btn-list"  onClick={(e) => this.savePub(producto._id,e)}><FaIcons.FaShoppingCart/></button>
                     </div>
 
-                ))
+                </div>
+
+            ))
+        })
+    }
+
+    async getCiudades(){
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/filters/ciudad'
+        const url = 'http://localhost:5000/api/filters/ciudad'
+
+        const config = {
+            method: 'get',
+            url: url,
+            headers: {
+            }
+        };
+
+
+        var response=await Axios(config);
+
+        var data = response.data.data;
+
+        this.setState({
+            Ciudades: data.map((ciudad) => (
+                <option  value={ciudad} >{ciudad}</option>
+            ))
+        })
+    }
+
+    async getCategorias(){
+
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/filters/categoria'
+        const url = 'http://localhost:5000/api/filters/categoria'
+
+        const config = {
+            method: 'get',
+            url: url,
+            headers: {
+            }
+        };
+
+
+        var response=await Axios(config);
+
+        var data = response.data.data;
+
+        this.setState({
+            Categorias: data.map((categoria) => (
+                <option  value={categoria} >{categoria}</option>
+            ))
         })
 
+    }
+
+    async getFiltroCiudad(ciudad){
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/filters/ciudad'
+        const url = 'http://localhost:5000/api/filters/ciudad'
+
+        const config = {
+            method: 'get',
+            url: url,
+            headers: {
+                'producto':  this.state.producto,
+                'ciudad': ciudad
+            }
+        };
+
+
+        var response=await Axios(config);
+
+        var data = response.data.data;
+
+        this.getContent(data)
+    }
+
+    async getFiltroCategoria(categoria){
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/filters/categoria'
+        const url = 'http://localhost:5000/api/filters/categoria'
+
+        const config = {
+            method: 'get',
+            url: url,
+            headers: {
+                'producto':  this.state.producto,
+                'categoria': categoria
+            }
+        };
+
+
+        var response=await Axios(config);
+
+        var data = response.data.data;
+
+        this.getContent(data)
+    }
+
+    async getFiltroPrecio(ismayor){
+
+        //const url = https://radiant-castle-07024.herokuapp.com/api/filters/precio'
+        const url = 'http://localhost:5000/api/filters/precio'
+
+        const config = {
+            method: 'get',
+            url: url,
+            headers: {
+                'producto':  this.state.producto,
+                'ismayor': ismayor
+            }
+        };
+
+
+        var response=await Axios(config);
+
+        var data = response.data.data;
+
+        this.getContent(data)
+    }
+
+    async getFiltroFecha(ismayor){
+        //const url = https://radiant-castle-07024.herokuapp.com/api/filters/fecha'
+        const url = 'http://localhost:5000/api/filters/fecha'
+
+        const config = {
+            method: 'get',
+            url: url,
+            headers: {
+                'producto':  this.state.producto,
+                'ismayor': ismayor
+            }
+        };
+
+
+        var response=await Axios(config);
+
+        var data = response.data.data;
+
+        this.getContent(data)
+    }
+
+    async getFiltroPromedio(ismayor){
+
+        //const url = https://radiant-castle-07024.herokuapp.com/api/filters/promedio'
+        const url = 'http://localhost:5000/api/filters/promedio'
+
+        const config = {
+            method: 'get',
+            url: url,
+            headers: {
+                'producto':  this.state.producto,
+                'ismayor': ismayor
+            }
+        };
+
+
+        var response=await Axios(config);
+
+        var data = response.data.data;
+
+        this.getContent(data)
     }
 
     render() {
@@ -190,31 +367,36 @@ class ProductosBuscados extends React.Component {
                             <div item xs={12}>
                                 <NavBar/>
                             </div>
-
                             <div className="sort">
                                 <h8>Filtrar por</h8>
-                                <select className="sort-drop">
-                                    <option  value="workers" >Fecha</option>
-                                    <option  value="reciente" >Reciente - Antiguo</option>
-                                    <option  value="antiguo" >Antiguo - Reciente</option>
+                                <select className="sort-drop" onChange={(e) => this.getFiltroFecha(e.target.value)}>
+                                    <option >Fecha</option>
+                                    <option  value="true" >Reciente - Antiguo</option>
+                                    <option  value="false" >Antiguo - Reciente</option>
                                 </select>
-                                <select className="sort-drop">
-                                    <option  value="workers" >Valoración</option>
-                                    <option  value="mayor" >Mayor - Menor</option>
-                                    <option  value="menor" >Menor - Mayor</option>
+                                <select className="sort-drop" onChange={(e) => this.getFiltroPrecio(e.target.value)}>
+                                    <option >Precio</option>
+                                    <option  value="true" >Mayor - Menor</option>
+                                    <option  value="false" >Menor - Mayor</option>
                                 </select>
-                                <select className="sort-drop">
-                                    <option  value="workers" >Años de experiencia</option>
-                                    <option  value="mayor" >Mayor - Menor</option>
-                                    <option  value="menor" >Menor - Mayor</option>
+
+                                <select className="sort-drop" onChange={(e) => this.getFiltroPromedio(e.target.value)}>
+                                    <option >Valoración</option>
+                                    <option  value="true" >Mayor - Menor</option>
+                                    <option  value="false" >Menor - Mayor</option>
                                 </select>
-                                <select className="sort-drop">
-                                    <option  value="workers" >Ciudad</option>
-                                    <option  value="medellin" >Medellin</option>
-                                    <option  value="bogota" >Bogota</option>
-                                    <option  value="cali" >Cali</option>
+                                <select className="sort-drop" onChange={(e) => this.getFiltroCategoria(e.target.value)}>
+                                    <option >Categoria</option>
+                                    {this.state.Categorias}
                                 </select>
-                                <button>Aplicar</button>
+
+                                <select className="sort-drop" onChange={(e) => this.getFiltroCiudad(e.target.value)}>
+                                    <option >Ciudad</option>
+                                    {this.state.Ciudades}
+                                </select>
+
+
+
                             </div>
 
                             <div item xs={12}>

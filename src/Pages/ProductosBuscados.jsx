@@ -369,11 +369,15 @@ class ProductosBuscados extends React.Component {
                             </div>
                             <div className="sort">
                                 <h8>Filtrar por</h8>
-                                <select className="sort-drop" onChange={(e) => this.getFiltroFecha(e.target.value)}>
-                                    <option >Fecha</option>
-                                    <option  value="true" >Reciente - Antiguo</option>
-                                    <option  value="false" >Antiguo - Reciente</option>
-                                </select>
+
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Fecha</label>
+                                    <select className="form-control" onChange={(e) => this.getFiltroFecha(e.target.value)} >
+                                        <option  value="true"  >Reciente - Antiguo</option>
+                                        <option  value="false" >Antiguo - Reciente</option>
+                                    </select>
+                                </div>
+
                                 <select className="sort-drop" onChange={(e) => this.getFiltroPrecio(e.target.value)}>
                                     <option >Precio</option>
                                     <option  value="true" >Mayor - Menor</option>

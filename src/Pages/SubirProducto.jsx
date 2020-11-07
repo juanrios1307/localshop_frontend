@@ -101,33 +101,32 @@ class SubirProducto extends Component {
                             <div className="f-g">
                                 <label htmlFor="title">Nombre del producto: </label>
                                 <input type="text" name="username" required
-                                       value={this.state.titulo}
-                                       onChange={(e) => this.setState({titulo: e.target.value})}/>
+                                       value={this.state.nombre}
+                                       onChange={(e) => this.setState({nombre: e.target.value})}/>
                             </div>
                             <div className="f-g">
                                 <label htmlFor="Description">Descripción: </label>
                                 <input type="text" name="Description" required
-                                       value={this.state.especificaciones}
-                                       onChange={(e) => this.setState({especificaciones: e.target.value})}/>
+                                       value={this.state.descripcion}
+                                       onChange={(e) => this.setState({descripcion: e.target.value})}/>
                             </div>
                             <div className="f-g">
                                 <label htmlFor="budget">Precio x Unidad: </label>
                                 <input type="number" name="Price" required
-                                       value={this.state.presupuesto}
-                                       onChange={(e) => this.setState({presupuesto: e.target.value})}/>
+                                       value={this.state.precio}
+                                       onChange={(e) => this.setState({precio: e.target.value})}/>
                             </div>
                             <div className='TittleIN'>
                             </div>
                             <div className="f-g">
-                                <label htmlFor="city">Categoria: </label>
-                                <select className="dropdown-toggle">
-                                    <option  value="workers" >Seleccionar</option>
-                                    <option  value="workers" >Comida</option>
-                                    <option  value="anunces" >Moda</option>
-                                    <option  value="anunces" >Tecnología</option>
-                                    <option  value="anunces" >Vehículos</option>
-                                    <option  value="anunces" >Instrumentos Musicales</option>
-                                    <option  value="anunces" >Deporte</option>
+                                <label htmlFor="city" onChange={(e) => this.setState({categoria: e.target.value})}>Categoria: </label>
+                                <select className="dropdown-toggle" >
+                                    <option  value="comida" >Comida</option>
+                                    <option  value="moda" >Moda</option>
+                                    <option  value="tecnologia" >Tecnología</option>
+                                    <option  value="vehiculos" >Vehículos</option>
+                                    <option  value="intrumentos musicales" >Instrumentos Musicales</option>
+                                    <option  value="deporte" >Deporte</option>
                                 </select>
                             </div>
                             <hr/>
@@ -154,7 +153,7 @@ class SubirProducto extends Component {
                                     </div>
                                     <div className="inpt">
                                         <input type="file" name="imagen" placeholder="imagen" required multiple
-                                               onChange={(e) => this.setState({imagenFile: e.target.files[0]})}/>
+                                               onChange={(e) => this.setState({imagenFile: e.target.files})}/>
                                     </div>
                                 </div>
                             </fieldset>

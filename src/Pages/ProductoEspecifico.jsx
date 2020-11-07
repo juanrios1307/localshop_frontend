@@ -239,7 +239,7 @@ class ProductoEspecifico extends Component {
                                         <hr/>
                                         <p>Categoria: {this.state.categoria}</p>
                                         <p>Precio: {this.state.precio}</p>
-                                        <p>Especificacion: {this.state.especificaciones}</p>
+                                        <p>Descripcion: {this.state.descripcion}</p>
                                         <p>Vendedor: {this.state.vendedor}</p>
                                         <p>Ciudad: {this.state.ciudad}</p>
                                         <p >

@@ -37,14 +37,21 @@ function TableMaterial(props) {
 
         var data = response.data.data;
 
-
-        setContent( data.map((producto) => (
-            <TableRow key={producto.id}>
-                <TableCell><img src={producto.images} width="40px" height="40px" alt="Imagen"/>{"  "}</TableCell>
-                <TableCell align="center">{producto.nombre}</TableCell>
-                <TableCell align="center">${producto.precio}</TableCell>
-            </TableRow>
-        )))
+        if(data[0].promedio != 0) {
+            setContent(data.map((producto) => (
+                <TableRow key={producto.id}>
+                    <TableCell><img src={producto.images} width="40px" height="40px" alt="Imagen"/>{"  "}</TableCell>
+                    <TableCell align="center">{producto.nombre}</TableCell>
+                    <TableCell align="center">${producto.precio}</TableCell>
+                </TableRow>
+            )))
+        }else{
+            setContent(
+                    <div className="div0">
+                        <h5 className="card0">No tenemos sugerencias para ti !</h5>
+                    </div>
+            )
+        }
     }
 
 

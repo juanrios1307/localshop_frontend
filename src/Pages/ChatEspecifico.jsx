@@ -4,6 +4,7 @@ import DashNav from "../components/DashNav";
 import Axios from "axios";
 import moment from "moment";
 import Swal from "sweetalert2";
+import throttle from 'lodash.throttle';
 
 class ChatEspecifico extends Component {
 
@@ -15,19 +16,23 @@ class ChatEspecifico extends Component {
             mensaje:'',
             nombre:''
         };
-        this.getMessages = this.getMessages.bind(this);
+        this.getMessages = throttle( this.getMessages.bind(this) , 1000);
         this.sendMessage = this.sendMessage.bind(this);
         this.crearChat = this.crearChat.bind(this);
     }
 
     componentDidMount() {
         this.getID();
-        this.crearChat();
+
+        if(localStorage.getItem("productIDChat")){
+            this.crearChat()
+        }
+
         this.getMessages();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-
+        this.getMessages()
     }
 
     getID(){
@@ -38,7 +43,8 @@ class ChatEspecifico extends Component {
 
     async getMessages(){
 
-        console.log("ID: "+this.state.id)
+        localStorage.removeItem("productIDChat")
+
         if(this.state.id) {
             const token = localStorage.getItem("token")
 
@@ -139,7 +145,10 @@ class ChatEspecifico extends Component {
     }
 
     async sendMessage(e){
+
         e.preventDefault()
+
+
 
        const token=localStorage.getItem("token")
 

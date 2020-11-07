@@ -4,26 +4,47 @@ import BannerSection from "../components/BannerSection";
 import Footer from "../components/Footer";
 import CardCarousel from "../components/CardCarousel";
 import NavBar from "../components/NavBar.js";
+import DashNav from "../components/DashNav";
 
 class MainPage extends Component {
 
     render(){
-        return (
-            <div>
-                <header>
-                    <NavBar/>
-                </header>
+        if(localStorage.getItem('token')){
+            return (
                 <div>
-                    <BannerSection/>
+                    <header>
+                        <DashNav/>
+                    </header>
+                    <div>
+                        <BannerSection/>
+                    </div>
+                    <div>
+                        <CardCarousel/>
+                    </div>
+                    <div>
+                        <Footer/>
+                    </div>
                 </div>
+            );
+        }else{
+            return (
                 <div>
-                    <CardCarousel/>
+                    <header>
+                        <NavBar/>
+                    </header>
+                    <div>
+                        <BannerSection/>
+                    </div>
+                    <div>
+                        <CardCarousel/>
+                    </div>
+                    <div>
+                        <Footer/>
+                    </div>
                 </div>
-                <div>
-                    <Footer/>
-                </div>
-            </div>
-        );
+            );
+        }
+
     }
 }
 export default MainPage;

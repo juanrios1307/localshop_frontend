@@ -63,14 +63,16 @@ class EditProfile extends React.Component {
         const token = localStorage.getItem("token")
 
 
-        if(this.state.nombre.length<=0){
-            this.state.nombre=this.state.nombreA
+        if(this.state.nombre.length<=0) {
+            this.state.nombre = this.state.nombreA
         }
-        if(this.state.telefono.length<=0){
-            this.state.telefono=this.state.telefonoA
+        if(this.state.telefono.length<=0) {
+            this.state.telefono = this.state.telefonoA
         }
         if(this.state.ciudad.length<=0){
             this.state.ciudad=this.state.ciudadA
+        }else{
+            this.state.ciudad=this.state.ciudad.toLowerCase()
         }
 
         var config = {

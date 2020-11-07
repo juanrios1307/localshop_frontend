@@ -77,7 +77,7 @@ class ProductoEspecifico extends Component {
             this.setState({nombre: data.nombre});
             this.setState({categoria: data.categoria});
             this.setState({precio: data.precio});
-            this.setState({especificaciones: data.especificaciones});
+            this.setState({descripcion: data.descripcion});
             this.setState({vendedor: data.user.nombre});
             this.setState({promedio: data.promedio});
 
@@ -119,6 +119,7 @@ class ProductoEspecifico extends Component {
                 title: data
             })
 
+            window.location.reload()
 
         }else{
             Swal.fire({
@@ -243,7 +244,7 @@ class ProductoEspecifico extends Component {
                                         <p>Vendedor: {this.state.vendedor}</p>
                                         <p>Ciudad: {this.state.ciudad}</p>
                                         <p >
-                                            <Rating name="read-only" value= {this.state.promedio} readOnly/>
+                                            <Rating name="read-only" precision={0.5} value= {this.state.promedio} readOnly/>
                                         </p>
                                     </div>
                                     <div className="botnutl">
@@ -338,7 +339,7 @@ class ProductoEspecifico extends Component {
                                     <div className="comenta">
                                         <form onSubmit={this.comment}>
                                             <div className="rating">
-                                                <Rating name="simple-controlled"
+                                                <Rating  precision={0.5} name="simple-controlled"
                                                        onChange={e => this.setState({rating: e.target.value})}/></div>
                                             <input type="text" required
                                                    onChange={e => this.setState({comment: e.target.value})}/>

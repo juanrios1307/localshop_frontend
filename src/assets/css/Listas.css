@@ -60,3 +60,8 @@
 .sort button:hover{
     background: #060b26;
 }
+
+.noProduct{
+    margin: 25px;
+    text-align: center;
+}

@@ -132,28 +132,40 @@ class ProductosBuscados extends React.Component {
     }
 
     getContent(data){
-        this.setState({
-            Content: data.map((producto) => (
-                <div className="media" key={producto._id}>
-                    <img className="mr-3 imgList" src={producto.images} alt='imagen' />
-                    <div className="media-body">
-                        <h6 className="mt-0">{producto.nombre}</h6>
-                        <p className="card-text">{producto.categoria}</p>
-                        <p className="card-text">Precio: ${producto.precio}</p>
-                        <p className="card-text">Vendedor: {producto.user.nombre}</p>
-                        <div className="rating-p">
-                            <Rating name="read-only" value={producto.promedio} readOnly/>
+        if(data.length>0) {
+            this.setState({
+                Content: data.map((producto) => (
+                    <div className="media" key={producto._id}>
+                        <img className="mr-3 imgList" src={producto.images} alt='imagen'/>
+                        <div className="media-body">
+                            <h6 className="mt-0">{producto.nombre}</h6>
+                            <p className="card-text">{producto.categoria}</p>
+                            <p className="card-text">Precio: ${producto.precio}</p>
+                            <p className="card-text">Vendedor: {producto.user.nombre}</p>
+                            <div className="rating-p">
+                                <Rating name="read-only" value={producto.promedio} readOnly/>
+                            </div>
+
+                            <button type="button" className="btn btn-outline btn-list"
+                                    onClick={(e) => this.crearChat(producto._id, e)}><AiIcons.AiFillMessage/></button>
+                            <button type="button" className="btn btn-outline btn-list"
+                                    onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
+                            <button type="button" className="btn btn-outline btn-list"
+                                    onClick={(e) => this.savePub(producto._id, e)}><FaIcons.FaShoppingCart/></button>
                         </div>
 
-                        <button type="button" className="btn btn-outline btn-list"  onClick={(e) => this.crearChat(producto._id,e)}><AiIcons.AiFillMessage/></button>
-                        <button type="button" className="btn btn-outline btn-list"  onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
-                        <button type="button" className="btn btn-outline btn-list"  onClick={(e) => this.savePub(producto._id,e)}><FaIcons.FaShoppingCart/></button>
                     </div>
 
+                ))
+            })
+        }else{
+            this.setState({
+                Content: <div>
+                    <h4 className="noProduct">Lo sentimos, no tenemos productos para mostrarte.</h4>
+                    <h5 className="noProduct">Intenta una nueva busqueda !! </h5>
                 </div>
-
-            ))
-        })
+            })
+        }
     }
 
     async getCiudades(){

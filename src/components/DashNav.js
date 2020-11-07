@@ -95,7 +95,8 @@ function DashNav() {
                                     <input className="form-control mr-sm-2" type="search"
                                            placeholder="Buscar"
                                            aria-label="Search"
-                                           onChange={e => setProducto(e.target.value)}/>
+                                           onChange={e => setProducto(e.target.value)}
+                                           required/>
 
 
                                     <button className="my-sm-0" type="submit">

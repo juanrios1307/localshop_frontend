@@ -8,6 +8,7 @@ import * as FaIcons from "react-icons/fa/index";
 import {Link, Redirect} from "react-router-dom";
 import Swal from "sweetalert2";
 import Rating from "@material-ui/lab/Rating";
+import moment from "moment";
 
 class ProductosBuscados extends React.Component {
 
@@ -17,19 +18,25 @@ class ProductosBuscados extends React.Component {
             Content: '',
             Ciudades: '',
             Categorias: '',
-            producto:''
+
+            producto:'',
+            ciudad:'',
+            categoria:'',
+            promedio:'true',
+            date:'true',
+            precio:'true'
         };
         this.getData = this.getData.bind(this);
         this.getCategorias = this.getCategorias.bind(this);
         this.getCiudades = this.getCiudades.bind(this);
         this.getContent=this.getContent.bind(this)
 
-
-        this.getFiltroPrecio = this.getFiltroPrecio.bind(this);
-        this.getFiltroFecha = this.getFiltroFecha.bind(this);
         this.getFiltroCiudad = this.getFiltroCiudad.bind(this);
         this.getFiltroCategoria = this.getFiltroCategoria.bind(this);
         this.getFiltroPromedio = this.getFiltroPromedio.bind(this);
+        this.getFiltroFecha = this.getFiltroFecha.bind(this);
+        this.getFiltroPrecio = this.getFiltroPrecio.bind(this);
+
 
         this.savePub=this.savePub.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
@@ -107,7 +114,10 @@ class ProductosBuscados extends React.Component {
             method: 'get',
             url: url,
             headers: {
-                'producto': this.state.producto
+                'producto': this.state.producto,
+                'promedio':this.state.promedio,
+                'fecha':this.state.date,
+                'precio':this.state.precio
             }
         };
 
@@ -127,7 +137,7 @@ class ProductosBuscados extends React.Component {
                 <div className="media" key={producto._id}>
                     <img className="mr-3 imgList" src={producto.images} alt='imagen' />
                     <div className="media-body">
-                        <h6 className="mt-0"> {producto.nombre}</h6>
+                        <h6 className="mt-0"> {moment(producto.date).format('DD/MM/YYYY')} </h6>
                         <p className="card-text">{producto.categoria}</p>
                         <p className="card-text">Precio: ${producto.precio}</p>
                         <p className="card-text">Vendedor: {producto.user.nombre}</p>
@@ -195,15 +205,23 @@ class ProductosBuscados extends React.Component {
     }
 
     async getFiltroCiudad(ciudad){
-        //const url = 'https://radiant-castle-07024.herokuapp.com/api/filters/ciudad'
-        const url = 'http://localhost:5000/api/filters/ciudad'
+
+        this.state.ciudad=ciudad
+        this.setState({ciudad:ciudad})
+
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/filters/'
+        const url = 'http://localhost:5000/api/filters/'
 
         const config = {
             method: 'get',
             url: url,
             headers: {
                 'producto':  this.state.producto,
-                'ciudad': ciudad
+                'ciudad': this.state.ciudad,
+                'categoria':this.state.categoria,
+                'promedio':this.state.promedio,
+                'fecha':this.state.date,
+                'precio':this.state.precio
             }
         };
 
@@ -216,15 +234,23 @@ class ProductosBuscados extends React.Component {
     }
 
     async getFiltroCategoria(categoria){
-        //const url = 'https://radiant-castle-07024.herokuapp.com/api/filters/categoria'
-        const url = 'http://localhost:5000/api/filters/categoria'
+
+        this.state.categoria=categoria
+        this.setState({categoria:categoria})
+
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/filters/'
+        const url = 'http://localhost:5000/api/filters/'
 
         const config = {
             method: 'get',
             url: url,
             headers: {
                 'producto':  this.state.producto,
-                'categoria': categoria
+                'ciudad': this.state.ciudad,
+                'categoria':this.state.categoria,
+                'promedio':this.state.promedio,
+                'fecha':this.state.date,
+                'precio':this.state.precio
             }
         };
 
@@ -236,7 +262,10 @@ class ProductosBuscados extends React.Component {
         this.getContent(data)
     }
 
-    async getFiltroPrecio(ismayor){
+    async getFiltroPrecio(precio){
+
+        this.state.precio=precio
+        this.setState({precio:precio})
 
         //const url = https://radiant-castle-07024.herokuapp.com/api/filters/precio'
         const url = 'http://localhost:5000/api/filters/precio'
@@ -246,7 +275,11 @@ class ProductosBuscados extends React.Component {
             url: url,
             headers: {
                 'producto':  this.state.producto,
-                'ismayor': ismayor
+                'ciudad': this.state.ciudad,
+                'categoria':this.state.categoria,
+                'promedio':this.state.promedio,
+                'fecha':this.state.date,
+                'precio':this.state.precio
             }
         };
 
@@ -258,7 +291,11 @@ class ProductosBuscados extends React.Component {
         this.getContent(data)
     }
 
-    async getFiltroFecha(ismayor){
+    async getFiltroFecha(date){
+
+        this.state.date=date
+        this.setState({date:date})
+
         //const url = https://radiant-castle-07024.herokuapp.com/api/filters/fecha'
         const url = 'http://localhost:5000/api/filters/fecha'
 
@@ -267,7 +304,11 @@ class ProductosBuscados extends React.Component {
             url: url,
             headers: {
                 'producto':  this.state.producto,
-                'ismayor': ismayor
+                'ciudad': this.state.ciudad,
+                'categoria':this.state.categoria,
+                'promedio':this.state.promedio,
+                'fecha':this.state.date,
+                'precio':this.state.precio
             }
         };
 
@@ -279,17 +320,24 @@ class ProductosBuscados extends React.Component {
         this.getContent(data)
     }
 
-    async getFiltroPromedio(ismayor){
+    async getFiltroPromedio(promedio){
 
-        //const url = https://radiant-castle-07024.herokuapp.com/api/filters/promedio'
-        const url = 'http://localhost:5000/api/filters/promedio'
+        this.state.promedio=promedio
+        this.setState({promedio:promedio})
+
+        //const url = https://radiant-castle-07024.herokuapp.com/api/filters/'
+        const url = 'http://localhost:5000/api/filters/'
 
         const config = {
             method: 'get',
             url: url,
             headers: {
                 'producto':  this.state.producto,
-                'ismayor': ismayor
+                'ciudad': this.state.ciudad,
+                'categoria':this.state.categoria,
+                'promedio':this.state.promedio,
+                'fecha':this.state.date,
+                'precio':this.state.precio
             }
         };
 
@@ -324,31 +372,51 @@ class ProductosBuscados extends React.Component {
 
                             <div className="sort">
                                 <h8>Filtrar por</h8>
-                                <select className="sort-drop">
-                                    <option  value="workers" >Fecha</option>
-                                    <option  value="reciente" >Reciente - Antiguo</option>
-                                    <option  value="antiguo" >Antiguo - Reciente</option>
-                                </select>
-                                <select className="sort-drop">
-                                    <option  value="workers" >Valoración</option>
-                                    <option  value="mayor" >Mayor - Menor</option>
-                                    <option  value="menor" >Menor - Mayor</option>
-                                </select>
-                                <select className="sort-drop">
-                                    <option  value="workers" >Años de experiencia</option>
-                                    <option  value="mayor" >Mayor - Menor</option>
-                                    <option  value="menor" >Menor - Mayor</option>
-                                </select>
-                                <select className="sort-drop">
-                                    <option  value="workers" >Ciudad</option>
-                                    <option  value="medellin" >Medellin</option>
-                                    <option  value="bogota" >Bogota</option>
-                                    <option  value="cali" >Cali</option>
-                                </select>
-                                <button>Aplicar</button>
+
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Valoración</label>
+                                    <select className="form-control" onChange={(e) => this.getFiltroPromedio(e.target.value)} >
+                                        <option  value="true" >Mayor - Menor</option>
+                                        <option  value="false" >Menor - Mayor</option>
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Fecha</label>
+                                    <select className="form-control" onChange={(e) => this.getFiltroFecha(e.target.value)} >
+                                        <option  value="false"  >Reciente - Antiguo</option>
+                                        <option  value="true" >Antiguo - Reciente</option>
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Precio</label>
+                                    <select className="form-control" onChange={(e) => this.getFiltroPrecio(e.target.value)} >
+                                        <option  value="true" >Mayor - Menor</option>
+                                        <option  value="false" >Menor - Mayor</option>
+                                    </select>
+                                </div>
+
+
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Categorias</label>
+                                    <select className="form-control" onChange={(e) => this.getFiltroCategoria(e.target.value)} >
+                                        <option value=" ">Todos</option>
+                                        {this.state.Categorias}
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Ciudad</label>
+                                    <select className="form-control" onChange={(e) => this.getFiltroCiudad(e.target.value)} >
+                                        <option value=" ">Todos</option>
+                                        {this.state.Ciudades}
+                                    </select>
+                                </div>
+
                             </div>
 
-                            <div item xs={12}>
+                                <div item xs={12}>
                                 {this.state.Content}
                             </div>
 
@@ -371,6 +439,14 @@ class ProductosBuscados extends React.Component {
                                 <h8>Filtrar por</h8>
 
                                 <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Valoración</label>
+                                    <select className="form-control" onChange={(e) => this.getFiltroPromedio(e.target.value)} >
+                                        <option  value="true" >Mayor - Menor</option>
+                                        <option  value="false" >Menor - Mayor</option>
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
                                     <label htmlFor="exampleFormControlSelect1">Fecha</label>
                                     <select className="form-control" onChange={(e) => this.getFiltroFecha(e.target.value)} >
                                         <option  value="true"  >Reciente - Antiguo</option>
@@ -378,28 +454,30 @@ class ProductosBuscados extends React.Component {
                                     </select>
                                 </div>
 
-                                <select className="sort-drop" onChange={(e) => this.getFiltroPrecio(e.target.value)}>
-                                    <option >Precio</option>
-                                    <option  value="true" >Mayor - Menor</option>
-                                    <option  value="false" >Menor - Mayor</option>
-                                </select>
-
-                                <select className="sort-drop" onChange={(e) => this.getFiltroPromedio(e.target.value)}>
-                                    <option >Valoración</option>
-                                    <option  value="true" >Mayor - Menor</option>
-                                    <option  value="false" >Menor - Mayor</option>
-                                </select>
-                                <select className="sort-drop" onChange={(e) => this.getFiltroCategoria(e.target.value)}>
-                                    <option >Categoria</option>
-                                    {this.state.Categorias}
-                                </select>
-
-                                <select className="sort-drop" onChange={(e) => this.getFiltroCiudad(e.target.value)}>
-                                    <option >Ciudad</option>
-                                    {this.state.Ciudades}
-                                </select>
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Precio</label>
+                                    <select className="form-control" onChange={(e) => this.getFiltroPrecio(e.target.value)} >
+                                        <option  value="true" >Mayor - Menor</option>
+                                        <option  value="false" >Menor - Mayor</option>
+                                    </select>
+                                </div>
 
 
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Categorias</label>
+                                    <select className="form-control" onChange={(e) => this.getFiltroCategoria(e.target.value)} >
+                                        <option value=" ">Todos</option>
+                                        {this.state.Categorias}
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlSelect1">Ciudad</label>
+                                    <select className="form-control" onChange={(e) => this.getFiltroCiudad(e.target.value)} >
+                                        <option value=" ">Todos</option>
+                                        {this.state.Ciudades}
+                                    </select>
+                                </div>
 
                             </div>
 

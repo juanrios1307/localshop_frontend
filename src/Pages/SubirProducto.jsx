@@ -17,7 +17,7 @@ class SubirProducto extends Component {
             presupuesto:'',
             profesion:'',
             ciudad:'',
-            imagen:'',
+            images:'',
             imagenFile:'',
             bool:false
         }
@@ -34,21 +34,30 @@ class SubirProducto extends Component {
 
         const token = localStorage.getItem("token")
 
-        //const url='https://peaceful-ridge-86113.herokuapp.com/api/anunceswork'
-        const url='http://localhost:5000/api/anunceswork'
+        //const url='https://radiant-castle-07024.herokuapp.com/api/producto'
+        const url='http://localhost:5000/api/producto'
 
-        const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/eia/image/upload';
-        const UPLOAD_PRESET = 't2rsbe8l';
 
+        var images=[]
+
+        const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/localshop/image/upload';
+        const UPLOAD_PRESET = 'y1b3maos';
 
         const formImages = new FormData();
-        formImages.append('file', this.state.imagenFile);
-        formImages.append('upload_preset', UPLOAD_PRESET);
+
+        for(var i=0;i<this.state.imagenFile.length;i++){
+
+            formImages.append('file', this.state.imagenFile[i]);
+            formImages.append('upload_preset', UPLOAD_PRESET);
+            const resI = await Axios.post(CLOUDINARY_URL, formImages);
+
+            images.push(resI.data.secure_url)
+        }
 
 
         try {
-            const resI = await Axios.post(CLOUDINARY_URL, formImages);
-            this.setState({imagen:resI.data.secure_url});
+
+            this.setState({images:images});
 
 
         } catch (err) {
@@ -81,7 +90,7 @@ class SubirProducto extends Component {
 
     render() {
         if (this.state.bool) {
-            return <Redirect to='/misanuncios'/>
+            return <Redirect to='/misproductos'/>
         } else {
             return (
                 <div>
@@ -99,8 +108,8 @@ class SubirProducto extends Component {
                     <div className="formato">
                         <form className="form" onSubmit={this.signupanunce}>
                             <div className="f-g">
-                                <label htmlFor="title">Nombre del producto: </label>
-                                <input type="text" name="username" required
+                                <label htmlFor="name">Nombre del producto: </label>
+                                <input type="text" name="name" required
                                        value={this.state.nombre}
                                        onChange={(e) => this.setState({nombre: e.target.value})}/>
                             </div>
@@ -119,8 +128,8 @@ class SubirProducto extends Component {
                             <div className='TittleIN'>
                             </div>
                             <div className="f-g">
-                                <label htmlFor="city" onChange={(e) => this.setState({categoria: e.target.value})}>Categoria: </label>
-                                <select className="dropdown-toggle" >
+                                <label htmlFor="city">Categoria: </label>
+                                <select className="dropdown-toggle"  onChange={(e) => this.setState({categoria: e.target.value})} >
                                     <option  value="comida" >Comida</option>
                                     <option  value="moda" >Moda</option>
                                     <option  value="tecnologia" >Tecnología</option>

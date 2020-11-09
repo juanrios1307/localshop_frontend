@@ -1,7 +1,8 @@
 .card-deck{
     background: #060b26;
     background: #ffb224;
-    padding: 2em;
+    padding: 1em;
+    width: available;
 }
 .card-icon img{
     /*position:absolute;*/

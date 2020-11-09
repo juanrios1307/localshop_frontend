@@ -18,7 +18,7 @@ class MainPage extends Component {
                     <div>
                         <BannerSection/>
                     </div>
-                    <div>
+                    <div  className="CardCarousel">
                         <CardCarousel/>
                     </div>
                     <div>
@@ -35,7 +35,7 @@ class MainPage extends Component {
                     <div>
                         <BannerSection/>
                     </div>
-                    <div>
+                    <div className="CardCarousel">
                         <CardCarousel/>
                     </div>
                     <div>

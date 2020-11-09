@@ -3,14 +3,14 @@
     min-height: 90vh;
     display: flex;
     flex-direction: column;
-    background: #ffb224;
+    background: #282c34;
 }
 .chattitle{
     height: 7vh;
     display: flex;
     justify-content: center;
     padding: 1em 0 1em 0;
-    background: #ffb224;
+    background: #282c34;
 }
 .namechat{
     font-weight: bold;
@@ -52,7 +52,7 @@ li.worker {
 }
 
 .chatinput{
-    background: #ffb224;
+    background: #282c34;
     padding: 1em;
     min-height: 7vh;
 }

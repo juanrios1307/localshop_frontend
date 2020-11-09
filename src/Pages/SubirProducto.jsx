@@ -12,21 +12,31 @@ class SubirProducto extends Component {
         super(props);
 
         this.state = {
-            titulo :'',
-            especificaciones:'',
-            presupuesto:'',
-            profesion:'',
-            ciudad:'',
+            nombre:'',
+            precio:'',
+            descripcion:'',
+            categoria:'',
             images:'',
-            imagenFile:'',
-            bool:false
+            imagenFile:[],
+            bool:false,
+            c1:[],
+            c2:[],
         }
 
         this.signupanunce = this.signupanunce.bind(this);
+        this.files=this.files.bind(this);
+        this.getUpload = this.getUpload.bind(this);
+
+        for(var i=0;i<5;i++){
+            this.state.c1.push(UPLD)
+            this.state.c2.push(UPLD)
+        }
 
     }
 
-
+    componentDidMount() {
+        this.getUpload()
+    }
 
 
     async signupanunce(e) {
@@ -84,6 +94,53 @@ class SubirProducto extends Component {
         })
 
         this.setState({bool:true})
+
+    }
+
+    getUpload(){
+
+      /*  for(var i=0;i<5;i++){
+            this.state.c1.push(UPLD)
+            this.state.c2.push(UPLD)
+        }*/
+    }
+
+    files(files){
+        for(var i=0;i<files.length;i++){
+            this.state.imagenFile.push(files[i])
+        }
+
+        if(this.state.imagenFile.length>5 && this.state.imagenFile.length<=10){
+            for(var i=0;i<5;i++){
+                this.state.c1.pop()
+                this.state.c1.unshift(this.state.imagenFile[i])
+            }
+
+            for(var i=5;i<this.state.imagenFile.length;i++){
+                this.state.c2.pop()
+                this.state.c2.unshift(this.state.imagenFile[i])
+            }
+
+        }else if(this.state.imagenFile.length<=5){
+            for(var i=0;i<this.state.imagenFile.length;i++){
+                this.state.c1.pop()
+                this.state.c1.unshift(this.state.imagenFile[i])
+            }
+
+        }else if(this.state.imagenFile.length>10){
+
+            for(var i=0;i<5;i++){
+                this.state.c1.pop()
+                this.state.c1.unshift(this.state.imagenFile[i])
+            }
+
+            for(var i=5;i<10;i++){
+                this.state.c2.pop()
+                this.state.c2.unshift(this.state.imagenFile[i])
+            }
+        }
+
+
 
     }
 
@@ -146,23 +203,24 @@ class SubirProducto extends Component {
                                 <div className="imginput">
                                     <div className="imgs">
                                         <div className="imginserted">
-                                            <img src={UPLD}/>
-                                            <img src={UPLD}/>
-                                            <img src={UPLD}/>
-                                            <img src={UPLD}/>
-                                            <img src={UPLD}/>
+                                            <img src={this.state.c1[0]}/>
+                                            <img src={this.state.c1[1]}/>
+                                            <img src={this.state.c1[2]}/>
+                                            <img src={this.state.c1[3]}/>
+                                            <img src={this.state.c1[4]}/>
+
                                         </div>
                                         <div className="imginserted">
-                                            <img src={UPLD}/>
-                                            <img src={UPLD}/>
-                                            <img src={UPLD}/>
-                                            <img src={UPLD}/>
-                                            <img src={UPLD}/>
+                                            <img src={this.state.c2[0]}/>
+                                            <img src={this.state.c2[1]}/>
+                                            <img src={this.state.c2[2]}/>
+                                            <img src={this.state.c2[3]}/>
+                                            <img src={this.state.c2[4]}/>
                                         </div>
                                     </div>
                                     <div className="inpt">
                                         <input type="file" name="imagen" placeholder="imagen" required multiple
-                                               onChange={(e) => this.setState({imagenFile: e.target.files})}/>
+                                               onChange={(e) => this.files(e.target.files)} />
                                     </div>
                                 </div>
                             </fieldset>

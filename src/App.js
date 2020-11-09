@@ -22,13 +22,14 @@ function App() {
           <Route exact path="/forgotpwd" component={ForgotPasword}/>
           <Route exact path="/updatepwd" component={ChangePassword}/>
           <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/createProduct" component={SubirProducto}/>
+
           <Route exact path="/products" component={ProductosBuscados} />
           <Route exact path="/product" component={ProductoEspecifico} />
 
           <Route exact path="/shoppingCar" component={SavingPub} />
 
           <Route exact path="/misproductos" component={MisProductos} />
+          <Route exact path="/createProduct" component={SubirProducto}/>
 
           <Route exact path="/chats" component={MisChats} />
           <Route exact path="/chat" component={ChatEspecifico} />

@@ -52,7 +52,6 @@ class MisProductos extends React.Component {
         var response = await Axios(config);
 
         Swal.fire({
-            icon: 'success',
             title: response.data.data
         })
 

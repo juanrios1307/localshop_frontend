@@ -266,7 +266,7 @@ class ProductoEspecifico extends Component {
                                     <div className="comenta">
                                         <form onSubmit={this.comment}>
                                             <div className="rating">
-                                                <Rating name="simple-controlled" value={this.state.rating}
+                                                <Rating name="simple-controlled" className="stars" value={this.state.rating}
                                                         onChange={e => this.setState({rating: e.target.value})}/></div>
                                             <input type="text" required
                                                    onChange={e => this.setState({comment: e.target.value})}/>

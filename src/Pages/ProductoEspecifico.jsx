@@ -33,7 +33,7 @@ class ProductoEspecifico extends Component {
 
 
             comment:'',
-            rating:3,
+            rating:'',
 
             asunto:'',
             mensaje:''
@@ -80,8 +80,9 @@ class ProductoEspecifico extends Component {
             this.setState({descripcion: data.descripcion});
             this.setState({vendedor: data.user.nombre});
             this.setState({promedio: data.promedio});
+            this.setState({rating: data.promedio});
 
-            this.setState({imagen: data.images});
+            this.setState({imagen: data.images[0]});
             this.setState({ciudad: data.user.ciudad});
             this.setState({telefono: data.user.telefono});
             this.setState({correo: data.user.correo});
@@ -267,6 +268,7 @@ class ProductoEspecifico extends Component {
                                         <form onSubmit={this.comment}>
                                             <div className="rating">
                                                 <Rating name="simple-controlled" className="stars" value={this.state.rating}
+                                                        precision={0.5}
                                                         onChange={e => this.setState({rating: e.target.value})}/></div>
                                             <input type="text" required
                                                    onChange={e => this.setState({comment: e.target.value})}/>

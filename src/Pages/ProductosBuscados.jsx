@@ -136,7 +136,7 @@ class ProductosBuscados extends React.Component {
             this.setState({
                 Content: data.map((producto) => (
                     <div className="media" key={producto._id}>
-                        <img className="mr-3 imgList" src={producto.images} alt='imagen'/>
+                        <img className="mr-3 imgList" src={producto.images[0]} alt='imagen'/>
                         <div className="media-body">
                             <h6 className="mt-0">{producto.nombre}</h6>
                             <p className="card-text">{producto.categoria}</p>

@@ -40,7 +40,7 @@ class CardCarousel extends Component {
             this.setState({
                 Content: data.map((producto) => (
                     <div className="card" key={producto._id}>
-                        <div className="card-icon"><img src={producto.images} alt="icon1"/></div>
+                        <div className="card-icon"><img src={producto.images[0]} alt="icon1"/></div>
                         <div className="card-body">
                             <h5 className="card-title">{producto.nombre}</h5>
                             <p className="card-text">{producto.categoria}</p>

@@ -4,7 +4,7 @@
 }
 .boxcontainer{
     box-sizing: border-box;
-    height: 26em;
+    height: 30em;
     width: 100%;
     padding-bottom: 2em;
 }
@@ -17,7 +17,7 @@
 .inforbox{
     width: 68%;
     float: left;
-    height: 100%;
+    height: fit-content;
     padding: 1em;
     margin-top: 1em;
     border: 2px solid black;
@@ -29,16 +29,16 @@
     height: 23em;
     margin-left: 50%;
     transform: translateX(-50%);
-    margin-top: 1.5em;
+    margin-top: 3.5em;
     margin-bottom: 1.5em;
-    border: 0.3em solid darkorange;
+    border: 0.3em solid #282c34;
     border-radius: 20px;
 }
 .coments-container{
     box-sizing: border-box;
     height: 19em;
     min-width: 100%;
-    background: #ffb224;
+    background: #282c34;
 }
 .comentbox{
     float: left;
@@ -84,15 +84,15 @@
     transform: translateX(-50%);
     padding: 0.5em;
     border-radius: 10px;
-    background: white;
-    color: black;
+    background: #ffb224;
+    color: white;
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
     margin-bottom: 1em;
 }
 .comenta button:hover{
-    background: black;
-    color: white;
+    background: #ffb224;
+    color: black;
 }
 .infoespec{
     width: 100%;
@@ -101,8 +101,8 @@
     height: 75%;
 }
 .botnutl{
-    width: 100%;
-    background: white;
+    width: 120%;
+    background: transparent;
     height: 15%;
 }
 .btnsaesp{
@@ -118,7 +118,7 @@
     float: left;
 }
 .contactbox{
-    background: #ffb224;
+    background: #282c34;
     padding-bottom: 2.5em;
 }
 .contactbox h10{
@@ -129,8 +129,8 @@
 }
 .contactbox-title{
     padding: 0.5em;
-    background: whitesmoke;
-    border: 1px solid #060b26;
+    background: #ffb224;
+    border: 1px solid #ffb224;
     margin-bottom: 1em;
 }
 .contactbox label{
@@ -169,4 +169,6 @@ hr{
 .mensajetxt{
     height: 3em;
 }
-
+.stars{
+    color: white;
+}

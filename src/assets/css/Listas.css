@@ -65,3 +65,15 @@
     margin: 25px;
     text-align: center;
 }
+.btn-pgr{
+    margin-left: 90%;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    border: 0 solid transparent;
+    background-color: #060b26;
+    color: white;
+}
+.btn-pgr:hover{
+    background-color: darkorange;
+}

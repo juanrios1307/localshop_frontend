@@ -137,6 +137,9 @@ class SavingPub extends React.Component {
                         <DashNav/>
                     </Grid>
 
+                    <Grid item xs={12}>
+                        <button className="btn-pgr">Pagar todo</button>
+                    </Grid>
 
                     <Grid item xs={12}>
                         {this.state.Content}

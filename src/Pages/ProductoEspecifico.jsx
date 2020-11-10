@@ -236,7 +236,7 @@ class ProductoEspecifico extends Component {
                             <DashNav/>
                             <div className="boxcontainer">
                                 <div className="imgbox">
-                                    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+                                    <div id="carouselExampleControls" className="carousel slidess" data-ride="carousel">
                                         <div className="carousel-inner">
                                             <div className="carousel-item active">
                                                 <img src={this.state.imagen} className="d-block w-100" alt="imagen de publicacion"/>
@@ -248,12 +248,12 @@ class ProductoEspecifico extends Component {
                                                 <img src={this.state.imagen}  className="d-block w-100" alt="imagen de publicacion"/>
                                             </div>
                                         </div>
-                                        <a className="carousel-control-prev" href="#carouselExampleControls"
+                                        <a className="carousel-control-prev an" href="#carouselExampleControls"
                                            role="button" data-slide="prev">
                                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span className="sr-only">Previous</span>
                                         </a>
-                                        <a className="carousel-control-next" href="#carouselExampleControls"
+                                        <a className="carousel-control-next an" href="#carouselExampleControls"
                                            role="button" data-slide="next">
                                             <span className="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span className="sr-only">Next</span>

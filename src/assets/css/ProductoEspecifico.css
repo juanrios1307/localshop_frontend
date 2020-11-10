@@ -24,7 +24,7 @@
     background: white;
     margin-bottom: 1em;
 }
-.slide{
+.slidess{
     width: 23em;
     height: 23em;
     margin-left: 50%;
@@ -40,11 +40,9 @@
     border: 0.3em solid #282c34;
     border-radius: 10px;
 }
-a{
+.an{
     margin-top: 25%;
-}
-.carousel-control-next{
-    margin-right: 0.7em;
+    margin-right: 0.8em;
 }
 .coments-container{
     box-sizing: border-box;

@@ -10,6 +10,10 @@ import Axios from "axios";
 import Swal from "sweetalert2";
 import Comentario from "../components/Comentario";
 import {Redirect} from "react-router-dom";
+import slide1 from "../assets/images/Slide1.png";
+import slide3 from "../assets/images/Slide3.png";
+import slide4 from "../assets/images/Slide4.png";
+import slide5 from "../assets/images/Slide5.png";
 
 class ProductoEspecifico extends Component {
 
@@ -232,7 +236,29 @@ class ProductoEspecifico extends Component {
                             <DashNav/>
                             <div className="boxcontainer">
                                 <div className="imgbox">
-                                    <img className="imgPub" src={this.state.imagen} alt="imagen de publicacion"/>
+                                    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+                                        <div className="carousel-inner">
+                                            <div className="carousel-item active">
+                                                <img src={this.state.imagen} className="d-block w-100" alt="imagen de publicacion"/>
+                                            </div>
+                                            <div className="carousel-item">
+                                                <img src={this.state.imagen}  className="d-block w-100" alt="imagen de publicacion"/>
+                                            </div>
+                                            <div className="carousel-item">
+                                                <img src={this.state.imagen}  className="d-block w-100" alt="imagen de publicacion"/>
+                                            </div>
+                                        </div>
+                                        <a className="carousel-control-prev" href="#carouselExampleControls"
+                                           role="button" data-slide="prev">
+                                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span className="sr-only">Previous</span>
+                                        </a>
+                                        <a className="carousel-control-next" href="#carouselExampleControls"
+                                           role="button" data-slide="next">
+                                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span className="sr-only">Next</span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div className="inforbox">
 

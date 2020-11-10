@@ -89,33 +89,47 @@ class SavingPub extends React.Component {
 
        var data = response.data.data;
 
-        this.setState({
-            Content: data.map((producto) => (
-                    <div className="media" key={producto._id}>
-                        <img className="mr-3 imgList" src={producto.images[0]} alt='imagen' />
-                        <div className="media-body">
-                            <h6 className="mt-0"> {producto.nombre}</h6>
-                            <p className="card-text">{producto.categoria}</p>
-                            <p className="card-text">Precio: ${producto.precio}</p>
-                            <p className="card-text">Vendedor: {producto.user.nombre}</p>
-                            <div className="rating-p">
-                                <Rating name="read-only" value={producto.promedio} readOnly/>
-                            </div>
 
-                            <button type="button" className="btn btn-outline btn-list" onClick={(e) => this.comprar(producto._id,e)}><AiIcons.AiFillDollarCircle/></button>
-                            <button type="button" className="btn btn-outline btn-list" onClick={(e) => this.crearChat(producto._id,e)}><AiIcons.AiFillMessage/></button>
-                            <button type="button" className="btn btn-outline btn-list" onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
-                            <button type="button" className="btn btn-outline btn-list" onClick={(e) => this.deletePub(producto._id,e)}><AiIcons.AiFillDelete/></button>
+       if(data.length>0) {
+           this.setState({
 
-                            <div className="card-footer">
-                                <small className="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
+               Content: data.map((producto) => (
+                   <div className="media" key={producto._id}>
+                       <img className="mr-3 imgList" src={producto.images[0]} alt='imagen'/>
+                       <div className="media-body">
+                           <h6 className="mt-0"> {producto.nombre}</h6>
+                           <p className="card-text">{producto.categoria}</p>
+                           <p className="card-text">Precio: ${producto.precio}</p>
+                           <p className="card-text">Vendedor: {producto.user.nombre}</p>
+                           <div className="rating-p">
+                               <Rating name="read-only" value={producto.promedio} readOnly/>
+                           </div>
 
-                    </div>
+                           <button type="button" className="btn btn-outline btn-list"
+                                   onClick={(e) => this.comprar(producto._id, e)}><AiIcons.AiFillDollarCircle/></button>
+                           <button type="button" className="btn btn-outline btn-list"
+                                   onClick={(e) => this.crearChat(producto._id, e)}><AiIcons.AiFillMessage/></button>
+                           <button type="button" className="btn btn-outline btn-list"
+                                   onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
+                           <button type="button" className="btn btn-outline btn-list"
+                                   onClick={(e) => this.deletePub(producto._id, e)}><AiIcons.AiFillDelete/></button>
 
-                ))
-        })
+                           <div className="card-footer">
+                               <small className="text-muted">Last updated 3 mins ago</small>
+                           </div>
+                       </div>
+
+                   </div>
+
+               ))
+           })
+       }else{
+           this.setState({
+               Content: <div>
+                   <h4 className="noProduct">No tienes productos guardados.</h4>
+               </div>
+           })
+       }
 
     }
 

@@ -84,37 +84,49 @@ class MisProductos extends React.Component {
 
        var data = response.data.data;
 
-        this.setState({
-            Content: data.map((producto) => (
-                    <div className="media" key={producto._id}>
-                        <img className="mr-3 imgList" src={producto.images[0]} alt='imagen' />
-                        <div className="media-body">
-                            <h6 className="mt-0"> {producto.nombre}</h6>
-                            <p className="card-text">{producto.categoria}</p>
-                            <p className="card-text">Precio: ${producto.precio}</p>
-                            <p className="card-text">Vendedor: {producto.user.nombre}</p>
-                            <div className="rating-p">
-                                <Rating name="read-only" value={producto.promedio} readOnly/>
-                            </div>
-                                <button type="button" className="btn btn-outline btn-list"  onClick={(e)=>this.editAnuncio(producto._id,e)}>
-                                    <AiIcons.AiFillEdit/>
-                                </button>
+       if(data.length>0) {
+           this.setState({
+               Content: data.map((producto) => (
+                   <div className="media" key={producto._id}>
+                       <img className="mr-3 imgList" src={producto.images[0]} alt='imagen'/>
+                       <div className="media-body">
+                           <h6 className="mt-0"> {producto.nombre}</h6>
+                           <p className="card-text">{producto.categoria}</p>
+                           <p className="card-text">Precio: ${producto.precio}</p>
+                           <p className="card-text">Vendedor: {producto.user.nombre}</p>
+                           <div className="rating-p">
+                               <Rating name="read-only" value={producto.promedio} readOnly/>
+                           </div>
+                           <button type="button" className="btn btn-outline btn-list"
+                                   onClick={(e) => this.editAnuncio(producto._id, e)}>
+                               <AiIcons.AiFillEdit/>
+                           </button>
 
 
-                            <button type="button" className="btn btn-outline btn-list"  onClick={(e) => this.deleteAnuncio(producto._id,e)}><AiIcons.AiFillDelete/></button>
-                            <button type="button" className="btn btn-outline btn-list"   onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
+                           <button type="button" className="btn btn-outline btn-list"
+                                   onClick={(e) => this.deleteAnuncio(producto._id, e)}><AiIcons.AiFillDelete/></button>
+                           <button type="button" className="btn btn-outline btn-list"
+                                   onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
 
-                            <div className="card-footer">
-                                <small className="text-muted">Subido {moment(producto.date).format('DD/MM/YYYY')} </small>
-                            </div>
+                           <div className="card-footer">
+                               <small
+                                   className="text-muted">Subido {moment(producto.date).format('DD/MM/YYYY')} </small>
+                           </div>
 
-                        </div>
+                       </div>
 
-                    </div>
+                   </div>
 
-                ))
-        })
-
+               ))
+           })
+       }else {
+           this.setState({
+               Content: <div>
+                   <h4 className="noProduct">No tienes productos.</h4>
+                   <h5 className="noProduct">Crealos desde el botón.</h5>
+               </div>
+           })
+       }
     }
 
     render() {

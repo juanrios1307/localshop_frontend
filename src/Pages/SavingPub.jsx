@@ -13,20 +13,49 @@ class SavingPub extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Content: ''
+            Content: '',
+            pago:''
         };
         this.getData = this.getData.bind(this);
         this.deletePub = this.deletePub.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
         this.crearChat=this.crearChat.bind(this);
         this.comprar=this.comprar.bind(this)
+
+        this.setState({pago:
+                <script
+                src="https://www.mercadopago.com.co/integrations/v1/web-payment-checkout.js"
+                data-preference-id='<%= global.id %>'>
+            </script>
+        })
     }
 
     componentDidMount() {
         this.getData();
+
     }
 
-    comprar(id,e){
+    async comprar(id, e) {
+
+        var data = JSON.stringify({"name":"telefono","price":"100","unit":"2"});
+
+        var config = {
+            method: 'post',
+            url: 'http://localhost:5000/api/payment/new',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+
+        Axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
 
     }
 
@@ -104,6 +133,11 @@ class SavingPub extends React.Component {
                            <div className="rating-p">
                                <Rating name="read-only" value={producto.promedio} readOnly/>
                            </div>
+
+
+
+
+
 
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.comprar(producto._id, e)}><AiIcons.AiFillDollarCircle/></button>

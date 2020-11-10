@@ -39,7 +39,7 @@ class SavingPub extends React.Component {
 
         var data = JSON.stringify({"name":"telefono","price":"100","unit":"2"});
 
-        const url = 'https://radiant-castle-07024.herokuapp.com/api/payment/new'
+        const url = 'http://radiant-castle-07024.herokuapp.com/api/payment/new'
         //const url = 'http://localhost:5000/api/payment/new'
 
         var config = {

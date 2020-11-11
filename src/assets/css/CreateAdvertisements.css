@@ -94,3 +94,6 @@ input{
     width: 62em;
     height: 23em;
 }
+.inpt input:hover{
+    cursor: pointer;
+}

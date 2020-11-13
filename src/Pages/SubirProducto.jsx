@@ -14,6 +14,7 @@ class SubirProducto extends Component {
         this.state = {
             nombre:'',
             precio:'',
+            stock:'',
             descripcion:'',
             categoria:'',
             images:'',
@@ -25,7 +26,6 @@ class SubirProducto extends Component {
 
         this.signupanunce = this.signupanunce.bind(this);
         this.files=this.files.bind(this);
-        this.getUpload = this.getUpload.bind(this);
 
         for(var i=0;i<5;i++){
             this.state.c1.push(UPLD)
@@ -105,42 +105,73 @@ class SubirProducto extends Component {
         }*/
     }
 
-    files(files){
-        for(var i=0;i<files.length;i++){
-            this.state.imagenFile.push(files[i])
+    files(e){
+
+        e.preventDefault()
+
+
+        var files = e.target.files
+
+        const imgLength=this.state.imagenFile.length
+
+        if(files.length>10){
+            Swal.fire({
+                title: "Solo puedes subir 10 imagenes de tu producto"
+            })
+
+            for(var i=imgLength ; i<10 ; i++){
+                this.state.imagenFile.push(files[i-imgLength]);
+            }
+
+
+        }else{
+
+            if((imgLength+files.length) > 10) {
+                Swal.fire({
+                    title: "Solo puedes subir 10 imagenes de tu producto"
+                })
+
+                for(var i=imgLength; i<10 ; i++){
+                    this.state.imagenFile.push(files[i-imgLength]);
+                }
+
+            }else{
+                for(var i=imgLength ; i<imgLength+files.length ; i++){
+                    this.state.imagenFile.push(files[i-imgLength]);
+                }
+            }
         }
 
-        if(this.state.imagenFile.length>5 && this.state.imagenFile.length<=10){
-            for(var i=0;i<5;i++){
-                this.state.c1.pop()
-                this.state.c1.unshift(this.state.imagenFile[i])
+
+
+        if (this.state.imagenFile.length > 5 && this.state.imagenFile.length <= 10) {
+            for (var i = 0; i < 5; i++) {
+
+                this.state.c1[i]=(URL.createObjectURL(this.state.imagenFile[i]))
             }
 
-            for(var i=5;i<this.state.imagenFile.length;i++){
-                this.state.c2.pop()
-                this.state.c2.unshift(this.state.imagenFile[i])
+            for (var i = 5; i < this.state.imagenFile.length; i++) {
+                this.state.c2[i-5]=(URL.createObjectURL(this.state.imagenFile[i]))
             }
 
-        }else if(this.state.imagenFile.length<=5){
-            for(var i=0;i<this.state.imagenFile.length;i++){
-                this.state.c1.pop()
-                this.state.c1.unshift(this.state.imagenFile[i])
+        } else if (this.state.imagenFile.length <= 5) {
+            for (var i = 0; i < this.state.imagenFile.length; i++) {
+                this.state.c1[i]=(URL.createObjectURL(this.state.imagenFile[i]))
             }
 
-        }else if(this.state.imagenFile.length>10){
+        } else if (this.state.imagenFile.length > 10) {
 
-            for(var i=0;i<5;i++){
-                this.state.c1.pop()
-                this.state.c1.unshift(this.state.imagenFile[i])
+            for (var i = 0; i < 5; i++) {
+                this.state.c1[i]=(URL.createObjectURL(this.state.imagenFile[i]))
             }
 
-            for(var i=5;i<10;i++){
-                this.state.c2.pop()
-                this.state.c2.unshift(this.state.imagenFile[i])
+            for (var i = 5; i < 10; i++) {
+                this.state.c2[i-5]=(URL.createObjectURL(this.state.imagenFile[i]))
             }
         }
 
 
+        this.render()
 
     }
 
@@ -178,10 +209,18 @@ class SubirProducto extends Component {
                             </div>
                             <div className="f-g">
                                 <label htmlFor="budget">Precio x Unidad: </label>
-                                <input type="number" name="Price" required
+                                <input type="number" name="Price" required min="1"
                                        value={this.state.precio}
                                        onChange={(e) => this.setState({precio: e.target.value})}/>
                             </div>
+
+                            <div className="f-g">
+                                <label htmlFor="budget">Unidades disponibles: </label>
+                                <input type="number" name="quantity" required min="1"
+                                       value={this.state.stock}
+                                       onChange={(e) => this.setState({stock: e.target.value})}/>
+                            </div>
+
                             <div className='TittleIN'>
                             </div>
                             <div className="f-g">
@@ -203,6 +242,7 @@ class SubirProducto extends Component {
                                 <div className="imginput">
                                     <div className="imgs">
                                         <div className="imginserted">
+
                                             <img src={this.state.c1[0]}/>
                                             <img src={this.state.c1[1]}/>
                                             <img src={this.state.c1[2]}/>
@@ -219,8 +259,10 @@ class SubirProducto extends Component {
                                         </div>
                                     </div>
                                     <div className="inpt">
-                                        <input type="file" name="imagen" placeholder="imagen" required multiple
-                                               onChange={(e) => this.files(e.target.files)} />
+                                        <input type="file" name="imagen" id="image" placeholder="imagen" required multiple
+                                               accept="image/*"
+                                               onChange={(e) => this.files(e)}
+                                                />
                                     </div>
                                 </div>
                             </fieldset>

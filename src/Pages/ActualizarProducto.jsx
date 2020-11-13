@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import {Redirect} from "react-router-dom";
 import UPLD from '../assets/images/upldimg.png'
 
-class ActulizarProducto extends Component {
+class ActualizarProducto extends Component {
 
     constructor(props) {
         super(props);
@@ -244,4 +244,4 @@ class ActulizarProducto extends Component {
         }
     }
 }
-export default ActulizarProducto;
+export default ActualizarProducto;

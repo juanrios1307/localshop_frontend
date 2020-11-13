@@ -37,28 +37,32 @@ class SavingPub extends React.Component {
 
     async comprar(id, e) {
 
-        var data = JSON.stringify({"name":"telefono","price":"100","unit":"2"});
+        // SDK de Mercado Pago
+        const mercadopago = require ('mercadopago');
 
-        const url = 'http://radiant-castle-07024.herokuapp.com/api/payment/new'
-        //const url = 'http://localhost:5000/api/payment/new'
+// Agrega credenciales
+        mercadopago.configure({
+            access_token: 'TEST-5322104039027334-102213-b38abd6af7adb752421cf1fd72dcf905-662089090'
+        });
 
-        var config = {
-            method: 'post',
-            url: url,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data : data
+// Crea un objeto de preferencia
+        let preference = {
+            items: [
+                {
+                    title: 'Mi producto',
+                    unit_price: 100,
+                    quantity: 1,
+                }
+            ]
         };
 
-        Axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
+        mercadopago.preferences.create(preference)
+            .then(function(response){
+// Este valor reemplazará el string "<%= global.id %>" en tu HTML
+                global.id = response.body.id;
+            }).catch(function(error){
+            console.log(error);
+        });
 
     }
 
@@ -183,6 +187,7 @@ class SavingPub extends React.Component {
 
             return (
                 <Grid container spacing={3}>
+
 
                     <Grid item xs={12}>
                         <DashNav/>

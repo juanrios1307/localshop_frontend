@@ -68,7 +68,8 @@ class ProductosBuscados extends React.Component {
                     'access-token': token
                 },
                 data: {
-                    "Save":Save
+                    "Save":Save,
+                    "cantidad":1
                 }
             };
 

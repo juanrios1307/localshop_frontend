@@ -152,7 +152,8 @@ class ProductoEspecifico extends Component {
                     'access-token': token
                 },
                 data: {
-                    "Save":Save
+                    "Save":Save,
+                    "cantidad":1
                 }
             };
 

@@ -14,13 +14,15 @@ class SavingPub extends React.Component {
         super(props);
         this.state = {
             Content: '',
-            pago:''
+            pago:'',
+            cantidad:1
         };
         this.getData = this.getData.bind(this);
         this.deletePub = this.deletePub.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
         this.crearChat=this.crearChat.bind(this);
-        this.comprar=this.comprar.bind(this)
+        this.comprar=this.comprar.bind(this);
+        this.actualizarCantidad=this.actualizarCantidad.bind(this);
 
         this.setState({pago:
                 <script
@@ -66,20 +68,21 @@ class SavingPub extends React.Component {
 
     }
 
-    async deletePub(id,e){
+
+    async actualizarCantidad(id,cantidad,e){
         e.preventDefault()
+
         const token = localStorage.getItem("token")
 
-        //const url = 'https://radiant-castle-07024.herokuapp.com/api/saving/'
-        const url = 'http://localhost:5000/api/saving/'
-
-        console.log(url + id)
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/saving/cantidad/'
+        const url = 'http://localhost:5000/api/saving/cantidad/'
 
         const config = {
             method: 'put',
-            url: url + id,
+            url: url+id ,
             headers: {
-                'access-token': token
+                'access-token': token,
+                "cantidad":cantidad
             }
         };
 
@@ -89,7 +92,39 @@ class SavingPub extends React.Component {
             title: response.data.data
         })
 
+        if(response.status==200){
+            window.location.reload();
+        }
+
+    }
+
+    async deletePub(id,e){
+        e.preventDefault()
+        const token = localStorage.getItem("token")
+
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/saving/'
+        const url = 'http://localhost:5000/api/saving/'
+
+
+        const config = {
+            method: 'put',
+            url: url + id,
+            headers: {
+                'access-token': token
+            }
+
+        };
+
+        var response = await Axios(config);
+
+        Swal.fire({
+            title: response.data.data
+        })
+
+
         window.location.reload();
+
+
     }
 
     specificProduct(id){
@@ -124,12 +159,12 @@ class SavingPub extends React.Component {
        var response=await Axios(config);
 
        var data = response.data.data;
-
+       var cantidades=response.data.cantidades;
 
        if(data.length>0) {
            this.setState({
 
-               Content: data.map((producto) => (
+               Content: data.map((producto,index) => (
                    <div className="media" key={producto._id}>
                        <img className="mr-3 imgList" src={producto.images[0]} alt='imagen'/>
                        <div className="media-body">
@@ -141,11 +176,6 @@ class SavingPub extends React.Component {
                                <Rating name="read-only" value={producto.promedio} readOnly/>
                            </div>
 
-
-
-
-
-
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.comprar(producto._id, e)}><AiIcons.AiFillDollarCircle/></button>
                            <button type="button" className="btn btn-outline btn-list"
@@ -154,7 +184,10 @@ class SavingPub extends React.Component {
                                    onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.deletePub(producto._id, e)}><AiIcons.AiFillDelete/></button>
-                           <label className="lbl-q">Cantidad</label><input type="number" className="inpt-q"required/>
+                           <form onSubmit={(e)=>this.actualizarCantidad(producto._id,this.state.cantidad,e)}>
+                               <label className="lbl-q">Cantidad</label><input type="number" className="inpt-q" placeholder={cantidades[index]} required onChange={(e)=>this.setState({cantidad:e.target.value})}/>
+                               <button type="submit" className="btn btn-outline btn-list" >Actualizar cantidad</button>
+                           </form>
                            <div className="card-footer">
                                <small className="text-muted">Last updated 3 mins ago</small>
                            </div>

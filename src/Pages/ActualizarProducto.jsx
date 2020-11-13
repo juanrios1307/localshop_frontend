@@ -12,97 +12,146 @@ class ActualizarProducto extends Component {
         super(props);
 
         this.state = {
+            bool:false,
+            id:'',
+
             nombre:'',
             precio:'',
+            stock:'',
             descripcion:'',
             categoria:'',
             images:'',
             imagenFile:[],
-            bool:false,
+
+            nombreA:'',
+            precioA:'',
+            stockA:'',
+            descripcionA:'',
+            categoriaA:'',
+            imagesA:'',
+            imagenFileA:[],
+
             c1:[],
             c2:[],
         }
 
-        this.signupanunce = this.signupanunce.bind(this);
         this.files=this.files.bind(this);
-        this.getUpload = this.getUpload.bind(this);
 
-        for(var i=0;i<5;i++){
-            this.state.c1.push(UPLD)
-            this.state.c2.push(UPLD)
-        }
+        this.getData = this.getData.bind(this);
+        this.actualizar = this.actualizar.bind(this);
+
 
     }
+
+
 
     componentDidMount() {
-        this.getUpload()
+        this.getData()
     }
 
 
-    async signupanunce(e) {
-        e.preventDefault()
+
+    async getData(){
+
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/producto/'
+        const url = 'http://localhost:5000/api/producto/'
 
         const token = localStorage.getItem("token")
+        const id=localStorage.getItem("editIDAux")
+        localStorage.removeItem("editID")
 
-        //const url='https://radiant-castle-07024.herokuapp.com/api/producto'
-        const url='http://localhost:5000/api/producto'
+        this.setState({id:id})
 
+        const config = {
+            method: 'get',
+            url: url+id,
+            headers: {
+                'access-token': token
+            }
+        };
 
-        var images=[]
+        const res = await Axios(config);
 
-        const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/localshop/image/upload';
-        const UPLOAD_PRESET = 'y1b3maos';
+        const data = res.data.data;
 
-        const formImages = new FormData();
+        console.log(JSON.stringify(data))
 
-        for(var i=0;i<this.state.imagenFile.length;i++){
+        this.setState({nombreA:data.nombre});
+        this.setState({precioA:data.precio})
+        this.setState({stockA:data.stock})
+        this.setState({descripcionA:data.descripcion})
+        this.setState({categoriaA:data.categoria})
+        this.setState({imagesA:data.images})
 
-            formImages.append('file', this.state.imagenFile[i]);
-            formImages.append('upload_preset', UPLOAD_PRESET);
-            const resI = await Axios.post(CLOUDINARY_URL, formImages);
+        if(data.images.length>=5 && data.images.length<=10){
 
-            images.push(resI.data.secure_url)
+            for(var i=0;i<5;i++){
+                this.state.c1.push(data.images[i])
+            }
+
+            for(var i=5;i<data.images.length;i++){
+                this.state.c2.push(data.images[i])
+            }
+
+        }else if(data.images.length<5){
+
+            for(var i=0;i<data.images.length;i++){
+                this.state.c1.push(data.images[i])
+            }
+
         }
 
+    }
 
-        try {
+    async actualizar(e){
 
-            this.setState({images:images});
+        e.preventDefault()
 
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/producto/'
+        const url = 'http://localhost:5000/api/producto/'
 
-        } catch (err) {
-            console.error(err);
+        const token = localStorage.getItem("token")
+        const id=this.state.id
+
+        if(this.state.nombre.length<=0){
+            this.state.nombre=this.state.nombreA
+        }
+        if(this.state.precio.length<=0){
+            this.state.precio=this.state.precioA
+        }
+        if(this.state.stock.length<=0){
+            this.state.stock=this.state.stockA
+        }
+        if(this.state.descripcion.length<=0){
+            this.state.descripcion=this.state.descripcionA
+        }
+        if(this.state.categoria.length<=0){
+            this.state.categoria=this.state.categoriaA
+        }if(this.state.images.length <=0){
+            this.state.images=this.state.imagesA
         }
 
         var config = {
-            method: 'post',
-            url: url,
+            method: 'put',
+            url: url+id,
             headers: {
                 'access-token': token
             },
             data: this.state
         };
 
+
         const response=await Axios(config)
 
         const mensaje = response.data.data
 
-
-        console.log(mensaje)
         Swal.fire({
             title: mensaje
         })
 
-        this.setState({bool:true})
+        this.setState({bool:true});
 
-    }
-
-    getUpload(){
-
-        /*  for(var i=0;i<5;i++){
-              this.state.c1.push(UPLD)
-              this.state.c2.push(UPLD)
-          }*/
+        window.location.reload()
     }
 
     files(files){
@@ -163,30 +212,30 @@ class ActualizarProducto extends Component {
                         <h10>Información del producto</h10>
                     </div>
                     <div className="formato">
-                        <form className="form" onSubmit={this.signupanunce}>
+                        <form className="form" onSubmit={this.actualizar}>
                             <div className="f-g">
                                 <label htmlFor="name">Nombre del producto: </label>
                                 <input type="text" name="name" required
-                                       value={this.state.nombre}
+                                       placeholder={this.state.nombreA}
                                        onChange={(e) => this.setState({nombre: e.target.value})}/>
                             </div>
                             <div className="f-g">
                                 <label htmlFor="Description">Descripción: </label>
                                 <input type="text" name="Description" required
-                                       value={this.state.descripcion}
+                                       placeholder={this.state.descripcionA}
                                        onChange={(e) => this.setState({descripcion: e.target.value})}/>
                             </div>
                             <div className="f-g">
                                 <label htmlFor="budget">Precio x Unidad: </label>
                                 <input type="number" name="Price" required
-                                       value={this.state.precio}
+                                       placeholder={this.state.precioA}
                                        onChange={(e) => this.setState({precio: e.target.value})}/>
                             </div>
                             <div className="f-g">
                                 <label htmlFor="budget">Unidades disponibles: </label>
                                 <input type="number" name="quantity" required
-                                       value={this.state.precio}
-                                       onChange={(e) => this.setState({precio: e.target.value})}/>
+                                       placeholder={this.state.stockA}
+                                       onChange={(e) => this.setState({stock: e.target.value})}/>
                             </div>
                             <div className='TittleIN'>
                             </div>
@@ -225,7 +274,7 @@ class ActualizarProducto extends Component {
                                         </div>
                                     </div>
                                     <div className="inpt">
-                                        <input type="file" name="imagen" placeholder="imagen" required multiple
+                                        <input type="file" name="imagen" placeholder="imagen" multiple
                                                onChange={(e) => this.files(e.target.files)} />
                                     </div>
                                 </div>

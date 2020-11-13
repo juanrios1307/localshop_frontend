@@ -39,8 +39,6 @@ class Comentario extends Component {
 
         var data = response.data.data;
 
-        console.log("data:"+JSON.stringify(data))
-
         if(data !== undefined) {
             this.setState({
                     Content: data.map((comments) => (

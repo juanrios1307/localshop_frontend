@@ -26,6 +26,7 @@ class ProductoEspecifico extends Component {
             nombre:'',
             categoria:'',
             precio:'',
+            stock:'',
             especificaciones:'',
             vendedor:'',
             ciudad:'',
@@ -33,7 +34,10 @@ class ProductoEspecifico extends Component {
 
             correo:'',
             telefono:'',
+
+            images:'',
             imagen:'',
+            carrusel:'',
 
 
             comment:'',
@@ -63,7 +67,6 @@ class ProductoEspecifico extends Component {
             //const url =  'https://radiant-castle-07024.herokuapp.com/api/main/'
             const url = 'http://localhost:5000/api/main/'
 
-            console.log("ID: " + this.state.id)
 
             const config = {
                 method: 'get',
@@ -86,10 +89,24 @@ class ProductoEspecifico extends Component {
             this.setState({promedio: data.promedio});
             this.setState({rating: data.promedio});
 
+            this.setState({images: data.images});
             this.setState({imagen: data.images[0]});
+
             this.setState({ciudad: data.user.ciudad});
             this.setState({telefono: data.user.telefono});
             this.setState({correo: data.user.correo});
+
+            this.setState({
+                carrusel:data.images.map((imagen,index)=> (
+                    <div className={index==0?"carousel-item active":"carousel-item"}>
+                        <img src={imagen}  className="d-block w-100" alt="imagen de publicacion"/>
+                    </div>
+
+                    ))
+            })
+
+
+
         }
     }
 
@@ -239,15 +256,7 @@ class ProductoEspecifico extends Component {
                                 <div className="imgbox">
                                     <div id="carouselExampleControls" className="carousel slidess" data-ride="carousel">
                                         <div className="carousel-inner">
-                                            <div className="carousel-item active">
-                                                <img src={this.state.imagen} className="d-block w-100" alt="imagen de publicacion"/>
-                                            </div>
-                                            <div className="carousel-item">
-                                                <img src={this.state.imagen}  className="d-block w-100" alt="imagen de publicacion"/>
-                                            </div>
-                                            <div className="carousel-item">
-                                                <img src={this.state.imagen}  className="d-block w-100" alt="imagen de publicacion"/>
-                                            </div>
+                                            {this.state.carrusel}
                                         </div>
                                         <a className="carousel-control-prev an" href="#carouselExampleControls"
                                            role="button" data-slide="prev">

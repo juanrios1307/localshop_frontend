@@ -29,6 +29,7 @@ class MisProductos extends React.Component {
     async editAnuncio(id,e){
 
         localStorage.setItem("editID",id)
+        localStorage.setItem("editIDAux",id)
         window.location.reload()
     }
 

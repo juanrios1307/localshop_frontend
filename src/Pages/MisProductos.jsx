@@ -123,7 +123,7 @@ class MisProductos extends React.Component {
            this.setState({
                Content: <div>
                    <h4 className="noProduct">No tienes productos.</h4>
-                   <h5 className="noProduct">Crealos desde el botón.</h5>
+                   <h5 className="noProduct">Créalos desde el botón.</h5>
                </div>
            })
        }

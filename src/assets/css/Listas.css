@@ -77,3 +77,18 @@
 .btn-pgr:hover{
     background-color: darkorange;
 }
+.lbl-q{
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    margin-left: 30px;
+}
+.inpt-q{
+    padding: 5px 25px 5px 25px;
+    width: 6em;
+    background-color: #ffb224;
+    color: #fff;
+    border-radius: 3px;
+    border: 0;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+}

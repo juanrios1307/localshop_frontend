@@ -150,7 +150,7 @@ class SavingPub extends React.Component {
                                    onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.deletePub(producto._id, e)}><AiIcons.AiFillDelete/></button>
-
+                           <label className="lbl-q">Cantidad</label><input type="number" className="inpt-q"required/>
                            <div className="card-footer">
                                <small className="text-muted">Last updated 3 mins ago</small>
                            </div>

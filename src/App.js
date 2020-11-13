@@ -12,6 +12,7 @@ import MisProductos from "./Pages/MisProductos";
 import MisChats from "./Pages/MisChats";
 import ChatEspecifico from "./Pages/ChatEspecifico";
 import SubirProducto from "./Pages/SubirProducto";
+import ActulizarProducto from "./Pages/ActulizarProducto";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
 
           <Route exact path="/misproductos" component={MisProductos} />
           <Route exact path="/createProduct" component={SubirProducto}/>
+          <Route exact path="/editAnunce" component={ActulizarProducto}/>
 
           <Route exact path="/chats" component={MisChats} />
           <Route exact path="/chat" component={ChatEspecifico} />

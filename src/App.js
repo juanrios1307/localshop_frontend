@@ -13,6 +13,7 @@ import MisChats from "./Pages/MisChats";
 import ChatEspecifico from "./Pages/ChatEspecifico";
 import SubirProducto from "./Pages/SubirProducto";
 import ActualizarProducto from "./Pages/ActualizarProducto";
+import RegisterSeller from "./Pages/RegisterSeller";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/forgotpwd" component={ForgotPasword}/>
           <Route exact path="/updatepwd" component={ChangePassword}/>
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/signupseller" component={RegisterSeller}/>
 
           <Route exact path="/products" component={ProductosBuscados} />
           <Route exact path="/product" component={ProductoEspecifico} />

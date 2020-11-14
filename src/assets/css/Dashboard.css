@@ -8,9 +8,12 @@
     border-radius: 10px;
     color: white;
     font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    border: 0;
     background: #ffb224;
     margin-left: 50%;
     transform: translateX(-50%);
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
+}
+.buttonDash:hover{
+    background-color: #060b26;
 }

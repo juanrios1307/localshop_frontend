@@ -14,6 +14,8 @@ import ChatEspecifico from "./Pages/ChatEspecifico";
 import SubirProducto from "./Pages/SubirProducto";
 import ActualizarProducto from "./Pages/ActualizarProducto";
 import RegisterSeller from "./Pages/RegisterSeller";
+import MisCompras from "./Pages/MisCompras";
+import MisVentas from "./Pages/MisVentas";
 
 function App() {
   return (
@@ -24,12 +26,16 @@ function App() {
           <Route exact path="/forgotpwd" component={ForgotPasword}/>
           <Route exact path="/updatepwd" component={ChangePassword}/>
           <Route exact path="/dashboard" component={Dashboard} />
+
           <Route exact path="/signupseller" component={RegisterSeller}/>
 
           <Route exact path="/products" component={ProductosBuscados} />
           <Route exact path="/product" component={ProductoEspecifico} />
 
           <Route exact path="/shoppingCar" component={SavingPub} />
+
+          <Route exact path="/miscompras" component={MisCompras} />
+          <Route exact path="/misventas" component={MisVentas} />
 
           <Route exact path="/misproductos" component={MisProductos} />
           <Route exact path="/createProduct" component={SubirProducto}/>

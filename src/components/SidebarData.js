@@ -17,6 +17,19 @@ export const SidebarData = [
         cName: 'n-text'
     },
     {
+        title: 'Mis compras',
+        path: '/miscompras',
+        icon: <FaIcons.FaShoppingCart/> ,
+        cName: 'n-text'
+    },
+    {
+        title: 'Mis ventas',
+        path: '/misventas',
+        icon: <FaIcons.FaShoppingCart/> ,
+        cName: 'n-text'
+    },
+
+    {
         title: 'Mis productos',
         path: '/misproductos',
         icon: <AiIcons.AiFillShopping />,

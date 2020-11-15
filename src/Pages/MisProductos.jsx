@@ -14,16 +14,20 @@ class MisProductos extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Content: ''
+            Content: '',
+            isSeller:''
         };
+        this.getUser = this.getUser.bind(this);
         this.getData = this.getData.bind(this);
         this.deleteAnuncio = this.deleteAnuncio.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
         this.editAnuncio=this.editAnuncio.bind(this);
+
+        this.getUser();
     }
 
     componentDidMount() {
-        this.getData();
+
     }
 
     async editAnuncio(id,e){
@@ -66,6 +70,33 @@ class MisProductos extends React.Component {
         window.location.reload();
     }
 
+    async getUser(){
+        const token = localStorage.getItem("token")
+
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/users/'
+        const url = 'http://localhost:5000/api/users/'
+
+        const config = {
+            method: 'get',
+            url: url,
+            headers: {
+                'access-token': token
+            }
+        };
+
+        var response=await Axios(config);
+
+        var user = response.data.data;
+
+        if(user.isSeller === true ){
+            this.getData()
+            this.setState({isSeller:true})
+        }else{
+            this.setState({isSeller:false})
+        }
+
+    }
+
     async getData() {
 
         const token = localStorage.getItem("token")
@@ -84,6 +115,8 @@ class MisProductos extends React.Component {
        var response=await Axios(config);
 
        var data = response.data.data;
+
+
 
        if(data.length>0) {
            this.setState({
@@ -142,31 +175,61 @@ class MisProductos extends React.Component {
                     <Redirect to="product"/>
                 )
             } else {
-                return (
-                    <Grid container spacing={3}>
+                if (this.state.isSeller === false) {
+                    return(
 
-                        <Grid item xs={12}>
-                            <DashNav/>
+                        <Grid container spacing={3}>
+
+                            <Grid item xs={12}>
+                                <DashNav/>
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <h4 className="noProduct">Para publicar productos
+                                    primero debes registrarte como vendedor</h4>
+                            </Grid>
+
+                            <Grid item xs={12} className='dashButtonDiv'>
+                                <a href='/signupseller'>
+                                    <button className='buttonDash'>
+                                        Registrarse como vendedor
+                                    </button>
+                                </a>
+
+                            </Grid>
+
+
                         </Grid>
 
 
-                        <Grid item xs={12}>
-                            {this.state.Content}
+                    )
+                } else {
+
+                    return (
+                        <Grid container spacing={3}>
+
+                            <Grid item xs={12}>
+                                <DashNav/>
+                            </Grid>
+
+
+                            <Grid item xs={12}>
+                                {this.state.Content}
+                            </Grid>
+
+                            <Grid item xs={12} className='dashButtonDiv'>
+                                <a href='/createProduct'>
+                                    <button className='buttonDash'>
+                                        Publicar Productos
+                                    </button>
+                                </a>
+                            </Grid>
+
+
                         </Grid>
-
-                        <Grid item xs={12} className='dashButtonDiv'>
-                            <a href='/createProduct'>
-                                <button className='buttonDash'>
-                                    Publicar Productos
-                                </button>
-                            </a>
-                        </Grid>
-
-
-                    </Grid>
-                )
+                    )
+                }
             }
-            ;
         }
     }
 

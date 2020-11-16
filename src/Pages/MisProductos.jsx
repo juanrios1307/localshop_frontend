@@ -60,7 +60,7 @@ class MisProductos extends React.Component {
             title: response.data.data
         })
 
-        //window.location.reload();
+        window.location.reload();
     }
 
     specificProduct(id){

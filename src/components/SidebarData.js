@@ -1,12 +1,14 @@
 import React from 'react';
 import * as AiIcons from 'react-icons/ai';
 import * as FaIcons from "react-icons/fa/index";
+import * as BiIcons from 'react-icons/bi';
+import * as CgIcons from 'react-icons/cg';
 
 export const SidebarData = [
     {
         title: 'Home',
         path: '/dashboard',
-        icon: <AiIcons.AiFillHome />,
+        icon: <CgIcons.CgProfile />,
         cName: 'n-text',
 
     },
@@ -19,13 +21,13 @@ export const SidebarData = [
     {
         title: 'Mis compras',
         path: '/miscompras',
-        icon: <FaIcons.FaShoppingCart/> ,
+        icon: <AiIcons.AiOutlineDollar/> ,
         cName: 'n-text'
     },
     {
         title: 'Mis ventas',
         path: '/misventas',
-        icon: <FaIcons.FaShoppingCart/> ,
+        icon: <BiIcons.BiTrendingUp/> ,
         cName: 'n-text'
     },
 

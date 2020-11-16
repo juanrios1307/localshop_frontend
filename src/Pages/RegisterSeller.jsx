@@ -4,6 +4,7 @@ import Axios from "axios";
 import Swal from "sweetalert2";
 import '../assets/css/RegisterSeller.scss'
 import {Redirect} from "react-router-dom";
+import DashNav from "../components/DashNav";
 
 export class RegisterSeller extends React.Component {
     constructor(props) {
@@ -59,49 +60,56 @@ export class RegisterSeller extends React.Component {
         } else {
 
             return (
-                <div className="b-container" ref={this.props.containerRef}>
-                    <div className="h">Vendedor</div>
-                    <div className="cont">
-                        <form className="form" onSubmit={this.signupseller}>
-                            <h8 className="hh">Información de Pago</h8>
-                            <div className="form-group">
-                                <label className="lbl-r" htmlFor="username">Nombre del Banco *</label>
-                                <input className="inpt-r" type="text" name="bank" placeholder="Nombre del Banco" required
-                                       value={this.state.banco}
-                                       onChange={(e) => this.setState({banco: e.target.value})}/>
-                            </div>
-                            <div className="form-group">
-                                <label className="lbl-r" htmlFor="password">Número de cuenta bancaria *</label>
-                                <input className="inpt-r" type="number" name="banknumber" placeholder="Número de cuenta bancaria" required
-                                       value={this.state.cuentabanco}
-                                       onChange={(e) => this.setState({cuentabanco: e.target.value})}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label className="lbl-r" htmlFor="paymethod">Formas de pago aceptadas *</label>
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" id="inlineCheckbox1" />
-                                        <label className="form-check-label" htmlFor="inlineCheckbox1">Contra entrega</label>
-                                </div>
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                           value="option2"/>
-                                        <label className="form-check-label" htmlFor="inlineCheckbox2">Efecty o Gana</label>
-                                </div>
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3"/>
-                                        <label className="form-check-label" htmlFor="inlineCheckbox3">Tarjeta de Crédito</label>
-                                </div>
-                            </div>
-                            <div className="footer">
-                                <button type="submit" className="btn">
-                                    Registrar
-                                </button>
-                            </div>
-                        </form>
+
+                <div>
+                    <div>
+                        <DashNav/>
                     </div>
 
+                    <div className="b-container" ref={this.props.containerRef}>
+                        <div className="h">Vendedor</div>
+                        <div className="cont">
+                            <form className="form" onSubmit={this.signupseller}>
+                                <h8 className="hh">Información de Pago</h8>
+                                <div className="form-group">
+                                    <label className="lbl-r" htmlFor="username">Nombre del Banco *</label>
+                                    <input className="inpt-r" type="text" name="bank" placeholder="Nombre del Banco" required
+                                           value={this.state.banco}
+                                           onChange={(e) => this.setState({banco: e.target.value})}/>
+                                </div>
+                                <div className="form-group">
+                                    <label className="lbl-r" htmlFor="password">Número de cuenta bancaria *</label>
+                                    <input className="inpt-r" type="number" name="banknumber" placeholder="Número de cuenta bancaria" required
+                                           value={this.state.cuentabanco}
+                                           onChange={(e) => this.setState({cuentabanco: e.target.value})}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="lbl-r" htmlFor="paymethod">Formas de pago aceptadas *</label>
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" id="inlineCheckbox1" />
+                                            <label className="form-check-label" htmlFor="inlineCheckbox1">Contra entrega</label>
+                                    </div>
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                               value="option2"/>
+                                            <label className="form-check-label" htmlFor="inlineCheckbox2">Efecty o Gana</label>
+                                    </div>
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" id="inlineCheckbox3"
+                                               value="option3"/>
+                                            <label className="form-check-label" htmlFor="inlineCheckbox3">Tarjeta de Crédito</label>
+                                    </div>
+                                </div>
+                                <div className="footer">
+                                    <button type="submit" className="btn">
+                                        Registrar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
             );
         }

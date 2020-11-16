@@ -8,6 +8,7 @@ import * as AiIcons from 'react-icons/ai';
 import Swal from "sweetalert2";
 import {Redirect} from "react-router-dom";
 import Rating from "@material-ui/lab/Rating";
+import * as FaIcons from "react-icons/fa/index";
 
 class MisVentas extends React.Component {
 
@@ -72,14 +73,9 @@ class MisVentas extends React.Component {
                            <div className="rating-p">
                                <Rating name="read-only" value={venta.producto.promedio} readOnly/>
                            </div>
-                           <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.editAnuncio(venta._id, e)}>
-                               <AiIcons.AiFillEdit/>
-                           </button>
-
 
                            <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.facturaCompra(venta._id, e)}><AiIcons.AiFillDelete/></button>
+                                   onClick={(e) => this.facturaCompra(venta._id, e)}><FaIcons.FaFileInvoice/></button>
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.specificProduct(venta._id)}><AiIcons.AiFillEye/></button>
 
@@ -104,12 +100,6 @@ class MisVentas extends React.Component {
     }
 
     render() {
-        if (localStorage.getItem("editID")) {
-            return(
-                <Redirect to="/editAnunce" />
-                )
-
-        } else {
             if (localStorage.getItem("productID")) {
                 return (
                     <Redirect to="product"/>
@@ -127,20 +117,11 @@ class MisVentas extends React.Component {
                             {this.state.Content}
                         </Grid>
 
-                        <Grid item xs={12} className='dashButtonDiv'>
-                            <a href='/createProduct'>
-                                <button className='buttonDash'>
-                                    Publicar Productos
-                                </button>
-                            </a>
-                        </Grid>
-
 
                     </Grid>
                 )
             }
-            ;
-        }
+
     }
 
 }

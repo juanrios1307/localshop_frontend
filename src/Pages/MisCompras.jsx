@@ -5,6 +5,7 @@ import {Grid} from "@material-ui/core";
 import DashNav from "../components/DashNav";
 import moment from "moment"
 import * as AiIcons from 'react-icons/ai';
+import * as FaIcons from 'react-icons/fa';
 import Swal from "sweetalert2";
 import {Redirect} from "react-router-dom";
 import Rating from "@material-ui/lab/Rating";
@@ -74,14 +75,9 @@ class MisCompras extends React.Component {
                            <div className="rating-p">
                                <Rating name="read-only" value={venta.producto.promedio} readOnly/>
                            </div>
-                           <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.editAnuncio(venta._id, e)}>
-                               <AiIcons.AiFillEdit/>
-                           </button>
-
 
                            <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.facturaCompra(venta._id, e)}><AiIcons.AiFillDelete/></button>
+                                   onClick={(e) => this.facturaCompra(venta._id, e)}><FaIcons.FaFileInvoice/></button>
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.specificProduct(venta._id)}><AiIcons.AiFillEye/></button>
 
@@ -107,12 +103,7 @@ class MisCompras extends React.Component {
     }
 
     render() {
-        if (localStorage.getItem("editID")) {
-            return(
-                <Redirect to="/editAnunce" />
-                )
 
-        } else {
             if (localStorage.getItem("productID")) {
                 return (
                     <Redirect to="product"/>
@@ -133,8 +124,6 @@ class MisCompras extends React.Component {
                     </Grid>
                 )
             }
-            ;
-        }
     }
 
 }

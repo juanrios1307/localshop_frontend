@@ -60,7 +60,7 @@ class MisProductos extends React.Component {
             title: response.data.data
         })
 
-        window.location.reload();
+        //window.location.reload();
     }
 
     specificProduct(id){
@@ -127,7 +127,7 @@ class MisProductos extends React.Component {
                            <h6 className="mt-0"> {producto.nombre}</h6>
                            <p className="card-text">{producto.categoria}</p>
                            <p className="card-text">Precio: ${producto.precio}</p>
-                           <p className="card-text">Vendedor: {producto.user.nombre}</p>
+                           <p className="card-text">Stock: {producto.stock} unidades</p>
                            <div className="rating-p">
                                <Rating name="read-only" value={producto.promedio} readOnly/>
                            </div>

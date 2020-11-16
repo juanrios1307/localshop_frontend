@@ -78,20 +78,20 @@ export class RegisterSeller extends React.Component {
                                 />
                             </div>
                             <div className="form-group">
-                                <label className="lbl-ra" htmlFor="paymethod">Formas de pago aceptadas *</label>
+                                <label className="lbl-r" htmlFor="paymethod">Formas de pago aceptadas *</label>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" type="checkbox" id="inlineCheckbox1" />
-                                        <label className="form-check-label" htmlFor="inlineCheckbox1">Efectivo</label>
+                                        <label className="form-check-label" htmlFor="inlineCheckbox1">Contra entrega</label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" type="checkbox" id="inlineCheckbox2"
                                            value="option2"/>
-                                        <label className="form-check-label" htmlFor="inlineCheckbox2">Tarjeta de credito</label>
+                                        <label className="form-check-label" htmlFor="inlineCheckbox2">Efecty o Gana</label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" type="checkbox" id="inlineCheckbox3"
                                            value="option3"/>
-                                        <label className="form-check-label" htmlFor="inlineCheckbox3">PayPal</label>
+                                        <label className="form-check-label" htmlFor="inlineCheckbox3">Tarjeta de Crédito</label>
                                 </div>
                             </div>
                             <div className="footer">

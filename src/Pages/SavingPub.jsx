@@ -185,7 +185,10 @@ class SavingPub extends React.Component {
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.deletePub(producto._id, e)}><AiIcons.AiFillDelete/></button>
                            <form onSubmit={(e)=>this.actualizarCantidad(producto._id,this.state.cantidad,e)}>
-                               <label className="lbl-q">Cantidad</label><input type="number" className="inpt-q" placeholder={cantidades[index]} required onChange={(e)=>this.setState({cantidad:e.target.value})}/>
+                               <label className="lbl-q">Cantidad</label>
+                               <input type="number" className="inpt-q" placeholder={cantidades[index]}
+                                      required min="1" max={producto.stock}
+                                      onChange={(e)=>this.setState({cantidad:e.target.value})}/>
                                <button type="submit" className="btn btn-outline btn-list" >Actualizar cantidad</button>
                            </form>
                            <div className="card-footer">

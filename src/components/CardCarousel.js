@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import '../assets/css/CardCarousel.css';
 import Axios from "axios";
 import moment from "moment";
-
+import nofoto from "../assets/images/nofoto.png"
 
 
 class CardCarousel extends Component {
@@ -40,14 +40,14 @@ class CardCarousel extends Component {
             this.setState({
                 Content: data.map((producto) => (
                     <div className="card" key={producto._id}>
-                        <div className="card-icon"><img src={producto.images[0]} alt="icon1"/></div>
+                        <div className="card-icon"><img src={producto.promedio>0?producto.images[0]:nofoto} alt="No imagen"/></div>
                         <div className="card-body">
-                            <h5 className="card-title">{producto.nombre}</h5>
-                            <p className="card-text">{producto.categoria}</p>
-                            <p className="card-text">Precio: ${producto.precio}</p>
+                            <h5 className="card-title">{producto.promedio>0?producto.nombre:"No tenemos mas sugerencias para ti"}</h5>
+                            <p className="card-text">{producto.promedio>0?producto.categoria:""}</p>
+                            <p className="card-text">{producto.promedio>0?"Precio: $"+producto.precio:""}</p>
                         </div>
                         <div className="card-footer">
-                            <small className="text-muted">Subido {moment(producto.date).format('DD/MM/YYYY')} </small>
+                            <small className="text-muted">{producto.promedio>0?"Subido "+moment(producto.date).format('DD/MM/YYYY'):""} </small>
                         </div>
                     </div>
                 ))

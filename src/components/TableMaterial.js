@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 import Axios from "axios";
+import nofoto from "../assets/images/nofoto.png";
 
 const StyledTableCell= withStyles(()=>({
     head:{
@@ -40,9 +41,9 @@ function TableMaterial(props) {
         if(data[0].promedio != 0) {
             setContent(data.map((producto) => (
                 <TableRow key={producto.id}>
-                    <TableCell><img src={producto.images[0]} width="40px" height="40px" alt="Imagen"/>{"  "}</TableCell>
-                    <TableCell align="center">{producto.nombre}</TableCell>
-                    <TableCell align="center">${producto.precio}</TableCell>
+                    <TableCell><img src={producto.promedio>0?producto.images[0]:nofoto} width="40px" height="40px" alt="Imagen"/>{"  "}</TableCell>
+                    <TableCell align="center">{producto.promedio>0?producto.nombre:"No tenemos mas sugerencias para ti"}</TableCell>
+                    <TableCell align="center">{producto.promedio>0?"$"+producto.precio:""}</TableCell>
                 </TableRow>
             )))
         }else{

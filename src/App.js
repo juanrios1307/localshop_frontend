@@ -16,6 +16,8 @@ import ActualizarProducto from "./Pages/ActualizarProducto";
 import RegisterSeller from "./Pages/RegisterSeller";
 import MisCompras from "./Pages/MisCompras";
 import MisVentas from "./Pages/MisVentas";
+import InfoCompras from "./Pages/InfoCompras";
+import PaymentMethods from "./Pages/PaymentMethods";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           <Route exact path="/product" component={ProductoEspecifico} />
 
           <Route exact path="/shoppingCar" component={SavingPub} />
+          <Route exact path="/infopurchases" component={InfoCompras}/>
+          <Route exact path="/paymethod" component={PaymentMethods}/>
 
           <Route exact path="/miscompras" component={MisCompras} />
           <Route exact path="/misventas" component={MisVentas} />

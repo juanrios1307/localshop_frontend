@@ -7,8 +7,9 @@ import * as AiIcons from 'react-icons/ai';
 import Swal from "sweetalert2";
 import {Redirect} from "react-router-dom";
 import Rating from "@material-ui/lab/Rating";
+import {Label} from "@material-ui/icons";
 
-class SavingPub extends React.Component {
+class InfoCompras extends React.Component {
 
     constructor(props) {
         super(props);
@@ -26,9 +27,9 @@ class SavingPub extends React.Component {
 
         this.setState({pago:
                 <script
-                src="https://www.mercadopago.com.co/integrations/v1/web-payment-checkout.js"
-                data-preference-id='<%= global.id %>'>
-            </script>
+                    src="https://www.mercadopago.com.co/integrations/v1/web-payment-checkout.js"
+                    data-preference-id='<%= global.id %>'>
+                </script>
         })
     }
 
@@ -156,57 +157,38 @@ class SavingPub extends React.Component {
             }
         };
 
-       var response=await Axios(config);
+        var response=await Axios(config);
 
-       var data = response.data.data;
-       var cantidades=response.data.cantidades;
+        var data = response.data.data;
+        var cantidades=response.data.cantidades;
 
-       if(data.length>0) {
-           this.setState({
+        if(data.length>0) {
+            this.setState({
 
-               Content: data.map((producto,index) => (
-                   <div className="media" key={producto._id}>
-                       <img className="mr-3 imgList" src={producto.images[0]} alt='imagen'/>
-                       <div className="media-body">
-                           <h6 className="mt-0"> {producto.nombre}</h6>
-                           <p className="card-text">{producto.categoria}</p>
-                           <p className="card-text">Precio: ${producto.precio}</p>
-                           <p className="card-text">Vendedor: {producto.user.nombre}</p>
-                           <div className="rating-p">
-                               <Rating name="read-only" value={producto.promedio} readOnly/>
-                           </div>
+                Content: data.map((producto,index) => (
+                    <div className="media" key={producto._id}>
+                        <img className="mr-3 imgList" src={producto.images[0]} alt='imagen'/>
+                        <div className="media-body">
+                            <h6 className="mt-0"> {producto.nombre}</h6>
+                            <p className="card-text">Precio x Unidad: ${producto.precio}</p>
+                            <p className="card-text">Vendedor: {producto.user.nombre}</p>
+                            <p className="card-text">Cantidad: {producto.precio}</p>
+                            <div className="rating-p">
+                                <Rating name="read-only" value={producto.promedio} readOnly/>
+                            </div>
+                        </div>
 
-                           <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.comprar(producto._id, e)}><AiIcons.AiFillDollarCircle/></button>
-                           <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.crearChat(producto._id, e)}><AiIcons.AiFillMessage/></button>
-                           <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.specificProduct(producto._id)}><AiIcons.AiFillEye/></button>
-                           <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.deletePub(producto._id, e)}><AiIcons.AiFillDelete/></button>
-                           <form onSubmit={(e)=>this.actualizarCantidad(producto._id,this.state.cantidad,e)}>
-                               <label className="lbl-q">Cantidad</label>
-                               <input type="number" className="inpt-q" placeholder={cantidades[index]}
-                                      required min="1" max={producto.stock}
-                                      onChange={(e)=>this.setState({cantidad:e.target.value})}/>
-                               <button type="submit" className="btn btn-outline btn-list" >Actualizar cantidad</button>
-                           </form>
-                           <div className="card-footer">
-                               <small className="text-muted">Last updated 3 mins ago</small>
-                           </div>
-                       </div>
+                    </div>
 
-                   </div>
-
-               ))
-           })
-       }else{
-           this.setState({
-               Content: <div>
-                   <h4 className="noProduct">No tienes productos guardados.</h4>
-               </div>
-           })
-       }
+                ))
+            })
+        }else{
+            this.setState({
+                Content: <div>
+                    <h4 className="noProduct">No tienes productos guardados.</h4>
+                </div>
+            })
+        }
 
     }
 
@@ -222,21 +204,31 @@ class SavingPub extends React.Component {
         } else {
 
             return (
-                <Grid container spacing={3}>
+                <Grid container>
 
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className="dshnav">
                         <DashNav/>
                     </Grid>
 
+                    <Grid item xs={12} className="TittleC">
+                        <h8 className="h8-c">Resumen de la compra</h8>
+                    </Grid>
+
                     <Grid item xs={12}>
-                        <button className="btn-pgr">Pagar todo</button>
+                        <div className="resumen">
+                            <h13 className="titu-c">Total Compra</h13>
+                            <p>$50.000</p>
+                        </div>
                     </Grid>
 
                     <Grid item xs={12}>
                         {this.state.Content}
                     </Grid>
 
+                    <Grid item xs={12}>
+                        <button className="btn-pgr">Continuar compra</button>
+                    </Grid>
 
                 </Grid>
             )
@@ -245,4 +237,4 @@ class SavingPub extends React.Component {
 
 }
 
-export default SavingPub;
+export default InfoCompras;

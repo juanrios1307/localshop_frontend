@@ -174,9 +174,7 @@ class ChatEspecifico extends Component {
 
 
         if(res.status===200) {
-            Swal.fire({
-                title: data
-            })
+
         }else if(res.status===400){
             Swal.fire({
                 title: data

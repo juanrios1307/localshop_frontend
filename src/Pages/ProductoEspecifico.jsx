@@ -341,7 +341,21 @@ class ProductoEspecifico extends Component {
                             <NavBar/>
                             <div className="boxcontainer">
                                 <div className="imgbox">
-                                    <img className="imgPub" src={this.state.imagen} alt="imagen de publicacion"/>
+                                    <div id="carouselExampleControls" className="carousel slidess" data-ride="carousel">
+                                        <div className="carousel-inner">
+                                            {this.state.carrusel}
+                                        </div>
+                                        <a className="carousel-control-prev an" href="#carouselExampleControls"
+                                           role="button" data-slide="prev">
+                                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span className="sr-only">Previous</span>
+                                        </a>
+                                        <a className="carousel-control-next an" href="#carouselExampleControls"
+                                           role="button" data-slide="next">
+                                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span className="sr-only">Next</span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div className="inforbox">
 
@@ -350,17 +364,17 @@ class ProductoEspecifico extends Component {
                                         <hr/>
                                         <p>Categoria: {this.state.categoria}</p>
                                         <p>Precio: {this.state.precio}</p>
-                                        <p>Especificacion: {this.state.especificaciones}</p>
+                                        <p>Descripcion: {this.state.descripcion}</p>
                                         <p>Vendedor: {this.state.vendedor}</p>
                                         <p>Ciudad: {this.state.ciudad}</p>
-                                        <div className="rating-p">
-                                            <Rating name="read-only" value= {this.state.promedio} readOnly/>
-                                        </div>
+                                        <p >
+                                            <Rating name="read-only" precision={0.5} value= {this.state.promedio} readOnly/>
+                                        </p>
                                     </div>
-
                                     <div className="botnutl">
                                         <div className="btnsaesp">
-                                            <button type="button" className="btn btn-outline btn-list">
+                                            <button type="button" className="btn btn-outline btn-list"
+                                                    onClick={(e) => this.crearChat(this.state.id, e)}>
                                                 <AiIcons.AiFillMessage/>
                                             </button>
                                             <button type="button" className="btn btn-outline btn-list"
@@ -376,8 +390,8 @@ class ProductoEspecifico extends Component {
                                     <div className="comenta">
                                         <form onSubmit={this.comment}>
                                             <div className="rating">
-                                                <Rating  precision={0.5} name="simple-controlled"
-                                                       onChange={e => this.setState({rating: e.target.value})}/></div>
+                                                <Rating name="simple-controlled" className="stars" value={this.state.rating}
+                                                        onChange={e => this.setState({rating: e.target.value})}/></div>
                                             <input type="text" required
                                                    onChange={e => this.setState({comment: e.target.value})}/>
                                             <button type="submit">Guardar</button>

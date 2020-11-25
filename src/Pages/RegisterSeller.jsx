@@ -13,7 +13,10 @@ export class RegisterSeller extends React.Component {
         this.state = {
             banco:'',
             cuentabanco:'',
-            MetodosPago:[]
+            MetodosPago:["tarjeta"],
+            checkedG:false,
+            checkedT:true,
+            checkedC:false
         }
 
         this.signupseller = this.signupseller.bind(this);
@@ -53,6 +56,42 @@ export class RegisterSeller extends React.Component {
 
     }
 
+    addMethod(e,check){
+
+        if(check=="c"){
+            this.setState({checkedC:!this.state.checkedC})
+            this.state.checkedC=!this.state.checkedC
+
+            if( this.state.checkedC==true){
+                this.state.MetodosPago.push(e.target.value)
+            }else {
+                this.state.MetodosPago.splice((this.state.MetodosPago.indexOf(e.target.value), 1))
+            }
+
+        }else if(check=="t"){
+
+            this.setState({checkedT:!this.state.checkedT})
+            this.state.checkedT=!this.state.checkedT
+
+            if( this.state.checkedT==true){
+                this.state.MetodosPago.push(e.target.value)
+            }else {
+                this.state.MetodosPago.splice((this.state.MetodosPago.indexOf(e.target.value), 1))
+            }
+
+        }else if(check=="g"){
+            this.setState({checkedG:!this.state.checkedG})
+            this.state.checkedG=!this.state.checkedG
+
+            if( this.state.checkedG==true){
+                this.state.MetodosPago.push(e.target.value)
+            }else {
+                this.state.MetodosPago.splice((this.state.MetodosPago.indexOf(e.target.value), 1))
+            }
+        }
+
+
+    }
 
     render() {
         if (this.state.bool) {
@@ -87,17 +126,24 @@ export class RegisterSeller extends React.Component {
                                 <div className="form-group">
                                     <label className="lbl-r" htmlFor="paymethod">Formas de pago aceptadas *</label>
                                     <div className="form-check form-check-inline">
-                                        <input className="form-check-input" type="checkbox" id="inlineCheckbox1" />
-                                            <label className="form-check-label" htmlFor="inlineCheckbox1">Contra entrega</label>
+                                        <input className="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                               onChange={(e)=>this.addMethod(e,"c")}
+                                               defaultChecked={this.state.checkedC}
+                                               value="contraentrega"/>
+                                            <label className="form-check-label" htmlFor="inlineCheckbox1">Contraentrega</label>
                                     </div>
                                     <div className="form-check form-check-inline">
                                         <input className="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                               value="option2"/>
-                                            <label className="form-check-label" htmlFor="inlineCheckbox2">Efecty o Gana</label>
+                                               onChange={(e)=>this.addMethod(e,"g")}
+                                               defaultChecked={this.state.checkedG}
+                                               value="giro"/>
+                                            <label className="form-check-label" htmlFor="inlineCheckbox2">Giro (Gana, Efecty, Baloto)</label>
                                     </div>
                                     <div className="form-check form-check-inline">
                                         <input className="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                               value="option3"/>
+                                               onChange={(e)=>this.addMethod(e,"t")}
+                                               defaultChecked={this.state.checkedT}
+                                               disabled value="tarjeta"/>
                                             <label className="form-check-label" htmlFor="inlineCheckbox3">Tarjeta de Crédito</label>
                                     </div>
                                 </div>

@@ -20,7 +20,7 @@ class MisCompras extends React.Component {
         this.getData = this.getData.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
         this.facturaCompra=this.facturaCompra.bind(this);
-        this.recibido=this.recibido.bind(this);
+        this.confirmarPago=this.confirmarPago.bind(this);
 
     }
 
@@ -32,8 +32,30 @@ class MisCompras extends React.Component {
 
     }
 
-    recibido(id,e){
+    async confirmarPago(id, e) {
+        const token = localStorage.getItem("token")
 
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/venta/'
+        const url = 'http://localhost:5000/api/venta/'
+
+        const config = {
+            method: 'put',
+            url: url,
+            headers: {
+                'access-token': token,
+                'id':id
+            }
+        };
+
+        var response = await Axios(config);
+
+
+        Swal.fire({
+            title: response.data.data
+        })
+
+
+        window.location.reload();
     }
 
 
@@ -80,6 +102,16 @@ class MisCompras extends React.Component {
                                    onClick={(e) => this.facturaCompra(venta._id, e)}><FaIcons.FaFileInvoice/></button>
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.specificProduct(venta._id)}><AiIcons.AiFillEye/></button>
+
+                           {venta.estado=="pendienterecibo"?this.setState(
+                               {pago:(
+                                       <div>
+                                           <label className="lbl-q">Confirmar recibido</label>
+                                           <input type="checkbox" className="inpt-q" onChange={(e)=>this.confirmarPago(venta._id,e)}/>
+                                       </div>
+                                   )}):""}
+
+                           {this.state.pago}
 
                            <div className="card-footer">
                                <small

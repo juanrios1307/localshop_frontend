@@ -16,6 +16,7 @@ class InfoCompras extends React.Component {
         this.state = {
             Content: '',
             precio:0,
+            bool:false
 
         };
 
@@ -117,6 +118,11 @@ class InfoCompras extends React.Component {
     }
 
     render() {
+        if (this.state.bool == true) {
+            return(
+                <Redirect to="/paymethod" />
+            )
+        } else {
 
             return (
                 <Grid container>
@@ -141,12 +147,14 @@ class InfoCompras extends React.Component {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <button className="btn-pgr">Continuar compra</button>
+                        <button className="btn-pgr" onClick={(e)=>this.setState({bool: true})}>Continuar compra</button>
                     </Grid>
 
                 </Grid>
             )
-        };
+        }
+        ;
+    }
 
 }
 

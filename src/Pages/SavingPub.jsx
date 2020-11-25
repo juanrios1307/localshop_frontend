@@ -15,7 +15,8 @@ class SavingPub extends React.Component {
         this.state = {
             Content: '',
             pago:'',
-            cantidad:1
+            cantidad:1,
+            comprar:false
         };
         this.getData = this.getData.bind(this);
         this.deletePub = this.deletePub.bind(this);
@@ -24,48 +25,39 @@ class SavingPub extends React.Component {
         this.comprar=this.comprar.bind(this);
         this.actualizarCantidad=this.actualizarCantidad.bind(this);
 
-        this.setState({pago:
-                <script
-                src="https://www.mercadopago.com.co/integrations/v1/web-payment-checkout.js"
-                data-preference-id='<%= global.id %>'>
-            </script>
-        })
+
     }
 
     componentDidMount() {
         this.getData();
 
+        localStorage.removeItem("boolAux")
+        localStorage.removeItem("productSAux")
+        localStorage.removeItem("cantidadSAux")
+
     }
 
-    async comprar(id, e) {
+    async comprar(id,cantidad, e) {
+        e.preventDefault()
 
-        // SDK de Mercado Pago
-        const mercadopago = require ('mercadopago');
+        localStorage.setItem("productS",id)
+        localStorage.setItem("productSAux",id)
 
-// Agrega credenciales
-        mercadopago.configure({
-            access_token: 'TEST-5322104039027334-102213-b38abd6af7adb752421cf1fd72dcf905-662089090'
-        });
+        localStorage.setItem("cantidadSAux",cantidad)
+        localStorage.setItem("cantidadS",cantidad)
 
-// Crea un objeto de preferencia
-        let preference = {
-            items: [
-                {
-                    title: 'Mi producto',
-                    unit_price: 100,
-                    quantity: 1,
-                }
-            ]
-        };
+        this.setState({bool:true})
 
-        mercadopago.preferences.create(preference)
-            .then(function(response){
-// Este valor reemplazará el string "<%= global.id %>" en tu HTML
-                global.id = response.body.id;
-            }).catch(function(error){
-            console.log(error);
-        });
 
+    }
+
+    comprarTodo(e) {
+        e.preventDefault()
+
+        localStorage.setItem("bool","true")
+        localStorage.setItem("boolAux","true")
+
+        this.setState({bool:true})
     }
 
 
@@ -177,7 +169,7 @@ class SavingPub extends React.Component {
                            </div>
 
                            <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.comprar(producto._id, e)}><AiIcons.AiFillDollarCircle/></button>
+                                   onClick={(e) => this.comprar(producto._id,this.state.cantidad, e)}><AiIcons.AiFillDollarCircle/></button>
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.crearChat(producto._id, e)}><AiIcons.AiFillMessage/></button>
                            <button type="button" className="btn btn-outline btn-list"
@@ -211,7 +203,11 @@ class SavingPub extends React.Component {
     }
 
     render() {
-        if(localStorage.getItem("productIDChat")){
+        if(this.state.bool==true){
+          return(
+              <Redirect to="infopurchases" />
+          )
+        } else if(localStorage.getItem("productIDChat")){
             return (
                 <Redirect to="/chat"/>
             )
@@ -230,7 +226,7 @@ class SavingPub extends React.Component {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <button className="btn-pgr">Pagar todo</button>
+                        <button className="btn-pgr"  onClick={(e) => this.comprarTodo(e)}>Pagar todo</button>
                     </Grid>
 
                     <Grid item xs={12}>
@@ -242,6 +238,7 @@ class SavingPub extends React.Component {
             )
         };
     }
+
 
 }
 

@@ -58,9 +58,9 @@ class FacturaVenta extends React.Component {
 
             this.setState({precio:data.total})
 
+             this.setState({
 
-           this.setState({
-                Content:(
+                 Content: (
                     <div>
                         <div className="resumen">
                             <h13 className="titu-c">Comprador</h13>
@@ -69,31 +69,38 @@ class FacturaVenta extends React.Component {
                             <p><b>Correo:</b> {data.comprador.correo}</p>
                         </div>
 
-                        <div className="resumen">
-                            <h13 className="titu-c">Vendedor</h13>
-                            <p>{data.vendedor.nombre}</p>
-                            <p><b>Telefono:</b> {data.vendedor.telefono}</p>
-                            <p><b>Correo:</b> {data.vendedor.correo}</p>
-                        </div>
 
+                        { data.productos.map((productos) => (
+                            <div>
+
+                                <div className="resumen">
+                                    <h13 className="titu-c">Vendedor</h13>
+                                    <p>{productos.vendedor.nombre}</p>
+                                    <p><b>Telefono:</b> {productos.vendedor.telefono}</p>
+                                    <p><b>Correo:</b> {productos.vendedor.correo}</p>
+                                </div>
+
+                                <div className="resumen">
+                                    <h13 className="titu-c">{productos.producto.nombre}</h13>
+                                    <p><b>Precio unitario:$</b>{productos.producto.precio}</p>
+                                    <p><b>Cantidad:</b> {productos.cantidad}</p>
+
+                                </div>
+
+                            </div>
+                        ))}
 
                         <div className="resumen">
-                            <h13 className="titu-c">{data.producto.nombre}</h13>
-                            <p><b>Precio unitario:$</b>{data.precio}</p>
-                            <p><b>Cantidad:</b> {data.cantidad}</p>
-                        </div>
-
-                        <div className="resumen">
-                            <h13 className="titu-c">Informacion venta</h13>
+                            <h13 className="titu-c">Informacion compra</h13>
                             <p><b>Metodo de pago: </b>{data.metodoPago}</p>
                             <p><b>Estado:</b> {data.estado}</p>
-                            <p><b>Fecha venta: $</b>{moment(data.date).format('DD/MM/YYYY')} </p>
+                            <p><b>Fecha compra: $</b>{moment(data.date).format('DD/MM/YYYY')} </p>
                             <p><b>Comisión: $</b>{data.comision}</p>
                         </div>
-
                     </div>
                 )
-                })
+            }
+        )
 
     }
 

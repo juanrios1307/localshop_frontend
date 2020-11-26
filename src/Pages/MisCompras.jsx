@@ -91,17 +91,19 @@ class MisCompras extends React.Component {
 
        var data = response.data.data;
 
+       console.log(JSON.stringify(data))
+
        if(data.length>0) {
            this.setState({
                Content: data.map((venta) => (
                    <div className="media" key={venta._id}>
-                       <img className="mr-3 imgList" src={venta.producto.images[0]} alt='imagen'/>
+                       <img className="mr-3 imgList" src={venta.productos[0].producto.images[0]} alt='imagen'/>
                        <div className="media-body">
-                           <h6 className="mt-0"> {venta.producto.nombre}</h6>
-                           <p className="card-text">Vendedor: {venta.vendedor.nombre}</p>
+                           <h6 className="mt-0"> {venta.productos[0].producto.nombre}</h6>
+                           <p className="card-text">Vendedor: {venta.productos[0].vendedor.nombre}</p>
                            <p className="card-text">Total: ${venta.total}</p>
                            <div className="rating-p">
-                               <Rating name="read-only" value={venta.producto.promedio} readOnly/>
+                               <Rating name="read-only" value={venta.productos[0].producto.promedio} readOnly/>
                            </div>
 
                            <button type="button" className="btn btn-outline btn-list"

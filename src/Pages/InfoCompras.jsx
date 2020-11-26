@@ -50,7 +50,7 @@ class InfoCompras extends React.Component {
                 url: url,
                 headers: {
                     'access-token': token,
-                    'bool':"true"
+                    'bool':'true'
                 }
             };
 
@@ -79,7 +79,7 @@ class InfoCompras extends React.Component {
             this.setState({precio:data.total})
         }
 
-        if(data.length>1) {
+        if(Array.isArray(data)) {
             this.setState({
 
                     Content: data.map((producto) => (
@@ -99,7 +99,6 @@ class InfoCompras extends React.Component {
 
         }else{
             this.setState({
-
                     Content:(
                             <div className="resumen">
                                 <h13 className="titu-c">{data.producto}</h13>

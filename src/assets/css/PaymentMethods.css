@@ -24,6 +24,7 @@ legend{
     font-weight: bold;
     color: #060b26;
 }
+-->
 .tcard{
     margin-top: 5%;
     height: 25em;
@@ -123,3 +124,41 @@ legend{
     margin-bottom: 10em;
     border-radius: 20px;
 }
+-->
+.tinfg{
+    background: #ffb224;
+    width: fit-content;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5em;
+    margin-bottom: 3.5em;
+    border-radius: 20px;
+}
+.infos{
+    padding-bottom: 1em;
+}
+.infog{
+    width: 100%;
+    padding: 1em;
+    background: #060b26;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    font-size: x-large;
+}
+.infoes{
+    margin-right: 1em;
+    margin-top: 1em;
+}
+.infoes label{
+    font-family: "Arial";
+    font-size: large;
+}
+.adver{
+    margin-left: 50%;
+    transform: translateX(-42%);
+    min-width: max-content;
+}
+

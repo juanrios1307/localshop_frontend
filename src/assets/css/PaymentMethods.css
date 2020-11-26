@@ -112,3 +112,14 @@ legend{
     font-weight: bold;
     text-align: center;
 }
+-->
+.tcont{
+    background: #ffb224;
+    width: max-content;
+    padding: 4em;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10em;
+    margin-bottom: 10em;
+    border-radius: 20px;
+}

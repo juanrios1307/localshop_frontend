@@ -29,6 +29,12 @@ class MisVentas extends React.Component {
     }
 
     facturaCompra(id,e){
+        e.preventDefault()
+
+        localStorage.setItem("facturaID",id)
+        localStorage.setItem("facturaIDAux",id)
+
+        window.location.reload();
 
     }
 
@@ -62,6 +68,7 @@ class MisVentas extends React.Component {
     specificProduct(id){
         localStorage.setItem("productID",id)
         localStorage.setItem("productIDAux",id)
+
 
         window.location.reload();
     }
@@ -135,7 +142,11 @@ class MisVentas extends React.Component {
     }
 
     render() {
-            if (localStorage.getItem("productID")) {
+            if(localStorage.getItem("facturaID")){
+                return (
+                    <Redirect to="facturav"/>
+                )
+            }else if (localStorage.getItem("productID")) {
                 return (
                     <Redirect to="product"/>
                 )

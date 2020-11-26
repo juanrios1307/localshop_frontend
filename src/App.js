@@ -18,6 +18,8 @@ import MisCompras from "./Pages/MisCompras";
 import MisVentas from "./Pages/MisVentas";
 import InfoCompras from "./Pages/InfoCompras";
 import PaymentMethods from "./Pages/PaymentMethods";
+import FacturaCompra from "./Pages/FacturaCompra";
+import FacturaVenta from "./Pages/FacturaVenta";
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
 
           <Route exact path="/miscompras" component={MisCompras} />
           <Route exact path="/misventas" component={MisVentas} />
+          <Route exact path="/facturac" component={FacturaCompra} />
+          <Route exact path="/facturav" component={FacturaVenta} />
 
           <Route exact path="/misproductos" component={MisProductos} />
           <Route exact path="/createProduct" component={SubirProducto}/>

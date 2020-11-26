@@ -30,6 +30,12 @@ class MisCompras extends React.Component {
 
     facturaCompra(id,e){
 
+        e.preventDefault()
+
+        localStorage.setItem("facturaID",id)
+        localStorage.setItem("facturaIDAux",id)
+
+        window.location.reload();
     }
 
     async confirmarPago(id, e) {
@@ -135,25 +141,25 @@ class MisCompras extends React.Component {
     }
 
     render() {
-
-            if (localStorage.getItem("productID")) {
-                return (
-                    <Redirect to="product"/>
+        if(localStorage.getItem("facturaID")){
+            return (
+                <Redirect to="facturac"/>
+            )
+        }else if (localStorage.getItem("productID")) {
+            return (
+                <Redirect to="product"/>
                 )
-            } else {
-                return (
-                    <Grid container spacing={3}>
-
-                        <Grid item xs={12}>
-                            <DashNav/>
-                        </Grid>
-
-
-                        <Grid item xs={12}>
-                            {this.state.Content}
-                        </Grid>
-
+        } else {
+            return (
+                <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <DashNav/>
                     </Grid>
+
+                    <Grid item xs={12}>
+                        {this.state.Content}
+                    </Grid>
+                </Grid>
                 )
             }
     }

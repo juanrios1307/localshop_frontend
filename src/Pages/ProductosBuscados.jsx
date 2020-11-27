@@ -59,8 +59,6 @@ class ProductosBuscados extends React.Component {
             //const url = ''https://radiant-castle-07024.herokuapp.com/api/saving'
             const url = 'http://localhost:5000/api/saving'
 
-            console.log(Save)
-
             const config = {
                 method: 'put',
                 url: url ,

@@ -169,7 +169,7 @@ class SavingPub extends React.Component {
                            </div>
 
                            <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.comprar(producto._id,this.state.cantidad, e)}><AiIcons.AiFillDollarCircle/></button>
+                                   onClick={(e) => this.comprar(producto._id,cantidades[index], e)}><AiIcons.AiFillDollarCircle/></button>
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.crearChat(producto._id, e)}><AiIcons.AiFillMessage/></button>
                            <button type="button" className="btn btn-outline btn-list"

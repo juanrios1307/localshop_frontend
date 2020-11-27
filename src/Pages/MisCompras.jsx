@@ -15,7 +15,8 @@ class MisCompras extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Content: ''
+            Content: '',
+            pago:[]
         };
         this.getData = this.getData.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
@@ -91,11 +92,11 @@ class MisCompras extends React.Component {
 
        var data = response.data.data;
 
-       console.log(JSON.stringify(data))
+       console.log(data)
 
        if(data.length>0) {
            this.setState({
-               Content: data.map((venta) => (
+               Content: data.map((venta,index) => (
                    <div className="media" key={venta._id}>
                        <img className="mr-3 imgList" src={venta.productos[0].producto.images[0]} alt='imagen'/>
                        <div className="media-body">
@@ -111,19 +112,22 @@ class MisCompras extends React.Component {
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.specificProduct(venta._id)}><AiIcons.AiFillEye/></button>
 
-                           {venta.estado=="pendienterecibo"?this.setState(
-                               {pago:(
+                           {venta.estado=="pendienterecibo"?
+                               this.state.pago.push(
                                        <div>
                                            <label className="lbl-q">Confirmar recibido</label>
                                            <input type="checkbox" className="inpt-q" onChange={(e)=>this.confirmarPago(venta._id,e)}/>
                                        </div>
-                                   )}):""}
+                                   ):
+                               this.state.pago.push("")}
 
-                           {this.state.pago}
+                           <div>
+                               {this.state.pago[index]}
+                           </div>
 
                            <div className="card-footer">
                                <small
-                                   className="text-muted">Subido {moment(venta.date).format('DD/MM/YYYY')} </small>
+                                   className="text-muted">Compra realizada el {moment(venta.date).format('DD/MM/YYYY')} </small>
                            </div>
 
                        </div>

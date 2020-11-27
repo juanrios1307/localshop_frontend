@@ -16,7 +16,7 @@ class MisVentas extends React.Component {
         super(props);
         this.state = {
             Content: '',
-            pago:''
+            pago:[]
         };
         this.getData = this.getData.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
@@ -94,7 +94,7 @@ class MisVentas extends React.Component {
 
        if(data.length>0) {
            this.setState({
-               Content: data.map((venta) => (
+               Content: data.map((venta,index) => (
                    <div className="media" key={venta._id}>
                        <img className="mr-3 imgList" src={venta.productos[0].producto.images[0]} alt='imagen'/>
                        <div className="media-body">
@@ -110,16 +110,18 @@ class MisVentas extends React.Component {
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.specificProduct(venta._id)}><AiIcons.AiFillEye/></button>
 
-
-                           {venta.estado=="pendientepago"?this.setState(
-                               {pago:(
+                           {venta.estado=="pendientepago"?
+                               this.state.pago.push(
                                    <div>
                                        <label className="lbl-q">Confirmar pago</label>
                                        <input type="checkbox" className="inpt-q" onChange={(e)=>this.confirmarPago(venta._id,e)}/>
                                    </div>
-                               )}):""}
+                               ):
+                               this.state.pago.push("")}
 
-                           {this.state.pago}
+                           <div>
+                               {this.state.pago[index]}
+                           </div>
 
                            <div className="card-footer">
                                <small

@@ -113,7 +113,6 @@ class InfoCompras extends React.Component {
                 })
         }
 
-        console.log("data: "+JSON.stringify(data))
     }
 
     render() {

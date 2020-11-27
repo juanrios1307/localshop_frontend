@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import '../assets/css/PaymentMethods.css';
 import DashNav from "../components/DashNav";
 import Axios from "axios";
+import {Redirect} from "react-router-dom";
 
 class PaymentMethods extends Component {
 
@@ -11,11 +12,14 @@ class PaymentMethods extends Component {
         this.state = {
             Content: '',
             precio:0,
-            bool:false
+            bool:false,
+            metodo:''
 
         };
 
         this.getData = this.getData.bind(this);
+        this.pagar = this.pagar.bind(this);
+        this.pago = this.pago.bind(this);
     }
 
     componentDidMount() {
@@ -73,7 +77,6 @@ class PaymentMethods extends Component {
 
         }
 
-        console.log(data)
 
         if(Array.isArray(data[0])) {
 
@@ -87,22 +90,10 @@ class PaymentMethods extends Component {
                                     {data[0].toUpperCase()+data.slice(1)}
                                 </label>
                                 <input className="form-check-input" type="radio" name="exampleRadios"
-                                       id="exampleRadios1" value={data}/>
+                                       id="exampleRadios1" value={data} />
 
                             </div>
                         ))
-                    })
-                } else {
-                    this.setState({
-                        Content:
-                            <div className="form-c">
-                                <label className="form-check-label" htmlFor="exampleRadios1">
-                                    {data[0][0][0].toUpperCase()+data[0][0].slice(1)}
-                                </label>
-                                <input className="form-check-input" type="radio" name="exampleRadios"
-                                       id="exampleRadios1" value={data[0][0]}/>
-
-                            </div>
                     })
                 }
             } else {
@@ -131,7 +122,39 @@ class PaymentMethods extends Component {
         }
     }
 
+    pagar(event){
+        const metodo=event.target.value
+
+        if(metodo=="tarjeta"){
+            this.setState({metodo:"tarjeta"})
+        }else if(metodo=="contraentrega"){
+            this.setState({metodo:"contraentrega"})
+        }else if(metodo=="giro"){
+            this.setState({metodo:"giro"})
+        }
+    }
+
+    pago(event){
+        event.preventDefault()
+        localStorage.setItem("metodopago",this.state.metodo)
+        this.setState({bool:true})
+    }
+
     render(){
+        if(this.state.bool==true && this.state.metodo=="tarjeta"){
+            return(
+                <Redirect to="/card"/>
+            )
+        }else if(this.state.bool==true && this.state.metodo=="contraentrega") {
+            return(
+                <Redirect to="/contraentrega"/>
+            )
+        }else  if(this.state.bool==true && this.state.metodo=="giro") {
+            return(
+                <Redirect to="/giro"/>
+            )
+        }else {
+
             return (
                 <div>
                     <header>
@@ -141,20 +164,23 @@ class PaymentMethods extends Component {
                         <h8>Métodos de pago</h8>
                     </div>
                     <div className="inpt-p">
-                        <form>
-                            <fieldset>
+                        <form onSubmit={this.pago}>
+                            <fieldset onChange={this.pagar}>
                                 <legend>¿Cómo deseas pagar?</legend>
 
                                 {this.state.Content};
 
                             </fieldset>
+
+                            <div className="btn-p">
+                                <button className="btn-pgr" type="submit">Continuar</button>
+                            </div>
                         </form>
                     </div>
-                    <div className="btn-p">
-                        <button className="btn-pgr">Continuar</button>
-                    </div>
+
                 </div>
             );
+        }
     }
 }
 export default PaymentMethods;

@@ -43,9 +43,11 @@ function App() {
           <Route exact path="/shoppingCar" component={SavingPub} />
           <Route exact path="/infopurchases" component={InfoCompras}/>
           <Route exact path="/paymethod" component={PaymentMethods}/>
+
           <Route exact path="/card" component={Card}/>
           <Route exact path="/contraentrega" component={Contraentrega}/>
           <Route exact path="/giro" component={Giro}/>
+
           <Route exact path="/paystate" component={EstadoCompra}/>
 
           <Route exact path="/miscompras" component={MisCompras} />

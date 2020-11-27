@@ -16,26 +16,25 @@ class SubirProducto extends Component {
             precio:'',
             stock:'',
             descripcion:'',
-            categoria:'',
+            categoria:'comida',
             images:'',
             imagenFile:[],
             bool:false,
             c1:[],
-            c2:[],
+            boolImages:false,
+            i: 0
         }
 
         this.signupanunce = this.signupanunce.bind(this);
         this.files=this.files.bind(this);
 
-        for(var i=0;i<5;i++){
+        for(var i=0;i<10;i++){
             this.state.c1.push(UPLD)
-            this.state.c2.push(UPLD)
         }
 
     }
 
     componentDidMount() {
-        this.getUpload()
     }
 
 
@@ -97,84 +96,63 @@ class SubirProducto extends Component {
 
     }
 
-    getUpload(){
 
-      /*  for(var i=0;i<5;i++){
-            this.state.c1.push(UPLD)
-            this.state.c2.push(UPLD)
-        }*/
-    }
-
-    files(e){
-
-        e.preventDefault()
+    files(event) {
 
 
-        var files = e.target.files
+        var files = event.target.files
 
-        const imgLength=this.state.imagenFile.length
-
-        if(files.length>10){
-            Swal.fire({
-                title: "Solo puedes subir 10 imagenes de tu producto"
-            })
-
-            for(var i=imgLength ; i<10 ; i++){
-                this.state.imagenFile.push(files[i-imgLength]);
-            }
+        const imgl = this.state.imagenFile.length
+        const fl = files.length
 
 
-        }else{
-
-            if((imgLength+files.length) > 10) {
+        if (fl > 0) {
+            if (fl > 10) {
                 Swal.fire({
                     title: "Solo puedes subir 10 imagenes de tu producto"
                 })
 
-                for(var i=imgLength; i<10 ; i++){
-                    this.state.imagenFile.push(files[i-imgLength]);
+                for (var i = 0; i < 10; i++) {
+                    this.state.imagenFile.push(files[i]);
                 }
 
-            }else{
-                for(var i=imgLength ; i<imgLength+files.length ; i++){
-                    this.state.imagenFile.push(files[i-imgLength]);
+                while (this.state.imagenFile.length > 10) {
+                    this.state.imagenFile.shift()
+                }
+
+            } else {
+
+                if ((imgl + fl) > 10) {
+                    Swal.fire({
+                        title: "Solo puedes subir 10 imagenes de tu producto"
+                    })
+
+                    for (var i = 0; i < fl; i++) {
+                        this.state.imagenFile.push(files[i]);
+                    }
+
+                    while (this.state.imagenFile.length > 10) {
+                        this.state.imagenFile.shift()
+                    }
+
+                } else {
+
+                    for (var i = imgl; i < imgl + fl; i++) {
+                        this.state.imagenFile.push(files[i - imgl]);
+                    }
                 }
             }
+
+
+            for(var i=0;i<this.state.imagenFile.length;i++){
+                this.state.c1[i] =URL.createObjectURL(this.state.imagenFile[i])
+            }
+
+            this.setState({
+                boolImages: !this.state.boolImages
+            })
         }
-
-
-
-        if (this.state.imagenFile.length > 5 && this.state.imagenFile.length <= 10) {
-            for (var i = 0; i < 5; i++) {
-
-                this.state.c1[i]=(URL.createObjectURL(this.state.imagenFile[i]))
-            }
-
-            for (var i = 5; i < this.state.imagenFile.length; i++) {
-                this.state.c2[i-5]=(URL.createObjectURL(this.state.imagenFile[i]))
-            }
-
-        } else if (this.state.imagenFile.length <= 5) {
-            for (var i = 0; i < this.state.imagenFile.length; i++) {
-                this.state.c1[i]=(URL.createObjectURL(this.state.imagenFile[i]))
-            }
-
-        } else if (this.state.imagenFile.length > 10) {
-
-            for (var i = 0; i < 5; i++) {
-                this.state.c1[i]=(URL.createObjectURL(this.state.imagenFile[i]))
-            }
-
-            for (var i = 5; i < 10; i++) {
-                this.state.c2[i-5]=(URL.createObjectURL(this.state.imagenFile[i]))
-            }
-        }
-
-
-        this.render()
-
     }
-
 
     render() {
         if (this.state.bool) {
@@ -232,6 +210,7 @@ class SubirProducto extends Component {
                                     <option  value="vehiculos" >Vehículos</option>
                                     <option  value="intrumentos musicales" >Instrumentos Musicales</option>
                                     <option  value="deporte" >Deporte</option>
+                                    <option  value="infantil" >Infantil</option>
                                 </select>
                             </div>
                             <hr/>
@@ -242,7 +221,6 @@ class SubirProducto extends Component {
                                 <div className="imginput">
                                     <div className="imgs">
                                         <div className="imginserted">
-
                                             <img src={this.state.c1[0]}/>
                                             <img src={this.state.c1[1]}/>
                                             <img src={this.state.c1[2]}/>
@@ -251,22 +229,24 @@ class SubirProducto extends Component {
 
                                         </div>
                                         <div className="imginserted">
-                                            <img src={this.state.c2[0]}/>
-                                            <img src={this.state.c2[1]}/>
-                                            <img src={this.state.c2[2]}/>
-                                            <img src={this.state.c2[3]}/>
-                                            <img src={this.state.c2[4]}/>
+                                            <img src={this.state.c1[5]}/>
+                                            <img src={this.state.c1[6]}/>
+                                            <img src={this.state.c1[7]}/>
+                                            <img src={this.state.c1[8]}/>
+                                            <img src={this.state.c1[9]}/>
                                         </div>
                                     </div>
                                     <div className="inpt">
                                         <input type="file" name="imagen" id="image" placeholder="imagen" required multiple
                                                accept="image/*"
-                                               onChange={(e) => this.files(e)}
-                                                />
+                                               onChange={this.files}/>
                                     </div>
                                 </div>
+
                             </fieldset>
                             <fieldset className="ft">
+
+
                                 <button type="submit" className="btn">
                                     Publicar
                                 </button>

@@ -20,7 +20,7 @@ class ActualizarProducto extends Component {
             stock:'',
             descripcion:'',
             categoria:'',
-            images:'',
+            images:[],
             imagenFile:[],
 
             nombreA:'',
@@ -28,7 +28,7 @@ class ActualizarProducto extends Component {
             stockA:'',
             descripcionA:'',
             categoriaA:'',
-            imagesA:'',
+            imagesA:[],
             imagenFileA:[],
 
             c1:[],
@@ -36,19 +36,17 @@ class ActualizarProducto extends Component {
         }
 
         this.files=this.files.bind(this);
-
         this.getData = this.getData.bind(this);
         this.actualizar = this.actualizar.bind(this);
 
 
-    }
 
+    }
 
 
     componentDidMount() {
         this.getData()
     }
-
 
 
     async getData(){
@@ -74,7 +72,11 @@ class ActualizarProducto extends Component {
 
         const data = res.data.data;
 
-        console.log(JSON.stringify(data))
+        for(var i=0;i<data.images.length;i++){
+            this.state.c1.push(data.images[i])
+            this.state.imagenFile.push(data.images[i])
+        }
+
 
         this.setState({nombreA:data.nombre});
         this.setState({precioA:data.precio})
@@ -82,24 +84,6 @@ class ActualizarProducto extends Component {
         this.setState({descripcionA:data.descripcion})
         this.setState({categoriaA:data.categoria})
         this.setState({imagesA:data.images})
-
-        if(data.images.length>=5 && data.images.length<=10){
-
-            for(var i=0;i<5;i++){
-                this.state.c1.push(data.images[i])
-            }
-
-            for(var i=5;i<data.images.length;i++){
-                this.state.c2.push(data.images[i])
-            }
-
-        }else if(data.images.length<5){
-
-            for(var i=0;i<data.images.length;i++){
-                this.state.c1.push(data.images[i])
-            }
-
-        }
 
     }
 
@@ -109,6 +93,29 @@ class ActualizarProducto extends Component {
 
         //const url = 'https://radiant-castle-07024.herokuapp.com/api/producto/'
         const url = 'http://localhost:5000/api/producto/'
+
+        var images=[]
+
+        const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/localshop/image/upload';
+        const UPLOAD_PRESET = 'y1b3maos';
+
+        const formImages = new FormData();
+
+        for(var i=0;i<this.state.imagenFile.length;i++){
+
+            formImages.append('file', this.state.imagenFile[i]);
+            formImages.append('upload_preset', UPLOAD_PRESET);
+            const resI = await Axios.post(CLOUDINARY_URL, formImages);
+
+            images.push(resI.data.secure_url)
+        }
+        try {
+
+          this.setState({images:images})
+
+        } catch (err) {
+            console.error(err);
+        }
 
         const token = localStorage.getItem("token")
         const id=this.state.id
@@ -130,6 +137,8 @@ class ActualizarProducto extends Component {
         }if(this.state.images.length <=0){
             this.state.images=this.state.imagesA
         }
+
+
 
         var config = {
             method: 'put',
@@ -154,42 +163,64 @@ class ActualizarProducto extends Component {
         window.location.reload()
     }
 
-    files(files){
-        for(var i=0;i<files.length;i++){
-            this.state.imagenFile.push(files[i])
-        }
+    files(event){
 
-        if(this.state.imagenFile.length>5 && this.state.imagenFile.length<=10){
-            for(var i=0;i<5;i++){
-                this.state.c1.pop()
-                this.state.c1.unshift(this.state.imagenFile[i])
+        var files = event.target.files
+
+        const imgl = this.state.imagenFile.length
+        const fl = files.length
+
+        if (fl > 0) {
+            if (fl > 10) {
+                Swal.fire({
+                    title: "Solo puedes subir 10 imagenes de tu producto"
+                })
+
+                for (var i = 0; i < 10; i++) {
+                    this.state.imagenFile.push(files[i]);
+                }
+
+                while (this.state.imagenFile.length > 10) {
+                    this.state.imagenFile.shift()
+                }
+
+            } else {
+
+                if ((imgl + fl) > 10) {
+                    Swal.fire({
+                        title: "Solo puedes subir 10 imagenes de tu producto"
+                    })
+
+                    for (var i = 0; i < fl; i++) {
+                        this.state.imagenFile.push(files[i]);
+                    }
+
+                    while (this.state.imagenFile.length > 10) {
+                        this.state.imagenFile.shift()
+                    }
+
+                } else {
+
+                    for (var i = imgl; i < imgl + fl; i++) {
+                        this.state.imagenFile.push(files[i - imgl]);
+                    }
+                }
             }
 
-            for(var i=5;i<this.state.imagenFile.length;i++){
-                this.state.c2.pop()
-                this.state.c2.unshift(this.state.imagenFile[i])
-            }
-
-        }else if(this.state.imagenFile.length<=5){
             for(var i=0;i<this.state.imagenFile.length;i++){
-                this.state.c1.pop()
-                this.state.c1.unshift(this.state.imagenFile[i])
+                if(this.state.imagesA.length >=i && this.state.imagenFile[i] == this.state.imagesA[i] ){
+
+                    this.state.c1[i] =this.state.imagenFile[i]
+                }else{
+
+                   this.state.c1[i] =URL.createObjectURL(this.state.imagenFile[i])
+                }
             }
 
-        }else if(this.state.imagenFile.length>10){
-
-            for(var i=0;i<5;i++){
-                this.state.c1.pop()
-                this.state.c1.unshift(this.state.imagenFile[i])
-            }
-
-            for(var i=5;i<10;i++){
-                this.state.c2.pop()
-                this.state.c2.unshift(this.state.imagenFile[i])
-            }
+            this.setState({
+                boolImages: !this.state.boolImages
+            })
         }
-
-
 
     }
 
@@ -215,25 +246,25 @@ class ActualizarProducto extends Component {
                         <form className="form" onSubmit={this.actualizar}>
                             <div className="f-g">
                                 <label htmlFor="name">Nombre del producto: </label>
-                                <input type="text" name="name" required
+                                <input type="text" name="name"
                                        placeholder={this.state.nombreA}
                                        onChange={(e) => this.setState({nombre: e.target.value})}/>
                             </div>
                             <div className="f-g">
                                 <label htmlFor="Description">Descripción: </label>
-                                <input type="text" name="Description" required
+                                <input type="text" name="Description"
                                        placeholder={this.state.descripcionA}
                                        onChange={(e) => this.setState({descripcion: e.target.value})}/>
                             </div>
                             <div className="f-g">
                                 <label htmlFor="budget">Precio x Unidad: </label>
-                                <input type="number" name="Price" required
+                                <input type="number" name="Price"  min="1"
                                        placeholder={this.state.precioA}
                                        onChange={(e) => this.setState({precio: e.target.value})}/>
                             </div>
                             <div className="f-g">
                                 <label htmlFor="budget">Unidades disponibles: </label>
-                                <input type="number" name="quantity" required
+                                <input type="number" name="quantity" min="1"
                                        placeholder={this.state.stockA}
                                        onChange={(e) => this.setState({stock: e.target.value})}/>
                             </div>
@@ -266,16 +297,17 @@ class ActualizarProducto extends Component {
 
                                         </div>
                                         <div className="imginserted">
-                                            <img src={this.state.c2[0]}/>
-                                            <img src={this.state.c2[1]}/>
-                                            <img src={this.state.c2[2]}/>
-                                            <img src={this.state.c2[3]}/>
-                                            <img src={this.state.c2[4]}/>
+                                            <img src={this.state.c1[5]}/>
+                                            <img src={this.state.c1[6]}/>
+                                            <img src={this.state.c1[7]}/>
+                                            <img src={this.state.c1[8]}/>
+                                            <img src={this.state.c1[9]}/>
                                         </div>
                                     </div>
                                     <div className="inpt">
                                         <input type="file" name="imagen" placeholder="imagen" multiple
-                                               onChange={(e) => this.files(e.target.files)} />
+                                               accept="image/*"
+                                               onChange={this.files} />
                                     </div>
                                 </div>
                             </fieldset>

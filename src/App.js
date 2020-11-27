@@ -23,6 +23,7 @@ import FacturaVenta from "./Pages/FacturaVenta";
 import Card from "./Pages/Card";
 import Contraentrega from "./Pages/Contraentrega";
 import Giro from "./Pages/Giro";
+import EstadoCompra from "./Pages/EstadoCompra";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route exact path="/card" component={Card}/>
           <Route exact path="/contraentrega" component={Contraentrega}/>
           <Route exact path="/giro" component={Giro}/>
+          <Route exact path="/paystate" component={EstadoCompra}/>
 
           <Route exact path="/miscompras" component={MisCompras} />
           <Route exact path="/misventas" component={MisVentas} />

@@ -161,4 +161,40 @@ legend{
     transform: translateX(-42%);
     min-width: max-content;
 }
+.imgch{
+    margin-left: 50%;
+    transform: translateX(-28%);
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+.imgch img{
+    height: 25em;
+    width: 25em;
+}
+.status{
+    margin-left: 50%;
+    transform: translateX(-28%);
+    min-width: max-content;
+}
+.status-w{
+    margin-left: 50%;
+    transform: translateX(-20%);
+    min-width: fit-content;
+}
+.btn-st{
+    float: right;
+    margin-right: 2em;
+    padding: 1em;
+    background: #060b26;
+    color: white;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    border-radius: 10px;
+    border: 0;
+    margin-top: 1.5em;
+}
+.btn-st:hover{
+    background: #ffb224;
+    color: #242424;
+}
 

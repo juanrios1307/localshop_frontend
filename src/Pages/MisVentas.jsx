@@ -15,12 +15,13 @@ class MisVentas extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Content: ''
+            Content: '',
+            pago:[]
         };
         this.getData = this.getData.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
         this.facturaCompra=this.facturaCompra.bind(this);
-        this.recibido=this.recibido.bind(this);
+        this.confirmarPago=this.confirmarPago.bind(this);
     }
 
     componentDidMount() {
@@ -28,16 +29,46 @@ class MisVentas extends React.Component {
     }
 
     facturaCompra(id,e){
+        e.preventDefault()
+
+        localStorage.setItem("facturaID",id)
+        localStorage.setItem("facturaIDAux",id)
+
+        window.location.reload();
 
     }
 
-    recibido(id,e){
+    async confirmarPago(id, e) {
 
+        const token = localStorage.getItem("token")
+
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/venta/'
+        const url = 'http://localhost:5000/api/venta/'
+
+        const config = {
+            method: 'put',
+            url: url,
+            headers: {
+                'access-token': token,
+                'id':id
+            }
+        };
+
+        var response = await Axios(config);
+
+
+        Swal.fire({
+            title: response.data.data
+        })
+
+
+        window.location.reload();
     }
 
     specificProduct(id){
         localStorage.setItem("productID",id)
         localStorage.setItem("productIDAux",id)
+
 
         window.location.reload();
     }
@@ -63,21 +94,34 @@ class MisVentas extends React.Component {
 
        if(data.length>0) {
            this.setState({
-               Content: data.map((venta) => (
+               Content: data.map((venta,index) => (
                    <div className="media" key={venta._id}>
-                       <img className="mr-3 imgList" src={venta.producto.images[0]} alt='imagen'/>
+                       <img className="mr-3 imgList" src={venta.productos[0].producto.images[0]} alt='imagen'/>
                        <div className="media-body">
-                           <h6 className="mt-0"> {venta.producto.nombre}</h6>
+                           <h6 className="mt-0"> {venta.productos[0].producto.nombre}</h6>
                            <p className="card-text">Comprador: {venta.comprador.nombre}</p>
                            <p className="card-text">Total: ${venta.total}</p>
                            <div className="rating-p">
-                               <Rating name="read-only" value={venta.producto.promedio} readOnly/>
+                               <Rating name="read-only" value={venta.productos[0].producto.promedio} readOnly/>
                            </div>
 
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.facturaCompra(venta._id, e)}><FaIcons.FaFileInvoice/></button>
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.specificProduct(venta._id)}><AiIcons.AiFillEye/></button>
+
+                           {venta.estado=="pendientepago"?
+                               this.state.pago.push(
+                                   <div>
+                                       <label className="lbl-q">Confirmar pago</label>
+                                       <input type="checkbox" className="inpt-q" onChange={(e)=>this.confirmarPago(venta._id,e)}/>
+                                   </div>
+                               ):
+                               this.state.pago.push("")}
+
+                           <div>
+                               {this.state.pago[index]}
+                           </div>
 
                            <div className="card-footer">
                                <small
@@ -100,7 +144,11 @@ class MisVentas extends React.Component {
     }
 
     render() {
-            if (localStorage.getItem("productID")) {
+            if(localStorage.getItem("facturaID")){
+                return (
+                    <Redirect to="facturav"/>
+                )
+            }else if (localStorage.getItem("productID")) {
                 return (
                     <Redirect to="product"/>
                 )

@@ -15,12 +15,13 @@ class MisCompras extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Content: ''
+            Content: '',
+            pago:[]
         };
         this.getData = this.getData.bind(this);
         this.specificProduct=this.specificProduct.bind(this);
         this.facturaCompra=this.facturaCompra.bind(this);
-        this.recibido=this.recibido.bind(this);
+        this.confirmarPago=this.confirmarPago.bind(this);
 
     }
 
@@ -30,10 +31,38 @@ class MisCompras extends React.Component {
 
     facturaCompra(id,e){
 
+        e.preventDefault()
+
+        localStorage.setItem("facturaID",id)
+        localStorage.setItem("facturaIDAux",id)
+
+        window.location.reload();
     }
 
-    recibido(id,e){
+    async confirmarPago(id, e) {
+        const token = localStorage.getItem("token")
 
+        //const url = 'https://radiant-castle-07024.herokuapp.com/api/venta/'
+        const url = 'http://localhost:5000/api/venta/'
+
+        const config = {
+            method: 'put',
+            url: url,
+            headers: {
+                'access-token': token,
+                'id':id
+            }
+        };
+
+        var response = await Axios(config);
+
+
+        Swal.fire({
+            title: response.data.data
+        })
+
+
+        window.location.reload();
     }
 
 
@@ -63,17 +92,19 @@ class MisCompras extends React.Component {
 
        var data = response.data.data;
 
+       console.log(data)
+
        if(data.length>0) {
            this.setState({
-               Content: data.map((venta) => (
+               Content: data.map((venta,index) => (
                    <div className="media" key={venta._id}>
-                       <img className="mr-3 imgList" src={venta.producto.images[0]} alt='imagen'/>
+                       <img className="mr-3 imgList" src={venta.productos[0].producto.images[0]} alt='imagen'/>
                        <div className="media-body">
-                           <h6 className="mt-0"> {venta.producto.nombre}</h6>
-                           <p className="card-text">Vendedor: {venta.vendedor.nombre}</p>
+                           <h6 className="mt-0"> {venta.productos[0].producto.nombre}</h6>
+                           <p className="card-text">Vendedor: {venta.productos[0].vendedor.nombre}</p>
                            <p className="card-text">Total: ${venta.total}</p>
                            <div className="rating-p">
-                               <Rating name="read-only" value={venta.producto.promedio} readOnly/>
+                               <Rating name="read-only" value={venta.productos[0].producto.promedio} readOnly/>
                            </div>
 
                            <button type="button" className="btn btn-outline btn-list"
@@ -81,9 +112,22 @@ class MisCompras extends React.Component {
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.specificProduct(venta._id)}><AiIcons.AiFillEye/></button>
 
+                           {venta.estado=="pendienterecibo"?
+                               this.state.pago.push(
+                                       <div>
+                                           <label className="lbl-q">Confirmar recibido</label>
+                                           <input type="checkbox" className="inpt-q" onChange={(e)=>this.confirmarPago(venta._id,e)}/>
+                                       </div>
+                                   ):
+                               this.state.pago.push("")}
+
+                           <div>
+                               {this.state.pago[index]}
+                           </div>
+
                            <div className="card-footer">
                                <small
-                                   className="text-muted">Subido {moment(venta.date).format('DD/MM/YYYY')} </small>
+                                   className="text-muted">Compra realizada el {moment(venta.date).format('DD/MM/YYYY')} </small>
                            </div>
 
                        </div>
@@ -103,25 +147,25 @@ class MisCompras extends React.Component {
     }
 
     render() {
-
-            if (localStorage.getItem("productID")) {
-                return (
-                    <Redirect to="product"/>
+        if(localStorage.getItem("facturaID")){
+            return (
+                <Redirect to="facturac"/>
+            )
+        }else if (localStorage.getItem("productID")) {
+            return (
+                <Redirect to="product"/>
                 )
-            } else {
-                return (
-                    <Grid container spacing={3}>
-
-                        <Grid item xs={12}>
-                            <DashNav/>
-                        </Grid>
-
-
-                        <Grid item xs={12}>
-                            {this.state.Content}
-                        </Grid>
-
+        } else {
+            return (
+                <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <DashNav/>
                     </Grid>
+
+                    <Grid item xs={12}>
+                        {this.state.Content}
+                    </Grid>
+                </Grid>
                 )
             }
     }

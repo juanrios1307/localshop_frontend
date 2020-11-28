@@ -72,7 +72,10 @@ class ChatEspecifico extends Component {
 
                             <li className={messages.emisor === "user" ? "user" : "worker"}>
                                 <p className="messages">{messages.mensaje}</p>
-                                <p className="date" >{moment(messages.date).format('DD/MM/YYYY')} </p>
+                                <p className="date" >{
+                                    moment(messages.date).format('DD/MM/YYYY') != moment().format('DD/MM/YYYY')?
+                                        moment(messages.date).format('DD/MM/YYYY -  h:mm a'):
+                                        "Hoy "+moment(messages.date).format('h:mm a')} </p>
                             </li>
 
                         )
@@ -88,7 +91,10 @@ class ChatEspecifico extends Component {
 
                             <li className={messages.emisor === "user" ? "worker" : "user"}>
                                 <p className="messages">{messages.mensaje}</p>
-                                <p className="date">{moment(messages.date).format('DD/MM/YYYY')} </p>
+                                <p className="date" >{
+                                    moment(messages.date).format('DD/MM/YYYY') != moment().format('DD/MM/YYYY')?
+                                    moment(messages.date).format('DD/MM/YYYY -  h:mm a'):
+                                    "Hoy "+moment(messages.date).format('h:mm a')} </p>
                             </li>
 
                         )

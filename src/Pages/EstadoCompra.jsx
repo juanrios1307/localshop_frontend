@@ -16,6 +16,7 @@ class EstadoCompra extends Component {
             miscompras:false,
             reintentar:false,
             cancelar:false,
+            chat:false,
 
             accept : true
 
@@ -61,7 +62,11 @@ class EstadoCompra extends Component {
             return(
                 <Redirect to="/shoppingCar" />
             )
-        }else {
+        }else if(this.state.chat){
+            return(
+                <Redirect to="/chats" />
+            )
+        } else {
 
             if (this.state.accept) {
                 return (
@@ -79,12 +84,13 @@ class EstadoCompra extends Component {
                             <h8>! Compra realizada con exito ¡</h8>
                         </div>
                         <div className="btn-stat">
-                            <button className="btn-st" onClick={this.facturaCompra} >Mostrar recibo
-                            </button>
-                            <button className="btn-st" onClick={(e) => this.setState({buscar: true})}>Seguir comprando
-                            </button>
-                            <button className="btn-st" onClick={(e) => this.setState({miscompras: true})}>Continuar
-                            </button>
+                            <button className="btn-st" onClick={this.facturaCompra} >Mostrar recibo</button>
+
+                            <button className="btn-st" onClick={(e) => this.setState({buscar: true})}>Seguir comprando</button>
+
+                            <button className="btn-st" onClick={(e) => this.setState({miscompras: true})}>Continuar</button>
+
+                            <button className="btn-st" onClick={(e) => this.setState({chat: true})}>Ir al chat</button>
                         </div>
                     </div>
                 );
@@ -104,10 +110,9 @@ class EstadoCompra extends Component {
                             <h8>Error en la compra</h8>
                         </div>
                         <div className="btn-stat">
-                            <button className="btn-st" onClick={(e) => this.setState({reintentar: true})}>Reintentar
-                            </button>
-                            <button className="btn-st" onClick={(e) => this.setState({cancelar: true})}>Cancelar
-                            </button>
+                            <button className="btn-st" onClick={(e) => this.setState({reintentar: true})}>Reintentar</button>
+
+                            <button className="btn-st" onClick={(e) => this.setState({cancelar: true})}>Cancelar</button>
                         </div>
                     </div>
                 );

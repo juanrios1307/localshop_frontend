@@ -64,7 +64,7 @@ class MisChats extends React.Component {
 
                            <div className="card-footer">
                                <small
-                                   className="text-muted">{chat.Mensajes.length > 0 ? (moment(chat.Mensajes[chat.Mensajes.length - 1].date).format('DD/MM/YYYY')) : 1}</small>
+                                   className="text-muted">{chat.Mensajes.length > 0 ? (moment(chat.Mensajes[chat.Mensajes.length - 1].date).format('DD/MM/YYYY h:mm a')) : 1}</small>
                            </div>
                        </div>
 

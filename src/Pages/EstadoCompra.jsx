@@ -86,6 +86,7 @@ class EstadoCompra extends Component {
                         <div className="btn-stat">
                             <button className="btn-st" onClick={this.facturaCompra} >Mostrar recibo</button>
 
+
                             <button className="btn-st" onClick={(e) => this.setState({buscar: true})}>Seguir comprando</button>
 
                             <button className="btn-st" onClick={(e) => this.setState({miscompras: true})}>Continuar</button>

@@ -68,7 +68,7 @@ class EstadoCompra extends Component {
             )
         } else {
 
-            if (this.state.accept) {
+            if (this.state.accept == true) {
                 return (
                     <div>
                         <header>
@@ -107,7 +107,7 @@ class EstadoCompra extends Component {
                             <img src={Cross}/>
                         </div>
                         <div className="status-w">
-                            <h8>Error en la compra</h8>
+                            <h8>ha ocurrido un error en el sistema, vuelve a intentar mas tarde</h8>
                         </div>
                         <div className="btn-stat">
                             <button className="btn-st" onClick={(e) => this.setState({reintentar: true})}>Reintentar</button>

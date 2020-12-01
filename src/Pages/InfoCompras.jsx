@@ -101,7 +101,7 @@ class InfoCompras extends React.Component {
             this.setState({
                     Content:(
                             <div className="resumen">
-                                <h13 className="titu-c">{data.producto}</h13>
+                                <h13 className="titu-c">{data.producto[0].toUpperCase()+data.producto.slice(1)}</h13>
                                 <p>Precio unitario: ${data.precio}</p>
                                 <p>Vendedor: {data.vendedor}</p>
                                 <p>Telefono: {data.telefono}</p>

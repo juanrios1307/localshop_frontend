@@ -42,7 +42,7 @@ function TableMaterial(props) {
             setContent(data.map((producto) => (
                 <TableRow key={producto.id}>
                     <TableCell><img src={producto.promedio>0?producto.images[0]:nofoto} width="40px" height="40px" alt="Imagen"/>{"  "}</TableCell>
-                    <TableCell align="center">{producto.promedio>0?producto.nombre:"No tenemos mas sugerencias para ti"}</TableCell>
+                    <TableCell align="center">{producto.promedio>0?producto.nombre[0].toUpperCase()+producto.nombre.slice(1):"No tenemos mas sugerencias para ti"}</TableCell>
                     <TableCell align="center">{producto.promedio>0?"$"+producto.precio:""}</TableCell>
                 </TableRow>
             )))

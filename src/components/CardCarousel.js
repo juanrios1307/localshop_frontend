@@ -42,7 +42,7 @@ class CardCarousel extends Component {
                     <div className="card" key={producto._id}>
                         <div className="card-icon"><img src={producto.promedio>0?producto.images[0]:nofoto} alt="No imagen"/></div>
                         <div className="card-body">
-                            <h5 className="card-title">{producto.promedio>0?producto.nombre:"No tenemos mas sugerencias para ti"}</h5>
+                            <h5 className="card-title">{producto.promedio>0?producto.nombre[0].toUpperCase()+producto.nombre.slice(1):"No tenemos mas sugerencias para ti"}</h5>
                             <p className="card-text">{producto.promedio>0?producto.categoria:""}</p>
                             <p className="card-text">{producto.promedio>0?"Precio: $"+producto.precio:""}</p>
                         </div>

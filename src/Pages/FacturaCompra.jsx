@@ -62,7 +62,7 @@ class FacturaCompra extends React.Component {
                                 <div>
 
                                     <div className="resumen">
-                                        <h13 className="titu-c">{productos.producto.nombre}</h13>
+                                        <h13 className="titu-c">{productos.producto.nombre[0].toUpperCase()+productos.producto.nombre.slice(1)}</h13>
                                         <p><b>Precio unitario:$</b>{productos.producto.precio}</p>
                                         <p><b>Cantidad:</b> {productos.cantidad}</p>
 

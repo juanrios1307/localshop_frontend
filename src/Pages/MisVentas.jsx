@@ -98,7 +98,7 @@ class MisVentas extends React.Component {
                    <div className="media" key={venta._id}>
                        <img className="mr-3 imgList" src={venta.productos[0].producto.images[0]} alt='imagen'/>
                        <div className="media-body">
-                           <h6 className="mt-0"> {venta.productos[0].producto.nombre}</h6>
+                           <h6 className="mt-0"> {venta.productos[0].producto.nombre[0].toUpperCase() +venta.productos[0].producto.nombre.slice(1) }</h6>
                            <p className="card-text">Comprador: {venta.comprador.nombre}</p>
                            <p className="card-text">Total: ${venta.total}</p>
                            <div className="rating-p">

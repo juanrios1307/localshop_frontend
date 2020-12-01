@@ -279,6 +279,7 @@ class ActualizarProducto extends Component {
                                     <option  value="vehiculos" >Vehículos</option>
                                     <option  value="intrumentos musicales" >Instrumentos Musicales</option>
                                     <option  value="deporte" >Deporte</option>
+                                    <option  value="infantil" >Infantil</option>
                                 </select>
                             </div>
                             <hr/>

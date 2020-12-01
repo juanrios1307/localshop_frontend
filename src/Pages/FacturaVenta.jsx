@@ -38,7 +38,7 @@ class FacturaVenta extends React.Component {
 
 
         //const url = 'https://radiant-castle-07024.herokuapp.com/api/venta/compras'
-        const url = 'http://localhost:5000/api/venta/compras/'
+        const url = 'http://localhost:5000/api/venta/ventas/'
 
 
 
@@ -53,7 +53,6 @@ class FacturaVenta extends React.Component {
             var response = await Axios(config);
 
             var data = response.data.data[0];
-
 
 
             this.setState({precio:data.total})

@@ -107,17 +107,17 @@ class MisVentas extends React.Component {
 
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.facturaCompra(venta._id, e)}><FaIcons.FaFileInvoice/></button>
-                           <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.specificProduct(venta._id)}><AiIcons.AiFillEye/></button>
 
-                           {venta.estado=="pendientepago"?
-                               this.state.pago.push(
-                                   <div>
-                                       <label className="lbl-q">Confirmar pago</label>
-                                       <input type="checkbox" className="inpt-q" onChange={(e)=>this.confirmarPago(venta._id,e)}/>
-                                   </div>
-                               ):
-                               this.state.pago.push("")}
+                            <div className="hiddenDiv">
+                               {venta.estado=="pendientepago"?
+                                   this.state.pago.push(
+                                       <div>
+                                           <label className="lbl-q">Confirmar pago</label>
+                                           <input type="checkbox" className="inpt-q" onChange={(e)=>this.confirmarPago(venta._id,e)}/>
+                                       </div>)
+                                   :
+                                   this.state.pago.push(<div></div>)}
+                            </div>
 
                            <div>
                                {this.state.pago[index]}

@@ -109,9 +109,8 @@ class MisCompras extends React.Component {
 
                            <button type="button" className="btn btn-outline btn-list"
                                    onClick={(e) => this.facturaCompra(venta._id, e)}><FaIcons.FaFileInvoice/></button>
-                           <button type="button" className="btn btn-outline btn-list"
-                                   onClick={(e) => this.specificProduct(venta._id)}><AiIcons.AiFillEye/></button>
 
+                           <div className="hiddenDiv">
                            {venta.estado=="pendienterecibo"?
                                this.state.pago.push(
                                        <div>
@@ -120,6 +119,7 @@ class MisCompras extends React.Component {
                                        </div>
                                    ):
                                this.state.pago.push("")}
+                           </div>
 
                            <div>
                                {this.state.pago[index]}

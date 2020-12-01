@@ -185,7 +185,7 @@ class ProductosBuscados extends React.Component {
 
         this.setState({
             Ciudades: data.map((ciudad) => (
-                <option  value={ciudad} >{ciudad}</option>
+                <option  value={ciudad} >{ciudad[0].toUpperCase()+ciudad.slice(1)}</option>
             ))
         })
     }
@@ -209,7 +209,7 @@ class ProductosBuscados extends React.Component {
 
         this.setState({
             Categorias: data.map((categoria) => (
-                <option  value={categoria} >{categoria}</option>
+                <option  value={categoria} >{categoria[0].toUpperCase() +categoria.slice(1)}</option>
             ))
         })
 

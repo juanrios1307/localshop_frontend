@@ -75,7 +75,7 @@ class Dashboard extends React.Component {
             const data = res.data.data;
 
             this.setState({nombre:data.nombre});
-            this.setState({ciudad:data.ciudad});
+            this.setState({ciudad:data.ciudad[0].toUpperCase() + data.ciudad.slice(1)});
             this.setState({anuncios:data.Productos==undefined?0:data.Productos.length});
         }
     }

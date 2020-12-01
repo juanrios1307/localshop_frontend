@@ -38,7 +38,7 @@ class FacturaVenta extends React.Component {
 
 
         //const url = 'https://radiant-castle-07024.herokuapp.com/api/venta/compras'
-        const url = 'http://localhost:5000/api/venta/compras/'
+        const url = 'http://localhost:5000/api/venta/ventas/'
 
 
 
@@ -53,7 +53,6 @@ class FacturaVenta extends React.Component {
             var response = await Axios(config);
 
             var data = response.data.data[0];
-
 
 
             this.setState({precio:data.total})
@@ -81,7 +80,7 @@ class FacturaVenta extends React.Component {
                                 </div>
 
                                 <div className="resumen">
-                                    <h13 className="titu-c">{productos.producto.nombre}</h13>
+                                    <h13 className="titu-c">{productos.producto.nombre[0].toUpperCase()+productos.producto.nombre.slice(1)}</h13>
                                     <p><b>Precio unitario:$</b>{productos.producto.precio}</p>
                                     <p><b>Cantidad:</b> {productos.cantidad}</p>
 

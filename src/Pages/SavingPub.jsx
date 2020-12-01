@@ -160,7 +160,7 @@ class SavingPub extends React.Component {
                    <div className="media" key={producto._id}>
                        <img className="mr-3 imgList" src={producto.images[0]} alt='imagen'/>
                        <div className="media-body">
-                           <h6 className="mt-0"> {producto.nombre}</h6>
+                           <h6 className="mt-0"> {producto.nombre[0].toUpperCase() + producto.nombre.slice(1)}</h6>
                            <p className="card-text">{producto.categoria}</p>
                            <p className="card-text">Precio: ${producto.precio}</p>
                            <p className="card-text">Vendedor: {producto.user.nombre}</p>

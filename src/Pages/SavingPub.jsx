@@ -16,7 +16,8 @@ class SavingPub extends React.Component {
             Content: '',
             pago:'',
             cantidad:1,
-            comprar:false
+            comprar:false,
+            boolC:false
         };
         this.getData = this.getData.bind(this);
         this.deletePub = this.deletePub.bind(this);
@@ -54,10 +55,17 @@ class SavingPub extends React.Component {
     comprarTodo(e) {
         e.preventDefault()
 
-        localStorage.setItem("bool","true")
-        localStorage.setItem("boolAux","true")
+        if(this.state.boolC == true){
+            localStorage.setItem("bool","true")
+            localStorage.setItem("boolAux","true")
 
-        this.setState({bool:true})
+            this.setState({bool:true})
+        }else{
+            Swal.fire({
+                title: "Debes agregar productos a tu carrito para comprarlos"
+            })
+        }
+
     }
 
 
@@ -154,6 +162,8 @@ class SavingPub extends React.Component {
        var cantidades=response.data.cantidades;
 
        if(data.length>0) {
+           this.setState({boolC:true})
+
            this.setState({
 
                Content: data.map((producto,index) => (
@@ -193,6 +203,8 @@ class SavingPub extends React.Component {
                ))
            })
        }else{
+           this.setState({boolC:false})
+
            this.setState({
                Content: <div>
                    <h4 className="noProduct">No tienes productos guardados.</h4>
